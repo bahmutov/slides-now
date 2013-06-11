@@ -8,6 +8,8 @@
     "components"
   ],
   "dependencies": {
-    "angular": "~1.0.7"
+    "angular": "~1.0.7",
+    "reveal.js": "~2.4.0",
+    "bespoke.js": "~0.2.1"
   }
 }
