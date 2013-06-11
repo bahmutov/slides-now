@@ -4,9 +4,9 @@ Instant stand alone slide show from a markdown document.
 
 ## Overview
 
-* No server necessary
-* Instant presentation
-* Just drag and drop a Markdown document
+1. No server necessary
+2. Instant presentation
+3. Just drag and drop a Markdown document
 
 ## Installation
 

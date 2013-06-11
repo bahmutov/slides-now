@@ -49,14 +49,28 @@
           }
           return false;
         }, false);
-        return createSlides = function(markdown) {
-          var $article;
+        return createSlides = function(md) {
+          var $article, currentSlide, html, lines;
           console.log('creating slides');
           element.remove();
           $article = $('body').append('<article>');
-          $('article').append('<section>Slide 1</section');
-          $('article').append('<section>Slide 2</section');
-          $('article').append('<section>Slide 3</section');
+          html = markdown.toHTML(md);
+          lines = html.split('\n');
+          currentSlide = null;
+          lines.forEach(function(line) {
+            if (/^<h2>/.test(line)) {
+              if (currentSlide) {
+                $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+                currentSlide = null;
+              }
+            }
+            if (currentSlide) {
+              return currentSlide += '\n' + line;
+            } else {
+              return currentSlide = line;
+            }
+          });
+          console.log('converted markdown to\n' + $article.innerHTML);
           return bespoke.horizontal.from('article');
         };
       }

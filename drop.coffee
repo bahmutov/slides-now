@@ -46,11 +46,24 @@ drop.directive 'dropzone', ->
         return false
       , false
 
-      createSlides = (markdown) ->
+      createSlides = (md) ->
         console.log 'creating slides'
         element.remove()
         $article = $('body').append '<article>'
-        $('article').append '<section>Slide 1</section'
-        $('article').append '<section>Slide 2</section'
-        $('article').append '<section>Slide 3</section'
+        html = markdown.toHTML md
+        lines = html.split '\n'
+
+        currentSlide = null
+        lines.forEach (line) ->
+          if /^<h2>/.test line
+            if currentSlide
+              # finish current slide
+              $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+              currentSlide = null
+          if currentSlide
+            currentSlide += '\n' + line
+          else
+            currentSlide = line
+
+        # console.log 'converted markdown to\n' + $article.innerHTML
         bespoke.horizontal.from 'article'
