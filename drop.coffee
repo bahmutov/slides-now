@@ -65,5 +65,8 @@ drop.directive 'dropzone', ->
           else
             currentSlide = line
 
+        if currentSlide
+          $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+
         # console.log 'converted markdown to\n' + $article.innerHTML
         bespoke.horizontal.from 'article'

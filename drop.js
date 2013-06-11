@@ -70,7 +70,9 @@
               return currentSlide = line;
             }
           });
-          console.log('converted markdown to\n' + $article.innerHTML);
+          if (currentSlide) {
+            $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+          }
           return bespoke.horizontal.from('article');
         };
       }

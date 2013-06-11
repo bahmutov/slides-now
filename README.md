@@ -2,6 +2,8 @@
 
 Instant stand alone slide show from a markdown document.
 
+### Gleb Bahmutov @bahmutov
+
 ## Overview
 
 1. No server necessary
