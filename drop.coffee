@@ -38,10 +38,17 @@ drop.directive 'dropzone', ->
           console.log 'dropped file', file
           reader = new FileReader()
           reader.onload = (evt) ->
-            console.log 'file contents\n' + evt.target.result
-            scope.$apply()
+            # console.log 'file contents\n' + evt.target.result
+            createSlides evt.target.result
           reader.readAsText file
         else
           console.error 'Only Markdown documents should be droppped'
         return false
       , false
+
+      createSlides = (markdown) ->
+        console.log 'creating slides'
+        element.remove()
+        $article = $('body').append $('article')
+        $article.append '<section>Slide</section'
+        # bespoke.horizontal.from 'article'
