@@ -10,6 +10,7 @@ div.markdown-dropzone {
 
   border: 1px dashed;
   padding: 25px;
+  background-color: white;
 
   display: table-cell;
   text-align: center;
