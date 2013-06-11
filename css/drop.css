@@ -1,6 +1,6 @@
 div.markdown-dropzone {
-  width: 150px;
-  height: 150px;
+  min-width: 600px;
+  height: 400px;
   border: 1px dashed;
   padding: 5px;
 
@@ -13,4 +13,5 @@ div.markdown-dropzone {
 
 .dragging {
   border: 2px solid !important;
+  font-weight: bolder;
 }

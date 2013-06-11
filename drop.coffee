@@ -30,6 +30,7 @@ drop.directive 'dropzone', ->
       # on drop events we stop browser and read the dropped file via the FileReader
       # the resulting droped file is bound to the image property of the scope of this directive
       element.bind 'drop', (event) ->
+        stopDrag(event)
         if event.preventDefault
           event.preventDefault()
         file = event.dataTransfer.files[0]
