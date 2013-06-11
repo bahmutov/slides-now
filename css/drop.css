@@ -17,6 +17,11 @@ div.markdown-dropzone {
   font-size: larger;
 }
 
+div.markdown-dropzone > pre {
+  text-align: left;
+  padding: 10pt 20pt;
+}
+
 .dragging {
   border: 2px solid !important;
   font-weight: bolder;
