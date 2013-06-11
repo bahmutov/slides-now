@@ -1,7 +1,6 @@
 # Slides Now!
 
-Instant stand alone slide show from markdown document
-in your browser.
+Instant stand alone slide show from a markdown document.
 
 ## Overview
 
