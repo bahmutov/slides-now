@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="description" content="Stand alone markdown based slideshow" />
-    <script src="components/angular/angular.min.js"></script>
     <meta charset="utf-8" />
+    <title>Slides now!</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Stand alone markdown based slideshow" />
     <link rel="stylesheet" href="css/drop.css" />
-    <title>Sample markdown drop</title>
+    <script src="components/angular/angular.min.js"></script>
+
+    <link rel="stylesheet" href="components/bespoke.js/demo/style.css" />
+    <link rel="stylesheet" href="components/bespoke.js/demo/themes.css" />
+    <script src="components/bespoke.js/dist/bespoke.js"></script>
+
+    <script src="components/markdown/lib/markdown.js"></script>
+
 </head>
-<body>
+<body class="coverflow">
 
     <div ng-app="markdown.drop">
 
         <div class="markdown-dropzone" dropzone>
             <span>drop Markdown here</span>
+
+            <pre>
+
+# Example
+
+## Slide title
+
+This is main text.
+
+* slide can have
+* bullet list
+* or number list
+
+## Second slide
+
+Presentation continues
+            </pre>
         </div>
 
     </div>
 
+<script src="components/jquery/jquery.min.js"></script>
 <script src="drop.js"></script>
 </body>
 </html>

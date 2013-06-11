@@ -10,7 +10,7 @@
       restrict: 'A',
       scope: {},
       link: function(scope, element, attrs) {
-        var startDrag, stopDrag;
+        var createSlides, startDrag, stopDrag;
         console.log('linking dropzone');
         startDrag = function(event) {
           element.addClass('dragging');
@@ -30,7 +30,7 @@
         element.bind('dragenter', startDrag, false);
         element.bind('dragover', startDrag, false);
         element.bind('dragleave', stopDrag, false);
-        return element.bind('drop', function(event) {
+        element.bind('drop', function(event) {
           var file, reader;
           stopDrag(event);
           if (event.preventDefault) {
@@ -41,8 +41,7 @@
             console.log('dropped file', file);
             reader = new FileReader();
             reader.onload = function(evt) {
-              console.log('file contents\n' + evt.target.result);
-              return scope.$apply();
+              return createSlides(evt.target.result);
             };
             reader.readAsText(file);
           } else {
@@ -50,6 +49,32 @@
           }
           return false;
         }, false);
+        return createSlides = function(md) {
+          var $article, currentSlide, html, lines;
+          console.log('creating slides');
+          element.remove();
+          $article = $('body').append('<article>');
+          html = markdown.toHTML(md);
+          lines = html.split('\n');
+          currentSlide = null;
+          lines.forEach(function(line) {
+            if (/^<h2>/.test(line)) {
+              if (currentSlide) {
+                $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+                currentSlide = null;
+              }
+            }
+            if (currentSlide) {
+              return currentSlide += '\n' + line;
+            } else {
+              return currentSlide = line;
+            }
+          });
+          if (currentSlide) {
+            $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+          }
+          return bespoke.horizontal.from('article');
+        };
       }
     };
   });
