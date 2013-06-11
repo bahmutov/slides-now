@@ -1,0 +1,16 @@
+div.markdown-dropzone {
+  width: 150px;
+  height: 150px;
+  border: 1px dashed;
+  padding: 5px;
+
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 5px;
+  font-size: larger;
+}
+
+.dragging {
+  border: 2px solid !important;
+}
