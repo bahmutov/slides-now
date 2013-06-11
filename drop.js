@@ -53,8 +53,11 @@
           var $article;
           console.log('creating slides');
           element.remove();
-          $article = $('body').append($('article'));
-          return $article.append('<section>Slide</section');
+          $article = $('body').append('<article>');
+          $('article').append('<section>Slide 1</section');
+          $('article').append('<section>Slide 2</section');
+          $('article').append('<section>Slide 3</section');
+          return bespoke.horizontal.from('article');
         };
       }
     };
