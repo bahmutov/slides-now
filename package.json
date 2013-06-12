@@ -13,6 +13,7 @@
   "dependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-bump": "0.0.2"
+    "grunt-bump": "0.0.2",
+    "grunt-contrib-concat": "~0.3.0"
   }
 }
