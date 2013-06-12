@@ -18,6 +18,10 @@ div.markdown-dropzone {
   font-size: 14pt !important;
 }
 
+div.markdown-dropzone > h3 {
+  color: #000 !important;
+}
+
 div.markdown-dropzone > pre {
   text-align: left;
   padding: 10pt 20pt;
