@@ -12,6 +12,11 @@ body {
 	color: #606060;
 }
 
+code {
+	padding: 10pt 10pt;
+	font-size: 12pt;
+}
+
 p {
 	font-size: 20px;
 	padding-left: 20pt;
