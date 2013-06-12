@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'drop.js': ['drop.coffee'] // compile and concat into single file
+          'drop.js': ['presentation.coffee', 'drop.coffee'] // compile and concat into single file
         }
       }
     },

@@ -1,4 +1,32 @@
 (function() {
+  window.mdToPresentation = function(md) {
+    var $article, currentSlide, html, lines;
+    $article = $('body').append('<article>');
+    html = markdown.toHTML(md);
+    lines = html.split('\n');
+    currentSlide = null;
+    lines.forEach(function(line) {
+      if (/^<h2>/.test(line)) {
+        if (currentSlide) {
+          $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+          currentSlide = null;
+        }
+      }
+      if (currentSlide) {
+        return currentSlide += '\n' + line;
+      } else {
+        return currentSlide = line;
+      }
+    });
+    if (currentSlide) {
+      $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+    }
+    return bespoke.horizontal.from('article');
+  };
+
+}).call(this);
+
+(function() {
   var drop;
 
   drop = angular.module('markdown.drop', []);
@@ -46,29 +74,8 @@
           return false;
         }, false);
         return createSlides = function(md) {
-          var $article, currentSlide, html, lines;
           element.remove();
-          $article = $('body').append('<article>');
-          html = markdown.toHTML(md);
-          lines = html.split('\n');
-          currentSlide = null;
-          lines.forEach(function(line) {
-            if (/^<h2>/.test(line)) {
-              if (currentSlide) {
-                $('article').append('<section>\n' + currentSlide + '\n</section>\n');
-                currentSlide = null;
-              }
-            }
-            if (currentSlide) {
-              return currentSlide += '\n' + line;
-            } else {
-              return currentSlide = line;
-            }
-          });
-          if (currentSlide) {
-            $('article').append('<section>\n' + currentSlide + '\n</section>\n');
-          }
-          return bespoke.horizontal.from('article');
+          return mdToPresentation(md);
         };
       }
     };
