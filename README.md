@@ -3,7 +3,7 @@
 Instant stand alone slide show from a markdown document.
 
 1. No server necessary
-2. Instant presentation
+2. Beautiful presentation
 3. Just drag and drop a Markdown document
 
 ## Playback
