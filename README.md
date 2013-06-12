@@ -23,6 +23,6 @@ Check them out!
 * [remark](https://github.com/gnab/remark)
 * [reveal.js](http://lab.hakim.se/reveal-js/)
 
-### Gleb Bahmutov @bahmutov
+### Gleb Bahmutov [@bahmutov](https://twitter.com/bahmutov)
 
 Feel free to contact me if there are any issues.

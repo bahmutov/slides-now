@@ -9,13 +9,13 @@ div.markdown-dropzone {
   margin-top: -220px;
 
   border: 1px dashed;
-  padding: 25px;
+  padding: 0px 25px !important;
   background-color: white;
 
   display: table-cell;
   text-align: center;
   vertical-align: middle;
-  font-size: larger;
+  font-size: 14pt !important;
 }
 
 div.markdown-dropzone > pre {

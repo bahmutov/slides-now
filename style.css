@@ -10,21 +10,19 @@ body {
 	overflow-x: hidden;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	color: #606060;
+	font-size: 26pt;
 }
 
 code {
-	padding: 10pt 10pt;
-	font-size: 12pt;
+	padding: 20pt 10pt;
 }
 
 p {
-	font-size: 20px;
 	padding-left: 20pt;
 }
 
 ol, ul {
-	font-size: 20px;
-	padding: 10pt 35pt;
+	padding: 20pt 65pt;
 }
 
 li {
@@ -83,13 +81,13 @@ section {
 	transform: none;
 	background: #c0c0c0;
 	border-radius: 30px;
-	width: 512px;
-	height: 380px;
+	width: 812px;
+	height: 580px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-left: -256px;
-	margin-top: -220px;
+	margin-left: -406px;
+	margin-top: -290px;
 	opacity: 0;
 
 	display: table-cell;
