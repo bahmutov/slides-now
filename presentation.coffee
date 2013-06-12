@@ -20,3 +20,10 @@ window.mdToPresentation = (md) ->
 
   # console.log 'converted markdown to\n' + $article.innerHTML
   bespoke.horizontal.from 'article'
+
+window.tryItNow = ->
+  md = $('#explanation')[0].innerHTML
+  $('#dropzone').remove()
+  mdToPresentation md
+
+$('#tryItNow').on 'click', tryItNow

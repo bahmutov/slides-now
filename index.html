@@ -17,13 +17,13 @@
 <body class="coverflow">
 -->
 <body class="classic">
-    <div ng-app="markdown.drop">
+    <div id="dropzone" ng-app="markdown.drop">
 
         <div class="markdown-dropzone" dropzone>
 
             <h3>Drop a Markdown File Here</h3>
 
-            <pre>
+            <pre id="explanation">
 # Slides Now!
 
 It is the *simplest* presentation done all in browser.
@@ -40,12 +40,15 @@ Drop filename with **.md** extension to start.
 
 ```
 Code markup is supported.
+Maybe without syntax highlighting ;)
 ```
+
+Feedback:
 
 ### Gleb Bahmutov @bahmutov
             </pre>
 
-            <a href="javascript:void(0)" title="See the text above as a slide show">Try it now!</a>
+            <a href="javascript:void(0)" title="See the text above as a slide show" id="tryItNow">Try it now!</a>
         </div>
     </div>
 <script src="slides-now.js"></script>

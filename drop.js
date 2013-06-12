@@ -24,6 +24,15 @@
     return bespoke.horizontal.from('article');
   };
 
+  window.tryItNow = function() {
+    var md;
+    md = $('#explanation')[0].innerHTML;
+    $('#dropzone').remove();
+    return mdToPresentation(md);
+  };
+
+  $('#tryItNow').on('click', tryItNow);
+
 }).call(this);
 
 (function() {
