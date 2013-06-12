@@ -3,12 +3,12 @@
 Instant stand alone slide show from a markdown document.
 
 1. No server necessary
-2. Beautiful presentation
+2. Stylish presentation
 3. Just drag and drop a Markdown document
 
 ## Playback
 
-* All inside the browser, nothing is uploaded to a server
+* Happens entirely inside the browser, nothing is uploaded to a server
 * Works great as a stand alone page
 * You can use this README.md as example
 * Parsed using [markdown-js](https://github.com/evilstreak/markdown-js)
