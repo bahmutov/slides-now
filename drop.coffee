@@ -1,13 +1,9 @@
 drop = angular.module 'markdown.drop', []
 
-console.log 'drop module'
-
 drop.directive 'dropzone', ->
   restrict: 'A'
   scope: {}
   link: (scope, element, attrs) ->
-      console.log 'linking dropzone'
-
       startDrag = (event) ->
         element.addClass 'dragging'
         if event.preventDefault
@@ -35,10 +31,8 @@ drop.directive 'dropzone', ->
           event.preventDefault()
         file = event.dataTransfer.files[0]
         if /\.md$/.test file.name
-          console.log 'dropped file', file
           reader = new FileReader()
           reader.onload = (evt) ->
-            # console.log 'file contents\n' + evt.target.result
             createSlides evt.target.result
           reader.readAsText file
         else
@@ -47,7 +41,6 @@ drop.directive 'dropzone', ->
       , false
 
       createSlides = (md) ->
-        console.log 'creating slides'
         element.remove()
         $article = $('body').append '<article>'
         html = markdown.toHTML md

@@ -3,15 +3,12 @@
 
   drop = angular.module('markdown.drop', []);
 
-  console.log('drop module');
-
   drop.directive('dropzone', function() {
     return {
       restrict: 'A',
       scope: {},
       link: function(scope, element, attrs) {
         var createSlides, startDrag, stopDrag;
-        console.log('linking dropzone');
         startDrag = function(event) {
           element.addClass('dragging');
           if (event.preventDefault) {
@@ -38,7 +35,6 @@
           }
           file = event.dataTransfer.files[0];
           if (/\.md$/.test(file.name)) {
-            console.log('dropped file', file);
             reader = new FileReader();
             reader.onload = function(evt) {
               return createSlides(evt.target.result);
@@ -51,7 +47,6 @@
         }, false);
         return createSlides = function(md) {
           var $article, currentSlide, html, lines;
-          console.log('creating slides');
           element.remove();
           $article = $('body').append('<article>');
           html = markdown.toHTML(md);
