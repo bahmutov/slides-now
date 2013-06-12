@@ -52,6 +52,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: {
+          'dist/cache.manifest': 'cache.manifest',
           'dist/index.html': 'index.html',
           'dist/README.md': 'README.md',
           'dist/drop.css': 'css/drop.css',
