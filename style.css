@@ -15,6 +15,7 @@ body {
 
 code {
 	padding: 20pt 10pt;
+	white-space: pre;
 }
 
 p {

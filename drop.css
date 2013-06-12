@@ -1,15 +1,15 @@
 div.markdown-dropzone {
   border-radius: 30px;
-  width: 512px;
-  height: 400px;
+  width: 812px;
+  height: 580px;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -256px;
-  margin-top: -220px;
+  margin-left: -406px;
+  margin-top: -290px;
 
   border: 1px dashed;
-  padding: 15px 25px !important;
+  padding: 0px 25px !important;
   background-color: white;
 
   display: table-cell;
@@ -18,16 +18,24 @@ div.markdown-dropzone {
   font-size: 14pt !important;
 }
 
+div.markdown-dropzone > h3 {
+  color: #000 !important;
+}
+
+div.markdown-dropzone > a {
+  color: #333 !important;
+  font-weight: bolder;
+  position: absolute;
+  right: 20pt;
+  bottom: 10pt;
+}
+
 div.markdown-dropzone > pre {
   text-align: left;
   padding: 10pt 20pt;
 }
 
-div.markdown-dropzone > a {
-  color: black !important;
-}
-
 .dragging {
   border: 2px solid !important;
-  font-weight: bolder;
+  padding: 15pt 25pt;
 }
