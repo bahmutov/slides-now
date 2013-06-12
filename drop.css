@@ -1,7 +1,7 @@
 div.markdown-dropzone {
   border-radius: 30px;
   width: 512px;
-  height: 380px;
+  height: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,7 +9,7 @@ div.markdown-dropzone {
   margin-top: -220px;
 
   border: 1px dashed;
-  padding: 0px 25px !important;
+  padding: 15px 25px !important;
   background-color: white;
 
   display: table-cell;
@@ -21,6 +21,10 @@ div.markdown-dropzone {
 div.markdown-dropzone > pre {
   text-align: left;
   padding: 10pt 20pt;
+}
+
+div.markdown-dropzone > a {
+  color: black !important;
 }
 
 .dragging {
