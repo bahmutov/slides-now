@@ -14,26 +14,46 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      components: {
+        files: {
+          'components/markdown/lib/markdown.min.js': ['components/markdown/lib/markdown.js'],
+          'drop.min.js': ['drop.js']
+        }
+      }
+    },
+
     concat: {
       options: {
         separator: ';\n'
       },
-      dist: {
+      dev: {
         src: [
           'components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
-          'components/markdown/lib/markdown.js',
+          'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
           'drop.js'
         ],
         dest: 'dist/slides-now.js'
+      },
+      min: {
+        src: [
+          'components/angular/angular.min.js',
+          'components/bespoke.js/dist/bespoke.min.js',
+          'components/markdown/lib/markdown.min.js',
+          'components/jquery/jquery.min.js',
+          'drop.min.js'
+        ],
+        dest: 'dist/slides-now.min.js'
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bump');
 
-  grunt.registerTask('default', ['coffee']);
+  grunt.registerTask('default', ['coffee', 'uglify', 'concat:dev']);
 };
