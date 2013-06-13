@@ -10,4 +10,5 @@ themes.css
 
 NETWORK:
 # Always try to fetch analytics links
-http://www.google-analytics.com
+# and any other external links
+*
