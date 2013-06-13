@@ -9,4 +9,5 @@ style.css
 themes.css
 
 NETWORK:
+# Always try to fetch analytics links
 http://www.google-analytics.com
