@@ -1,6 +1,14 @@
 CACHE MANIFEST
+
+CACHE:
+index.html
 drop.css
 README.md
 slides-now.js
 style.css
 themes.css
+
+NETWORK:
+# Always try to fetch analytics links
+# and any other external links
+*
