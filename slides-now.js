@@ -186,6 +186,15 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
     });
   };
 
+  bespoke.plugins.slideCounter = function(deck) {
+    return deck.on('activate', function(e) {
+      var message;
+      message = (e.index + 1) + ' / ' + deck.slides.length;
+      console.log('slide ' + message);
+      return $('aside#counter').text(message);
+    });
+  };
+
   window.mdToPresentation = function(md) {
     var $article, currentSlide, html, lines;
     $article = $('body').append('<article>');
@@ -210,14 +219,15 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
     }
     return bespoke.horizontal.from('article', {
       vertical: true,
-      pageUpDown: true
+      pageUpDown: true,
+      slideCounter: true
     });
   };
 
   window.tryItNow = function() {
     var md;
     md = $('#explanation')[0].innerHTML;
-    $('#dropzone').remove();
+    $('div.markdown-dropzone').remove();
     return mdToPresentation(md);
   };
 
@@ -234,6 +244,7 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
     return {
       restrict: 'A',
       scope: {},
+      replace: false,
       link: function(scope, element, attrs) {
         var createSlides, startDrag, stopDrag;
         startDrag = function(event) {
@@ -273,7 +284,7 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
           return false;
         }, false);
         return createSlides = function(md) {
-          element.remove();
+          element.remove('.markdown-dropzone');
           return mdToPresentation(md);
         };
       }

@@ -39,3 +39,11 @@ div.markdown-dropzone > pre {
   border: 2px solid !important;
   padding: 15pt 25pt;
 }
+
+aside#counter {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  font-size: small;
+  color: #444;
+}
