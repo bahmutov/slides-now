@@ -1,4 +1,17 @@
 (function() {
+  bespoke.plugins.pageUpDown = function(deck) {
+    return document.addEventListener('keydown', function(e) {
+      var key;
+      key = e.which;
+      if (key === 33) {
+        deck.prev();
+      }
+      if (key === 34) {
+        return deck.next();
+      }
+    });
+  };
+
   window.mdToPresentation = function(md) {
     var $article, currentSlide, html, lines;
     $article = $('body').append('<article>');
@@ -21,7 +34,10 @@
     if (currentSlide) {
       $('article').append('<section>\n' + currentSlide + '\n</section>\n');
     }
-    return bespoke.horizontal.from('article');
+    return bespoke.horizontal.from('article', {
+      vertical: true,
+      pageUpDown: true
+    });
   };
 
   window.tryItNow = function() {
