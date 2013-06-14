@@ -5,6 +5,12 @@ bespoke.plugins.pageUpDown = (deck) ->
     if key == 33 then deck.prev()
     if key == 34 then deck.next()
 
+bespoke.plugins.slideCounter = (deck) ->
+  deck.on 'activate', (e) ->
+    message = (e.index + 1) + ' / ' + deck.slides.length
+    console.log 'slide ' + message
+    $('aside#counter').text message
+
 window.mdToPresentation = (md) ->
   $article = $('body').append '<article>'
   html = markdown.toHTML md
@@ -29,6 +35,7 @@ window.mdToPresentation = (md) ->
   bespoke.horizontal.from 'article',
     vertical: true
     pageUpDown: true
+    slideCounter: true
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML

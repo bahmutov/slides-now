@@ -12,6 +12,15 @@
     });
   };
 
+  bespoke.plugins.slideCounter = function(deck) {
+    return deck.on('activate', function(e) {
+      var message;
+      message = (e.index + 1) + ' / ' + deck.slides.length;
+      console.log('slide ' + message);
+      return $('aside#counter').text(message);
+    });
+  };
+
   window.mdToPresentation = function(md) {
     var $article, currentSlide, html, lines;
     $article = $('body').append('<article>');
@@ -36,7 +45,8 @@
     }
     return bespoke.horizontal.from('article', {
       vertical: true,
-      pageUpDown: true
+      pageUpDown: true,
+      slideCounter: true
     });
   };
 
