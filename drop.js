@@ -43,7 +43,7 @@
   window.tryItNow = function() {
     var md;
     md = $('#explanation')[0].innerHTML;
-    $('#dropzone').remove();
+    $('div.markdown-dropzone').remove();
     return mdToPresentation(md);
   };
 
@@ -60,6 +60,7 @@
     return {
       restrict: 'A',
       scope: {},
+      replace: false,
       link: function(scope, element, attrs) {
         var createSlides, startDrag, stopDrag;
         startDrag = function(event) {
@@ -99,7 +100,7 @@
           return false;
         }, false);
         return createSlides = function(md) {
-          element.remove();
+          element.remove('.markdown-dropzone');
           return mdToPresentation(md);
         };
       }

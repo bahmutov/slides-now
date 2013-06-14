@@ -3,6 +3,7 @@ drop = angular.module 'markdown.drop', []
 drop.directive 'dropzone', ->
   restrict: 'A'
   scope: {}
+  replace: false
   link: (scope, element, attrs) ->
       startDrag = (event) ->
         element.addClass 'dragging'
@@ -41,5 +42,6 @@ drop.directive 'dropzone', ->
       , false
 
       createSlides = (md) ->
-        element.remove()
+        # remove just the drop zone
+        element.remove('.markdown-dropzone')
         mdToPresentation md

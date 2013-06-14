@@ -32,7 +32,7 @@ window.mdToPresentation = (md) ->
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
-  $('#dropzone').remove()
+  $('div.markdown-dropzone').remove()
   mdToPresentation md
 
 $('#tryItNow').on 'click', tryItNow
