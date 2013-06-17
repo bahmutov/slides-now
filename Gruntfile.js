@@ -59,6 +59,7 @@ module.exports = function(grunt) {
           prefix: '@@'
         },
         files: {
+          'dist/index.html': 'index.html',
           'dist/cache.manifest': 'cache.manifest'
         }
       }
@@ -67,7 +68,6 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: {
-          'dist/index.html': 'index.html',
           'dist/README.md': 'README.md',
           'dist/drop.css': 'css/drop.css',
           'dist/style.css': 'css/style.css',

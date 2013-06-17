@@ -40,6 +40,16 @@ div.markdown-dropzone > pre {
   padding: 15pt 25pt;
 }
 
+footer {
+  font-size: small;
+  color: #444;
+  text-align: center;
+  position: absolute;
+  bottom: 0px;
+  left: 5px;
+  height: 1.5em;
+}
+
 aside#counter {
   position: absolute;
   right: 5px;
