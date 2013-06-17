@@ -34,14 +34,14 @@ drop.directive 'dropzone', ->
         if /\.md$/.test file.name
           reader = new FileReader()
           reader.onload = (evt) ->
-            createSlides evt.target.result
+            createSlides evt.target.result, file.name
           reader.readAsText file
         else
           console.error 'Only Markdown documents should be droppped'
         return false
       , false
 
-      createSlides = (md) ->
+      createSlides = (md, filename) ->
         # remove just the drop zone
         element.remove('.markdown-dropzone')
-        mdToPresentation md
+        mdToPresentation md, filename

@@ -16,13 +16,21 @@
     return deck.on('activate', function(e) {
       var message;
       message = (e.index + 1) + ' / ' + deck.slides.length;
-      console.log('slide ' + message);
       return $('aside#counter').text(message);
     });
   };
 
-  window.mdToPresentation = function(md) {
-    var $article, currentSlide, html, lines;
+  window.mdToPresentation = function(md, filename) {
+    var $article, currentSlide, html, lastSlashAt, lines, name;
+    if (filename) {
+      name = filename;
+      lastSlashAt = filename.lastIndexOf('/');
+      if (lastSlashAt !== -1) {
+        name = filename.substr(lastSlashAt);
+      }
+      console.log('filename', name);
+      $('footer').text(name);
+    }
     $article = $('body').append('<article>');
     html = markdown.toHTML(md);
     lines = html.split('\n');
@@ -101,7 +109,7 @@
           if (/\.md$/.test(file.name)) {
             reader = new FileReader();
             reader.onload = function(evt) {
-              return createSlides(evt.target.result);
+              return createSlides(evt.target.result, file.name);
             };
             reader.readAsText(file);
           } else {
@@ -109,9 +117,9 @@
           }
           return false;
         }, false);
-        return createSlides = function(md) {
+        return createSlides = function(md, filename) {
           element.remove('.markdown-dropzone');
-          return mdToPresentation(md);
+          return mdToPresentation(md, filename);
         };
       }
     };

@@ -8,10 +8,16 @@ bespoke.plugins.pageUpDown = (deck) ->
 bespoke.plugins.slideCounter = (deck) ->
   deck.on 'activate', (e) ->
     message = (e.index + 1) + ' / ' + deck.slides.length
-    console.log 'slide ' + message
     $('aside#counter').text message
 
-window.mdToPresentation = (md) ->
+window.mdToPresentation = (md, filename) ->
+  if filename
+    name = filename
+    lastSlashAt = filename.lastIndexOf '/'
+    if lastSlashAt != -1
+      name = filename.substr lastSlashAt
+    $('footer').text name
+
   $article = $('body').append '<article>'
   html = markdown.toHTML md
   lines = html.split '\n'
