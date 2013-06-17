@@ -49,10 +49,24 @@ module.exports = function(grunt) {
       }
     },
 
+    replace: {
+      dist: {
+        options: {
+          variables: {
+            version: 'version: <%= pkg.version %>',
+            timestamp: 'timestamp: <%= grunt.template.today() %>'
+          },
+          prefix: '@@'
+        },
+        files: {
+          'dist/cache.manifest': 'cache.manifest'
+        }
+      }
+    },
+
     copy: {
       main: {
         files: {
-          'dist/cache.manifest': 'cache.manifest',
           'dist/index.html': 'index.html',
           'dist/README.md': 'README.md',
           'dist/drop.css': 'css/drop.css',
@@ -73,6 +87,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bump');
+  grunt.loadNpmTasks('grunt-replace');
 
-  grunt.registerTask('default', ['coffee', 'uglify', 'concat:dev', 'copy']);
+  grunt.registerTask('default', ['coffee', 'uglify', 'concat:dev', 'replace', 'copy']);
 };
