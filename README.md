@@ -19,7 +19,12 @@ Instant stand alone slide show from a markdown document.
 You can specify custom *slides-now* options using
 markdown reference syntax. Here are a few available options:
 
-* [slides-now-theme]: "classic|cube|coverflow|concave|carousel"
+```
+[slides-now-theme]: "classic"
+   cube|coverflow|concave|carousel
+[slides-now-footer]: "My presentation"
+```
+
 
 ## Inspiration
 
@@ -35,3 +40,4 @@ Check them out!
 Feel free to contact me if there are any issues.
 
 [slides-now-theme]: "cube"
+[slides-now-footer]: "Slides now README.md"
