@@ -8,5 +8,5 @@ first slide
 
 fourth slide
 
-[slides-now-theme]: "carousel"
+[slides-now-theme]: "concave"
 [slides-now-footer]: "This title has spaces"

@@ -70,12 +70,12 @@
 	transform: translateX(-800px) rotateY(90deg) translateX(-800px);
 }
 .concave section.bespoke-before-1 {
-	-webkit-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	-moz-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	-ms-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	-o-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	opacity: 0.4
+	-webkit-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	-moz-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	-ms-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	-o-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	opacity: 0.2
 }
 .concave section.bespoke-after {
 	-webkit-transform: translateX(800px) rotateY(-90deg) translateX(800px);
@@ -85,12 +85,12 @@
 	transform: translateX(800px) rotateY(-90deg) translateX(800px);
 }
 .concave section.bespoke-after-1 {
-	-webkit-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	-moz-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	-ms-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	-o-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	opacity: 0.4
+	-webkit-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	-moz-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	-ms-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	-o-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	opacity: 0.2
 }
 
 /* Coverflow Theme */
