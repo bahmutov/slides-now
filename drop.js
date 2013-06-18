@@ -33,9 +33,10 @@
     var lines, options, slidesNowOption;
     options = {};
     lines = md.split('\n');
-    slidesNowOption = /^\[slides-now-(\w+)\]\:\s\"([\w\W]+)\"$/;
+    slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/;
     lines.forEach(function(line) {
       var matches;
+      line = line.trim();
       if (slidesNowOption.test(line)) {
         matches = slidesNowOption.exec(line);
         if (matches.length !== 3) {
@@ -59,6 +60,7 @@
     }
     $article = $('body').append('<article>');
     options = getSlidesNowOptions(md);
+    console.log('got options', options);
     if (options.theme != null) {
       $('body').removeClass().addClass(options.theme);
     }

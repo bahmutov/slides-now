@@ -18,8 +18,9 @@ isSlideStart = (line) ->
 getSlidesNowOptions = (md) ->
   options = {}
   lines = md.split '\n'
-  slidesNowOption = /^\[slides-now-(\w+)\]\:\s\"([\w\W]+)\"$/
+  slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/
   lines.forEach (line) ->
+    line = line.trim()
     if slidesNowOption.test line
       matches = slidesNowOption.exec line
       if matches.length != 3
@@ -38,7 +39,7 @@ window.mdToPresentation = (md, filename) ->
   $article = $('body').append '<article>'
 
   options = getSlidesNowOptions md
-  # console.log 'got options', options
+  console.log 'got options', options
   if options.theme? then $('body').removeClass().addClass(options.theme)
   if options.footer? then $('footer').text options.footer
 
