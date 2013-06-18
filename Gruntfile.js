@@ -71,7 +71,8 @@ module.exports = function(grunt) {
           'dist/README.md': 'README.md',
           'dist/drop.css': 'css/drop.css',
           'dist/style.css': 'css/style.css',
-          'dist/themes.css': 'css/themes.css'
+          'dist/themes.css': 'css/themes.css',
+          'dist/favicon.png': 'favicon.png'
           /*
           'dist/slides-now.css': ['css/drop.css',
             'components/bespoke.js/demo/style.css',
