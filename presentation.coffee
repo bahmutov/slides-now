@@ -10,10 +10,22 @@ bespoke.plugins.slideCounter = (deck) ->
     message = (e.index + 1) + ' / ' + deck.slides.length
     $('aside#counter').text message
 
-isSlideStart = (line)->
+isSlideStart = (line) ->
   isLevel1Header = /^<h1>/
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
+
+getSlidesNowOptions = (md) ->
+  options = {}
+  lines = md.split '\n'
+  slidesNowOption = /^\[slides-now-(\w+)\]\:\s\"(\w+)\"$/
+  lines.forEach (line) ->
+    if slidesNowOption.test line
+      matches = slidesNowOption.exec line
+      if matches.length != 3
+        throw new Error 'Could not match line ' + line
+      options[matches[1]] = matches[2]
+  options
 
 window.mdToPresentation = (md, filename) ->
   if filename
@@ -24,6 +36,10 @@ window.mdToPresentation = (md, filename) ->
     $('footer').text name
 
   $article = $('body').append '<article>'
+
+  options = getSlidesNowOptions md
+  console.log 'got options', options
+  if options.theme? then $('body').removeClass().addClass(options.theme)
 
   mdParts = md.split '\n\r\n\r\n\r'
   htmlParts = mdParts.map (mdPart) ->
