@@ -207,9 +207,10 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
     var lines, options, slidesNowOption;
     options = {};
     lines = md.split('\n');
-    slidesNowOption = /^\[slides-now-(\w+)\]\:\s\"([\w\W]+)\"$/;
+    slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/;
     lines.forEach(function(line) {
       var matches;
+      line = line.trim();
       if (slidesNowOption.test(line)) {
         matches = slidesNowOption.exec(line);
         if (matches.length !== 3) {
@@ -233,6 +234,7 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
     }
     $article = $('body').append('<article>');
     options = getSlidesNowOptions(md);
+    console.log('got options', options);
     if (options.theme != null) {
       $('body').removeClass().addClass(options.theme);
     }

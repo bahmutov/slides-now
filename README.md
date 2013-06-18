@@ -22,7 +22,7 @@ markdown reference syntax. Here are a few available options:
 ```
 [slides-now-theme]: "classic"
    cube|coverflow|concave|carousel
-[slides-now-footer]: "My presentation"
+[slides-now-footer]: "My talk"
 ```
 
 

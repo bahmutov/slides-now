@@ -22,9 +22,13 @@ div.markdown-dropzone > h3 {
   color: #000 !important;
 }
 
-div.markdown-dropzone > a {
+div.markdown-dropzone a {
   color: #333 !important;
   font-weight: bolder;
+  padding-right: 10px;
+}
+
+div.markdown-dropzone aside {
   position: absolute;
   right: 20pt;
   bottom: 10pt;
