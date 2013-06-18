@@ -10,6 +10,11 @@ bespoke.plugins.slideCounter = (deck) ->
     message = (e.index + 1) + ' / ' + deck.slides.length
     $('aside#counter').text message
 
+isSlideStart = (line)->
+  isLevel1Header = /^<h1>/
+  isLevel2Header = /^<h2>/
+  return isLevel1Header.test(line) or isLevel2Header.test(line)
+
 window.mdToPresentation = (md, filename) ->
   if filename
     name = filename
@@ -22,9 +27,10 @@ window.mdToPresentation = (md, filename) ->
   html = markdown.toHTML md
   lines = html.split '\n'
 
+
   currentSlide = null
   lines.forEach (line) ->
-    if /^<h2>/.test line
+    if isSlideStart(line)
       if currentSlide
         # finish current slide
         $('article').append '<section>\n' + currentSlide + '\n</section>\n'

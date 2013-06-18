@@ -31,7 +31,8 @@ drop.directive 'dropzone', ->
         if event.preventDefault
           event.preventDefault()
         file = event.dataTransfer.files[0]
-        if /\.md$/.test file.name
+        isMarkdownFilename = /\.md$/
+        if isMarkdownFilename.test file.name
           reader = new FileReader()
           reader.onload = (evt) ->
             createSlides evt.target.result, file.name

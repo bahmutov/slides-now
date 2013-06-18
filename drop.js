@@ -1,4 +1,6 @@
 (function() {
+  var isSlideStart;
+
   bespoke.plugins.pageUpDown = function(deck) {
     return document.addEventListener('keydown', function(e) {
       var key;
@@ -20,6 +22,13 @@
     });
   };
 
+  isSlideStart = function(line) {
+    var isLevel1Header, isLevel2Header;
+    isLevel1Header = /^<h1>/;
+    isLevel2Header = /^<h2>/;
+    return isLevel1Header.test(line) || isLevel2Header.test(line);
+  };
+
   window.mdToPresentation = function(md, filename) {
     var $article, currentSlide, html, lastSlashAt, lines, name;
     if (filename) {
@@ -28,7 +37,6 @@
       if (lastSlashAt !== -1) {
         name = filename.substr(lastSlashAt);
       }
-      console.log('filename', name);
       $('footer').text(name);
     }
     $article = $('body').append('<article>');
@@ -36,7 +44,7 @@
     lines = html.split('\n');
     currentSlide = null;
     lines.forEach(function(line) {
-      if (/^<h2>/.test(line)) {
+      if (isSlideStart(line)) {
         if (currentSlide) {
           $('article').append('<section>\n' + currentSlide + '\n</section>\n');
           currentSlide = null;
@@ -100,13 +108,14 @@
         element.bind('dragover', startDrag, false);
         element.bind('dragleave', stopDrag, false);
         element.bind('drop', function(event) {
-          var file, reader;
+          var file, isMarkdownFilename, reader;
           stopDrag(event);
           if (event.preventDefault) {
             event.preventDefault();
           }
           file = event.dataTransfer.files[0];
-          if (/\.md$/.test(file.name)) {
+          isMarkdownFilename = /\.md$/;
+          if (isMarkdownFilename.test(file.name)) {
             reader = new FileReader();
             reader.onload = function(evt) {
               return createSlides(evt.target.result, file.name);
