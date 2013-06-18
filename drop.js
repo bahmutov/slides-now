@@ -30,7 +30,7 @@
   };
 
   window.mdToPresentation = function(md, filename) {
-    var $article, currentSlide, html, lastSlashAt, lines, name;
+    var $article, htmlParts, lastSlashAt, mdParts, name;
     if (filename) {
       name = filename;
       lastSlashAt = filename.lastIndexOf('/');
@@ -40,25 +40,33 @@
       $('footer').text(name);
     }
     $article = $('body').append('<article>');
-    html = markdown.toHTML(md);
-    lines = html.split('\n');
-    currentSlide = null;
-    lines.forEach(function(line) {
-      if (isSlideStart(line)) {
-        if (currentSlide) {
-          $('article').append('<section>\n' + currentSlide + '\n</section>\n');
-          currentSlide = null;
+    mdParts = md.split('\n\r\n\r\n\r');
+    htmlParts = mdParts.map(function(mdPart) {
+      var trimmed;
+      trimmed = mdPart.trim();
+      return markdown.toHTML(trimmed);
+    });
+    htmlParts.forEach(function(html) {
+      var currentSlide, lines;
+      currentSlide = null;
+      lines = html.split('\n');
+      lines.forEach(function(line) {
+        if (isSlideStart(line)) {
+          if (currentSlide) {
+            $('article').append('<section>\n' + currentSlide + '\n</section>\n');
+            currentSlide = null;
+          }
         }
-      }
+        if (currentSlide) {
+          return currentSlide += '\n' + line;
+        } else {
+          return currentSlide = line;
+        }
+      });
       if (currentSlide) {
-        return currentSlide += '\n' + line;
-      } else {
-        return currentSlide = line;
+        return $('article').append('<section>\n' + currentSlide + '\n</section>\n');
       }
     });
-    if (currentSlide) {
-      $('article').append('<section>\n' + currentSlide + '\n</section>\n');
-    }
     return bespoke.horizontal.from('article', {
       vertical: true,
       pageUpDown: true,

@@ -24,24 +24,30 @@ window.mdToPresentation = (md, filename) ->
     $('footer').text name
 
   $article = $('body').append '<article>'
-  html = markdown.toHTML md
-  lines = html.split '\n'
 
+  mdParts = md.split '\n\r\n\r\n\r'
+  htmlParts = mdParts.map (mdPart) ->
+    trimmed = mdPart.trim()
+    markdown.toHTML trimmed
 
-  currentSlide = null
-  lines.forEach (line) ->
-    if isSlideStart(line)
+  htmlParts.forEach (html) ->
+    currentSlide = null
+
+    lines = html.split '\n'
+    lines.forEach (line) ->
+      if isSlideStart(line)
+        if currentSlide
+          # finish current slide
+          $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+          currentSlide = null
       if currentSlide
-        # finish current slide
-        $('article').append '<section>\n' + currentSlide + '\n</section>\n'
-        currentSlide = null
-    if currentSlide
-      currentSlide += '\n' + line
-    else
-      currentSlide = line
+        currentSlide += '\n' + line
+      else
+        currentSlide = line
 
-  if currentSlide
-    $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+    if currentSlide
+      $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+
 
   # console.log 'converted markdown to\n' + $article.innerHTML
   bespoke.horizontal.from 'article',
