@@ -34,6 +34,13 @@ div.markdown-dropzone aside {
   bottom: 10pt;
 }
 
+div.markdown-dropzone footer {
+  color: #666;
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
+}
+
 div.markdown-dropzone > pre {
   text-align: left;
   padding: 10pt 20pt;
