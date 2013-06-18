@@ -1,5 +1,5 @@
 (function() {
-  var getSlidesNowOptions, isSlideStart;
+  var getSlidesNowOptions, isSlideOptionLine, isSlideStart, removeOptionsLines, slidesNowOption;
 
   bespoke.plugins.pageUpDown = function(deck) {
     return document.addEventListener('keydown', function(e) {
@@ -29,15 +29,20 @@
     return isLevel1Header.test(line) || isLevel2Header.test(line);
   };
 
+  slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/;
+
+  isSlideOptionLine = function(line) {
+    return slidesNowOption.test(line);
+  };
+
   getSlidesNowOptions = function(md) {
-    var lines, options, slidesNowOption;
+    var lines, options;
     options = {};
     lines = md.split('\n');
-    slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/;
     lines.forEach(function(line) {
       var matches;
       line = line.trim();
-      if (slidesNowOption.test(line)) {
+      if (isSlideOptionLine(line)) {
         matches = slidesNowOption.exec(line);
         if (matches.length !== 3) {
           throw new Error('Could not match line ' + line);
@@ -46,6 +51,15 @@
       }
     });
     return options;
+  };
+
+  removeOptionsLines = function(md) {
+    var filtered, lines;
+    lines = md.split('\n');
+    filtered = lines.filter(function(line) {
+      return !isSlideOptionLine(line);
+    });
+    return filtered.join('\n');
   };
 
   window.mdToPresentation = function(md, filename) {
@@ -67,6 +81,7 @@
     if (options.footer != null) {
       $('footer').text(options.footer);
     }
+    md = removeOptionsLines(md);
     mdParts = md.split('\n\r\n\r\n\r');
     htmlParts = mdParts.map(function(mdPart) {
       var trimmed;

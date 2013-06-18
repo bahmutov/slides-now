@@ -15,18 +15,26 @@ isSlideStart = (line) ->
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
 
+slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/
+
+isSlideOptionLine = (line) -> slidesNowOption.test(line)
+
 getSlidesNowOptions = (md) ->
   options = {}
   lines = md.split '\n'
-  slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/
   lines.forEach (line) ->
     line = line.trim()
-    if slidesNowOption.test line
+    if isSlideOptionLine(line)
       matches = slidesNowOption.exec line
       if matches.length != 3
         throw new Error 'Could not match line ' + line
       options[matches[1]] = matches[2]
   options
+
+removeOptionsLines = (md) ->
+  lines = md.split '\n'
+  filtered = lines.filter (line) -> return !isSlideOptionLine(line)
+  filtered.join('\n')
 
 window.mdToPresentation = (md, filename) ->
   if filename
@@ -42,6 +50,8 @@ window.mdToPresentation = (md, filename) ->
   console.log 'got options', options
   if options.theme? then $('body').removeClass().addClass(options.theme)
   if options.footer? then $('footer').text options.footer
+
+  md = removeOptionsLines(md)
 
   mdParts = md.split '\n\r\n\r\n\r'
   htmlParts = mdParts.map (mdPart) ->
