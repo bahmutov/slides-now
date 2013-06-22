@@ -75,6 +75,7 @@
       }
       $('footer').text(name);
     }
+    $('article').remove();
     $article = $('body').append('<article>');
     options = getSlidesNowOptions(md);
     console.log('got options', options);

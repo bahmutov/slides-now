@@ -47,6 +47,8 @@ window.mdToPresentation = (md, filename) ->
       name = filename.substr lastSlashAt
     $('footer').text name
 
+  # allow to restart the presentation
+  $('article').remove()
   $article = $('body').append '<article>'
 
   # custom UI options from Markdown text
