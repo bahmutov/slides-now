@@ -1,3 +1,14 @@
+div#dropzone {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 div.markdown-dropzone {
   border-radius: 30px;
   width: 812px;
@@ -32,6 +43,13 @@ div.markdown-dropzone aside {
   position: absolute;
   right: 20pt;
   bottom: 10pt;
+}
+
+div.markdown-dropzone footer {
+  color: #666;
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
 }
 
 div.markdown-dropzone > pre {

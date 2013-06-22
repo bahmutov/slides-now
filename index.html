@@ -17,10 +17,10 @@
 <!--
 <body class="coverflow">
 -->
-<body class="classic">
-    <div id="dropzone" ng-app="markdown.drop">
+<body class="classic" ng-app="markdown.drop">
 
-        <div class="markdown-dropzone" dropzone>
+    <div id="dropzone" dropzone>
+        <div class="markdown-dropzone">
             <h3>Drop a Markdown File Here</h3>
 
             <pre id="explanation">
@@ -31,6 +31,7 @@ Instant stand alone slide show from a markdown document.
 1. No server necessary, works **offline**
 2. Stylish presentation with themes
 3. Just drag and drop a Markdown document
+4. Details in [README.md](readme.md)
 
 ## Slide syntax
 
@@ -50,8 +51,12 @@ Instant stand alone slide show from a markdown document.
               <a href="javascript:void(0)" title="See the text above as a slide show" id="tryItNow">Try it now!</a>
               <a href="README.md" title="See Readme.md file">README.md</a>
             </aside>
+            <footer>
+              Copyright &copy; 2013 Gleb Bahmutov
+            </footer>
         </div>
-        <footer>version: 0.0.3</footer>
+
+        <footer>version: 0.0.4</footer>
         <aside id="counter"><aside>
     </div>
 <script src="slides-now.js"></script>

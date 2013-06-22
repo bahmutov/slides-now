@@ -70,12 +70,12 @@
 	transform: translateX(-800px) rotateY(90deg) translateX(-800px);
 }
 .concave section.bespoke-before-1 {
-	-webkit-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	-moz-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	-ms-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	-o-transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	transform: translateX(-310px) rotateY(58deg) translateX(-240px);
-	opacity: 0.4
+	-webkit-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	-moz-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	-ms-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	-o-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+	opacity: 0.2
 }
 .concave section.bespoke-after {
 	-webkit-transform: translateX(800px) rotateY(-90deg) translateX(800px);
@@ -85,12 +85,12 @@
 	transform: translateX(800px) rotateY(-90deg) translateX(800px);
 }
 .concave section.bespoke-after-1 {
-	-webkit-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	-moz-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	-ms-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	-o-transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	transform: translateX(310px) rotateY(-58deg) translateX(240px);
-	opacity: 0.4
+	-webkit-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	-moz-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	-ms-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	-o-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	transform: translateX(490px) rotateY(-58deg) translateX(460px);
+	opacity: 0.2
 }
 
 /* Coverflow Theme */
@@ -261,15 +261,15 @@
 	-ms-transform: translateX(-590px) rotateY(-52deg) translateX(-780px);
 	-o-transform: translateX(-590px) rotateY(-52deg) translateX(-780px);
 	transform: translateX(-590px) rotateY(-52deg) translateX(-780px);
-	opacity: 0.3;
+	opacity: 0.05;
 }
 .carousel section.bespoke-before-1 {
-	-webkit-transform: translateX(-270px) rotateY(-30deg) translateX(-290px);
-	-moz-transform: translateX(-270px) rotateY(-30deg) translateX(-290px);
-	-ms-transform: translateX(-270px) rotateY(-30deg) translateX(-290px);
-	-o-transform: translateX(-270px) rotateY(-30deg) translateX(-290px);
-	transform: translateX(-270px) rotateY(-30deg) translateX(-290px);
-	opacity: 0.5;
+	-webkit-transform: translateX(-470px) rotateY(-30deg) translateX(-490px);
+	-moz-transform: translateX(-470px) rotateY(-30deg) translateX(-490px);
+	-ms-transform: translateX(-470px) rotateY(-30deg) translateX(-490px);
+	-o-transform: translateX(-470px) rotateY(-30deg) translateX(-490px);
+	transform: translateX(-470px) rotateY(-30deg) translateX(-490px);
+	opacity: 0.2;
 }
 .carousel section.bespoke-after {
 	-webkit-transform: translateX(980px) rotateY(72deg) translateX(1290px);
@@ -280,12 +280,12 @@
 	opacity: 0;
 }
 .carousel section.bespoke-after-1 {
-	-webkit-transform: translateX(270px) rotateY(30deg) translateX(290px);
-	-moz-transform: translateX(270px) rotateY(30deg) translateX(290px);
-	-ms-transform: translateX(270px) rotateY(30deg) translateX(290px);
-	-o-transform: translateX(270px) rotateY(30deg) translateX(290px);
-	transform: translateX(270px) rotateY(30deg) translateX(290px);
-	opacity: 0.5;
+	-webkit-transform: translateX(470px) rotateY(30deg) translateX(490px);
+	-moz-transform: translateX(470px) rotateY(30deg) translateX(490px);
+	-ms-transform: translateX(470px) rotateY(30deg) translateX(490px);
+	-o-transform: translateX(470px) rotateY(30deg) translateX(490px);
+	transform: translateX(470px) rotateY(30deg) translateX(490px);
+	opacity: 0.2;
 }
 .carousel section.bespoke-after-2 {
 	-webkit-transform: translateX(590px) rotateY(52deg) translateX(780px);
@@ -293,5 +293,5 @@
 	-ms-transform: translateX(590px) rotateY(52deg) translateX(780px);
 	-o-transform: translateX(590px) rotateY(52deg) translateX(780px);
 	transform: translateX(590px) rotateY(52deg) translateX(780px);
-	opacity: 0.3;
+	opacity: 0.05;
 }
