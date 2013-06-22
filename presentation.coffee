@@ -49,11 +49,11 @@ window.mdToPresentation = (md, filename) ->
 
   # allow to restart the presentation
   $('article').remove()
-  $article = $('body').append '<article>'
+  $article = $('div#dropzone').append '<article>'
 
   # custom UI options from Markdown text
   options = getSlidesNowOptions md
-  console.log 'got options', options
+  # console.log 'got options', options
   if options.theme? then $('body').removeClass().addClass(options.theme)
   if options.footer? then $('footer').text options.footer
   if options['font-family']? then $('body').css('font-family', options['font-family']);

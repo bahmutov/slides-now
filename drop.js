@@ -76,9 +76,8 @@
       $('footer').text(name);
     }
     $('article').remove();
-    $article = $('body').append('<article>');
+    $article = $('div#dropzone').append('<article>');
     options = getSlidesNowOptions(md);
-    console.log('got options', options);
     if (options.theme != null) {
       $('body').removeClass().addClass(options.theme);
     }
