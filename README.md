@@ -23,6 +23,8 @@ markdown reference syntax. Here are a few available options:
 [slides-now-theme]: "classic"
    cube|coverflow|concave|carousel
 [slides-now-footer]: "My talk"
+[slides-now-font-family]: "Arial"
+[slides-now-font-size]: "26pt"
 ```
 
 
@@ -41,3 +43,5 @@ Feel free to contact me if there are any issues.
 
 [slides-now-theme]: "cube"
 [slides-now-footer]: "Slides now README.md"
+[slides-now-font-family]: "Arial"
+[slides-now-font-size]: "26pt"

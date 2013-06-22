@@ -15,7 +15,7 @@ isSlideStart = (line) ->
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
 
-slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/
+slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W]+)\"$/
 
 isSlideOptionLine = (line) -> slidesNowOption.test(line)
 
@@ -46,10 +46,13 @@ window.mdToPresentation = (md, filename) ->
 
   $article = $('body').append '<article>'
 
+  # custom UI options from Markdown text
   options = getSlidesNowOptions md
   console.log 'got options', options
   if options.theme? then $('body').removeClass().addClass(options.theme)
   if options.footer? then $('footer').text options.footer
+  if options['font-family']? then $('body').css('font-family', options['font-family']);
+  if options['font-size']? then $('body').css('font-size', options['font-size']);
 
   md = removeOptionsLines(md)
 

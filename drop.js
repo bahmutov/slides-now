@@ -29,7 +29,7 @@
     return isLevel1Header.test(line) || isLevel2Header.test(line);
   };
 
-  slidesNowOption = /^\[slides-now-(\w+)\]\:\s*\"([\w\W]+)\"$/;
+  slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W]+)\"$/;
 
   isSlideOptionLine = function(line) {
     return slidesNowOption.test(line);
@@ -80,6 +80,12 @@
     }
     if (options.footer != null) {
       $('footer').text(options.footer);
+    }
+    if (options['font-family'] != null) {
+      $('body').css('font-family', options['font-family']);
+    }
+    if (options['font-size'] != null) {
+      $('body').css('font-size', options['font-size']);
     }
     md = removeOptionsLines(md);
     mdParts = md.split('\n\r\n\r\n\r');
