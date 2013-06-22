@@ -91,7 +91,6 @@
       $('body').css('font-size', options['font-size']);
     }
     md = removeOptionsLines(md);
-    console.log("removed options lines\n" + md);
     mdParts = md.split('\n\r\n\r\n\r');
     htmlParts = mdParts.map(function(mdPart) {
       var trimmed;
@@ -187,7 +186,7 @@
           return false;
         }, false);
         return createSlides = function(md, filename) {
-          element.remove('.markdown-dropzone');
+          $('div.markdown-dropzone').remove();
           return mdToPresentation(md, filename);
         };
       }

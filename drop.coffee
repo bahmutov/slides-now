@@ -43,6 +43,7 @@ drop.directive 'dropzone', ->
       , false
 
       createSlides = (md, filename) ->
-        # remove just the drop zone
-        element.remove('.markdown-dropzone')
+        # remove just the drop zone text
+        # element.remove('.markdown-dropzone')
+        $('div.markdown-dropzone').remove()
         mdToPresentation md, filename

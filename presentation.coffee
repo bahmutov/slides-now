@@ -58,7 +58,7 @@ window.mdToPresentation = (md, filename) ->
   if options['font-size']? then $('body').css('font-size', options['font-size']);
 
   md = removeOptionsLines(md)
-  console.log "removed options lines\n" + md
+  # console.log "removed options lines\n" + md
 
   mdParts = md.split '\n\r\n\r\n\r'
   htmlParts = mdParts.map (mdPart) ->
