@@ -57,7 +57,10 @@
     var filtered, lines;
     lines = md.split('\n');
     filtered = lines.filter(function(line) {
-      return !isSlideOptionLine(line);
+      line = line.trim();
+      if (!isSlideOptionLine(line)) {
+        return true;
+      }
     });
     return filtered.join('\n');
   };
@@ -88,6 +91,7 @@
       $('body').css('font-size', options['font-size']);
     }
     md = removeOptionsLines(md);
+    console.log("removed options lines\n" + md);
     mdParts = md.split('\n\r\n\r\n\r');
     htmlParts = mdParts.map(function(mdPart) {
       var trimmed;

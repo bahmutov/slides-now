@@ -33,7 +33,10 @@ getSlidesNowOptions = (md) ->
 
 removeOptionsLines = (md) ->
   lines = md.split '\n'
-  filtered = lines.filter (line) -> return !isSlideOptionLine(line)
+  filtered = lines.filter (line) ->
+    line = line.trim()
+    if !isSlideOptionLine(line) then return true
+
   filtered.join('\n')
 
 window.mdToPresentation = (md, filename) ->
@@ -55,6 +58,7 @@ window.mdToPresentation = (md, filename) ->
   if options['font-size']? then $('body').css('font-size', options['font-size']);
 
   md = removeOptionsLines(md)
+  console.log "removed options lines\n" + md
 
   mdParts = md.split '\n\r\n\r\n\r'
   htmlParts = mdParts.map (mdPart) ->

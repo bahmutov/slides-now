@@ -27,7 +27,6 @@ markdown reference syntax. Here are a few available options:
 [slides-now-font-size]: "26pt"
 ```
 
-
 ## Inspiration
 
 Several open source projects inspired me to create **slides-now**.
@@ -44,4 +43,4 @@ Feel free to contact me if there are any issues.
 [slides-now-theme]: "cube"
 [slides-now-footer]: "Slides now README.md"
 [slides-now-font-family]: "Arial"
-[slides-now-font-size]: "26pt"
+[slides-now-font-size]: "22pt"
