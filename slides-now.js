@@ -250,9 +250,8 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
       $('footer').text(name);
     }
     $('article').remove();
-    $article = $('body').append('<article>');
+    $article = $('div#dropzone').append('<article>');
     options = getSlidesNowOptions(md);
-    console.log('got options', options);
     if (options.theme != null) {
       $('body').removeClass().addClass(options.theme);
     }
