@@ -18,5 +18,8 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-replace": "~0.4.4"
+  },
+  "devDependencies": {
+    "coffeeify": "~0.5.1"
   }
 }

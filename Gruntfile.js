@@ -6,10 +6,11 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
 
+    // compile and concat into single file
     coffee: {
       compile: {
         files: {
-          'drop.js': ['presentation.coffee', 'drop.coffee'] // compile and concat into single file
+          'drop.js': ['presentation.coffee', 'drop.coffee']
         }
       }
     },
@@ -73,11 +74,6 @@ module.exports = function(grunt) {
           'dist/style.css': 'css/style.css',
           'dist/themes.css': 'css/themes.css',
           'dist/favicon.png': 'favicon.png'
-          /*
-          'dist/slides-now.css': ['css/drop.css',
-            'components/bespoke.js/demo/style.css',
-            'components/bespoke.js/demo/themes.css']
-          */
         }
       }
     }
