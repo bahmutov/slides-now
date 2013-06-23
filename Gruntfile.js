@@ -7,6 +7,13 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     // compile and concat into single file
+    browserify: {
+      'drop.js': ['presentation.coffee', 'drop.coffee'],
+      options: {
+         transform: ['coffeeify']
+      }
+    },
+
     coffee: {
       compile: {
         files: {
@@ -79,6 +86,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -86,5 +94,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-replace');
 
-  grunt.registerTask('default', ['coffee', 'uglify', 'concat:dev', 'replace', 'copy']);
+  grunt.registerTask('default', ['browserify', 'uglify', 'concat:dev', 'replace', 'copy']);
 };

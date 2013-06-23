@@ -17,9 +17,8 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-replace": "~0.4.4"
-  },
-  "devDependencies": {
+    "grunt-replace": "~0.4.4",
+    "grunt-browserify": "~1.1.1",
     "coffeeify": "~0.5.1"
   }
 }
