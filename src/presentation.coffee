@@ -1,3 +1,5 @@
+optionsParser = require './options.coffee'
+
 # allows to control slides using Page Up / Down keys
 bespoke.plugins.pageUpDown = (deck) ->
   document.addEventListener 'keydown', (e) ->
@@ -15,30 +17,6 @@ isSlideStart = (line) ->
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
 
-slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W]+)\"$/
-
-isSlideOptionLine = (line) -> slidesNowOption.test(line)
-
-getSlidesNowOptions = (md) ->
-  options = {}
-  lines = md.split '\n'
-  lines.forEach (line) ->
-    line = line.trim()
-    if isSlideOptionLine(line)
-      matches = slidesNowOption.exec line
-      if matches.length != 3
-        throw new Error 'Could not match line ' + line
-      options[matches[1]] = matches[2]
-  options
-
-removeOptionsLines = (md) ->
-  lines = md.split '\n'
-  filtered = lines.filter (line) ->
-    line = line.trim()
-    if !isSlideOptionLine(line) then return true
-
-  filtered.join('\n')
-
 window.mdToPresentation = (md, filename) ->
   if filename
     name = filename
@@ -52,14 +30,14 @@ window.mdToPresentation = (md, filename) ->
   $article = $('div#dropzone').append '<article>'
 
   # custom UI options from Markdown text
-  options = getSlidesNowOptions md
+  options = optionsParser.getSlidesNowOptions md
   # console.log 'got options', options
   if options.theme? then $('body').removeClass().addClass(options.theme)
   if options.footer? then $('footer').text options.footer
   if options['font-family']? then $('body').css('font-family', options['font-family']);
   if options['font-size']? then $('body').css('font-size', options['font-size']);
 
-  md = removeOptionsLines(md)
+  md = optionsParser.removeOptionsLines md
   # console.log "removed options lines\n" + md
 
   mdParts = md.split '\n\r\n\r\n\r'
