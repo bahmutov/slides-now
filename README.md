@@ -27,6 +27,8 @@ markdown reference syntax. Here are a few available options:
 [slides-now-font-size]: "26pt"
 ```
 
+The options should be at the end of the document.
+
 ## Inspiration
 
 Several open source projects inspired me to create **slides-now**.
