@@ -1,4 +1,62 @@
 ;(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({1:[function(require,module,exports){
+var drop;
+
+drop = angular.module('markdown.drop', []);
+
+drop.directive('dropzone', function() {
+  return {
+    restrict: 'A',
+    scope: {},
+    replace: false,
+    link: function(scope, element, attrs) {
+      var createSlides, startDrag, stopDrag;
+      startDrag = function(event) {
+        element.addClass('dragging');
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+        event.dataTransfer.effectAllowed = 'copy';
+        return false;
+      };
+      stopDrag = function(event) {
+        element.removeClass('dragging');
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+        return false;
+      };
+      element.bind('dragenter', startDrag, false);
+      element.bind('dragover', startDrag, false);
+      element.bind('dragleave', stopDrag, false);
+      element.bind('drop', function(event) {
+        var file, isMarkdownFilename, reader;
+        stopDrag(event);
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+        file = event.dataTransfer.files[0];
+        isMarkdownFilename = /\.md$/;
+        if (isMarkdownFilename.test(file.name)) {
+          reader = new FileReader();
+          reader.onload = function(evt) {
+            return createSlides(evt.target.result, file.name);
+          };
+          reader.readAsText(file);
+        } else {
+          console.error('Only Markdown documents should be droppped');
+        }
+        return false;
+      }, false);
+      return createSlides = function(md, filename) {
+        $('div.markdown-dropzone').remove();
+        return mdToPresentation(md, filename);
+      };
+    }
+  };
+});
+
+
+},{}],2:[function(require,module,exports){
 var getSlidesNowOptions, isSlideOptionLine, isSlideStart, removeOptionsLines, slidesNowOption;
 
 bespoke.plugins.pageUpDown = function(deck) {
@@ -135,63 +193,5 @@ window.tryItNow = function() {
 $('#tryItNow').on('click', tryItNow);
 
 
-},{}],2:[function(require,module,exports){
-var drop;
-
-drop = angular.module('markdown.drop', []);
-
-drop.directive('dropzone', function() {
-  return {
-    restrict: 'A',
-    scope: {},
-    replace: false,
-    link: function(scope, element, attrs) {
-      var createSlides, startDrag, stopDrag;
-      startDrag = function(event) {
-        element.addClass('dragging');
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        event.dataTransfer.effectAllowed = 'copy';
-        return false;
-      };
-      stopDrag = function(event) {
-        element.removeClass('dragging');
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        return false;
-      };
-      element.bind('dragenter', startDrag, false);
-      element.bind('dragover', startDrag, false);
-      element.bind('dragleave', stopDrag, false);
-      element.bind('drop', function(event) {
-        var file, isMarkdownFilename, reader;
-        stopDrag(event);
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        file = event.dataTransfer.files[0];
-        isMarkdownFilename = /\.md$/;
-        if (isMarkdownFilename.test(file.name)) {
-          reader = new FileReader();
-          reader.onload = function(evt) {
-            return createSlides(evt.target.result, file.name);
-          };
-          reader.readAsText(file);
-        } else {
-          console.error('Only Markdown documents should be droppped');
-        }
-        return false;
-      }, false);
-      return createSlides = function(md, filename) {
-        $('div.markdown-dropzone').remove();
-        return mdToPresentation(md, filename);
-      };
-    }
-  };
-});
-
-
-},{}]},{},[1,2])
+},{}]},{},[2,1])
 ;

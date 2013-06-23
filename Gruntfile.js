@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 
     // compile and concat into single file
     browserify: {
-      'drop.js': ['presentation.coffee', 'drop.coffee'],
+      'drop.js': ['src/presentation.coffee', 'src/drop.coffee'],
       options: {
          transform: ['coffeeify']
       }
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'drop.js': ['presentation.coffee', 'drop.coffee']
+          'drop.js': ['src/presentation.coffee', 'src/drop.coffee']
         }
       }
     },
