@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 
     // compile and concat into single file
     browserify: {
-      'drop.js': ['src/presentation.coffee', 'src/drop.coffee'],
+      'tmp/app.js': ['src/presentation.coffee', 'src/drop.coffee'],
       options: {
          transform: ['coffeeify']
       }
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'drop.js': ['src/presentation.coffee', 'src/drop.coffee']
+          'tmp/app.js': ['src/presentation.coffee', 'src/drop.coffee']
         }
       }
     },
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       components: {
         files: {
           'components/markdown/lib/markdown.min.js': ['components/markdown/lib/markdown.js'],
-          'drop.min.js': ['drop.js']
+          'tmp/app.min.js': ['tmp/app.js']
         }
       }
     },
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           'components/bespoke.js/dist/bespoke.min.js',
           'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
-          'drop.js'
+          'tmp/app.js'
         ],
         dest: 'dist/slides-now.js'
       },
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           'components/bespoke.js/dist/bespoke.min.js',
           'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
-          'drop.min.js'
+          'tmp/app.min.js'
         ],
         dest: 'dist/slides-now.min.js'
       }
