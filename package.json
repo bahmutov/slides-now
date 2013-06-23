@@ -4,7 +4,7 @@
   "description": "Instant stand alone slide show from markdown document",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gt --output src/test/*.coffee"
   },
   "repository": "",
   "author": "Gleb Bahmutov",
@@ -20,5 +20,8 @@
     "grunt-replace": "~0.4.4",
     "grunt-browserify": "~1.1.1",
     "coffeeify": "~0.5.1"
+  },
+  "devDependencies": {
+    "gt": "~0.8.7"
   }
 }

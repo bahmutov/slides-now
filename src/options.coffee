@@ -15,13 +15,17 @@ getSlidesNowOptions = (md) ->
   options
 
 removeOptionsLines = (md) ->
-  lines = md.split '\n'
+  lines = md.split('\n').reverse()
+  foundNonOptionLine = false
   filtered = lines.filter (line) ->
     line = line.trim()
-    if !isSlideOptionLine(line) then return true
+    if foundNonOptionLine || !isSlideOptionLine(line)
+      foundNonOptionLine = true
+      true
 
-  filtered.join('\n')
+  filtered.reverse().join('\n')
 
 module.exports =
   getSlidesNowOptions: getSlidesNowOptions
   removeOptionsLines: removeOptionsLines
+  isSlideOptionLine: isSlideOptionLine
