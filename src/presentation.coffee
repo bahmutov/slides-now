@@ -61,6 +61,7 @@ window.mdToPresentation = (md, filename) ->
     vertical: true
     pageUpDown: true
     slideCounter: true
+    firstLastShortcuts: true
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
