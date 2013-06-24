@@ -2,7 +2,7 @@ optionsParser = require './options.coffee'
 
 require './bespokePageUpDownPlugin.coffee'
 require './bespokeCounterPlugin.coffee'
-
+require './bespokeShortcutPlugin.coffee'
 
 isSlideStart = (line) ->
   isLevel1Header = /^<h1>/
