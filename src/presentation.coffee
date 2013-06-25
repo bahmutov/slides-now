@@ -1,6 +1,5 @@
 optionsParser = require './options.coffee'
 
-require './bespokePageUpDownPlugin.coffee'
 require './bespokeCounterPlugin.coffee'
 require './bespokeShortcutPlugin.coffee'
 
@@ -59,9 +58,8 @@ window.mdToPresentation = (md, filename) ->
   # console.log 'converted markdown to\n' + $article.innerHTML
   bespoke.horizontal.from 'article',
     vertical: true
-    pageUpDown: true
-    slideCounter: true
     firstLastShortcuts: true
+    slideCounter: true
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
