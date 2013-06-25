@@ -57,6 +57,7 @@ window.mdToPresentation = (md, filename) ->
 
   # console.log 'converted markdown to\n' + $article.innerHTML
   bespoke.horizontal.from 'article',
+    hash: true
     vertical: true
     firstLastShortcuts: true
     slideCounter: true
