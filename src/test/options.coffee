@@ -17,9 +17,7 @@ gt.test 'positive options', ->
 gt.module 'removing options lines'
 remove = parser.removeOptionsLines
 
-gt.test 'removing options lines at the end only', ->
-    gt.func remove
-    md = """
+md = """
 first
 [slides-now-theme]: "classic"
 second
@@ -27,7 +25,18 @@ second
 [slides-now-footer]: "My talk"
 """
 
+gt.test 'removing options lines at the end only', ->
+    gt.func remove
     cleaned = remove md
     console.log cleaned
     gt.ok /\[slides-now-theme\]:\ \"classic\"/.test cleaned, 'kept first option'
     gt.ok !/slides-now-footer/.test(cleaned), 'removed second option'
+
+gt.module 'parsing options'
+parse = parser.getSlidesNowOptions
+
+gt.test 'grab only options at the end', ->
+    opts = parse md
+    gt.object opts, 'got an options object'
+    gt.equal opts.footer, 'My talk', 'correct footer'
+    gt.undefined opts.theme, 'theme should not be parsed, not at the end'

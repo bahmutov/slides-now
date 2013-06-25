@@ -4,14 +4,21 @@ isSlideOptionLine = (line) -> slidesNowOption.test(line)
 
 getSlidesNowOptions = (md) ->
   options = {}
-  lines = md.split '\n'
+  foundNonOptionLine = false
+
+  lines = md.split('\n').reverse()
   lines.forEach (line) ->
     line = line.trim()
+    if line == '' then return
+    if foundNonOptionLine then return
+
     if isSlideOptionLine(line)
       matches = slidesNowOption.exec line
       if matches.length != 3
         throw new Error 'Could not match line ' + line
       options[matches[1]] = matches[2]
+    else
+      foundNonOptionLine = true
   options
 
 removeOptionsLines = (md) ->
