@@ -1,6 +1,6 @@
 {
   "name": "slides-now",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Instant stand alone slide show from markdown document",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "coffeeify": "~0.5.1"
   },
   "devDependencies": {
-    "gt": "~0.8.7"
+    "gt": "~0.8.7",
+    "matchdep": "~0.1.2"
   }
 }

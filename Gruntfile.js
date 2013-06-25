@@ -87,13 +87,8 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-coffee');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-bump');
-  grunt.loadNpmTasks('grunt-replace');
+  var plugins = require('matchdep').filter('grunt-*');
+  plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('default', ['browserify', 'uglify', 'concat:dev', 'replace', 'copy']);
 };
