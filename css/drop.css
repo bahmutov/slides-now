@@ -70,6 +70,7 @@ footer {
   bottom: 5px;
   left: 5px;
   height: 1.5em;
+  z-index: 10;
 }
 
 aside#counter {
