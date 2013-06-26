@@ -61,7 +61,7 @@ window.mdToPresentation = (md, filename) ->
     hash: true
     vertical: true
     firstLastShortcuts: true
-    slideCounter: true
+    # slideCounter: true
     progressBar: true
 
 window.tryItNow = ->
