@@ -2,6 +2,7 @@ optionsParser = require './options.coffee'
 
 require './bespokeCounterPlugin.coffee'
 require './bespokeShortcutPlugin.coffee'
+require './bespokeProgressBar.coffee'
 
 isSlideStart = (line) ->
   isLevel1Header = /^<h1>/
@@ -61,6 +62,7 @@ window.mdToPresentation = (md, filename) ->
     vertical: true
     firstLastShortcuts: true
     slideCounter: true
+    progressBar: true
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML

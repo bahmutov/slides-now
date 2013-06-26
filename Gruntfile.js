@@ -42,6 +42,7 @@ module.exports = function(grunt) {
           'components/bespoke-hash/dist/bespoke-hash.min.js',
           'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
+          'src/bar.js',
           'tmp/app.js'
         ],
         dest: 'dist/slides-now.js'
