@@ -30,6 +30,7 @@
 
         var bar = {
             _element: element,
+            height: options.height,
             progress: function (percent) {
                 if (percent < 0 || percent > 100) {
                     throw new Error('Invalid progress percent ' + percent);
@@ -38,10 +39,51 @@
                 var barWidth = w * (percent / 100);
                 element.style.width = barWidth + 'px';
             },
-            height: options.height
+            remove: function () {
+                document.body.removeChild(this._element);
+                bars = bars.filter(function (item) {
+                    return item !== this;
+                }, this);
+            },
+            timer: function (durationSeconds) {
+                if (durationSeconds < 10) {
+                    throw new Error('Invalid duration ' + durationSeconds + ' should be seconds');
+                }
+                if (this.timer) {
+                    clearInterval(this.timer);
+                }
+                var bar = this;
+                bar.started = new Date();
+                bar.duration = durationSeconds;
+                bar.timer = setInterval(function (value) {
+                    var elapsed = new Date() - bar.started;
+                    var elapsedSeconds = elapsed / 1000;
+                    var elapsedPercent = elapsedSeconds / bar.duration * 100;
+                    if (elapsedPercent >= 100) {
+                        clearInterval(bar.timer);
+                        elapsedPercent = 100;
+                    }
+                    bar.progress(elapsedPercent);
+                }, 1000);
+            }
         };
+        if (options.progress || options.value) {
+            bar.progress(options.progress || options.value);
+        }
+        if (options.timer || options.duration) {
+            bar.timer(options.timer || options.duration);
+        }
         bars.push(bar);
 
         return bar;
     };
+
+    function identity(item) { return item; }
+
+    window.progressFullWidth.remove = function () {
+        var items = bars.map(identity);
+        items.forEach(function (bar) {
+            bar.remove();
+        });
+    }
 }(this));
