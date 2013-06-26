@@ -57,12 +57,17 @@ window.mdToPresentation = (md, filename) ->
 
 
   # console.log 'converted markdown to\n' + $article.innerHTML
+  if options.timer?
+    console.log 'have options timer', options.timer, 'seconds'
+    bespoke.plugins.progressBar.timer(options.timer)
+
   bespoke.horizontal.from 'article',
     hash: true
     vertical: true
     firstLastShortcuts: true
     # slideCounter: true
     progressBar: true
+
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
