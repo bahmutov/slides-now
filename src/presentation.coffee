@@ -19,7 +19,7 @@ window.mdToPresentation = (md, filename) ->
     $('footer').text name
 
   # allow to restart the presentation
-  $('article.bespoke-parent').unbind();
+  $('article.bespoke-parent').unbind()
   $('article').remove()
   $article = $('div#dropzone').append '<article>'
 
@@ -28,8 +28,8 @@ window.mdToPresentation = (md, filename) ->
   # console.log 'got options', options
   if options.theme? then $('body').removeClass().addClass(options.theme)
   if options.footer? then $('footer').text options.footer
-  if options['font-family']? then $('body').css('font-family', options['font-family']);
-  if options['font-size']? then $('body').css('font-size', options['font-size']);
+  if options['font-family']? then $('body').css('font-family', options['font-family'])
+  if options['font-size']? then $('body').css('font-size', options['font-size'])
 
   md = optionsParser.removeOptionsLines md
   # console.log "removed options lines\n" + md

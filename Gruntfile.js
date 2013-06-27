@@ -15,6 +15,15 @@ module.exports = function(grunt) {
       }
     },
 
+    coffeelint: {
+      options: {
+        max_line_length: {
+          level: 'ignore'
+        }
+      },
+      app: ['src/presentation.coffee']
+    },
+
     // compile and concat into single file
     browserify: {
       'tmp/app.js': ['src/*.coffee'],
