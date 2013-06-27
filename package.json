@@ -19,7 +19,8 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-replace": "~0.4.4",
     "grunt-browserify": "~1.1.1",
-    "coffeeify": "~0.5.1"
+    "coffeeify": "~0.5.1",
+    "grunt-contrib-jshint": "~0.6.0"
   },
   "devDependencies": {
     "gt": "~0.8.7",

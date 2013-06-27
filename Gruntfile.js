@@ -6,6 +6,15 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
 
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
+      },
+      'default': {
+        src: ['src/*.js']
+      }
+    },
+
     // compile and concat into single file
     browserify: {
       'tmp/app.js': ['src/*.coffee'],
