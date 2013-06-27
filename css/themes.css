@@ -187,7 +187,7 @@
 	background: rgb(243, 111, 86);
 }
 .classic a {
-	color: rgb(243, 111, 86);
+	color: rgb(255, 255, 255);
 }
 .classic section.bespoke-before {
 	-webkit-transform: translate3d(-1920px, 0, 0);
@@ -228,6 +228,71 @@
 	opacity: 0.05;
 }
 .classic section.bespoke-after-1 {
+	-webkit-transform: translate3d(900px, 0, 0);
+	-moz-transform: translate3d(900px, 0, 0);
+	-ms-transform: translate3d(900px, 0, 0);
+	-o-transform: translate3d(900px, 0, 0);
+	transform: translate3d(900px, 0, 0);
+	opacity: 0.1;
+}
+
+/* Black and white theme */
+.bw {
+	background: rgba(255, 255, 255, 0.2);
+}
+.bw section {
+	background: rgb(245, 245, 245);
+	border: solid 1px black;
+}
+.bw a:hover {
+	background: rgb(225, 225, 225);
+}
+.bw a {
+	color: rgba(30, 30, 30, 1);
+	text-decoration: underline;
+}
+.bw h1,h2,h3 {
+	color: rgb(10, 10, 10);
+}
+.bw section.bespoke-before {
+	-webkit-transform: translate3d(-1920px, 0, 0);
+	-moz-transform: translate3d(-1920px, 0, 0);
+	-ms-transform: translate3d(-1920px, 0, 0);
+	-o-transform: translate3d(-1920px, 0, 0);
+	transform: translate3d(-1920px, 0, 0);
+}
+.bw section.bespoke-before-2 {
+	-webkit-transform: translate3d(-1280px, 0, 0);
+	-moz-transform: translate3d(-1280px, 0, 0);
+	-ms-transform: translate3d(-1280px, 0, 0);
+	-o-transform: translate3d(-1280px, 0, 0);
+	transform: translate3d(-1280px, 0, 0);
+	opacity: 0.05;
+}
+.bw section.bespoke-before-1 {
+	-webkit-transform: translate3d(-900px, 0, 0);
+	-moz-transform: translate3d(-900px, 0, 0);
+	-ms-transform: translate3d(-900px, 0, 0);
+	-o-transform: translate3d(-900px, 0, 0);
+	transform: translate3d(-900px, 0, 0);
+	opacity: 0.1;
+}
+.bw section.bespoke-after {
+	-webkit-transform: translate3d(1920px, 0, 0);
+	-moz-transform: translate3d(1920px, 0, 0);
+	-ms-transform: translate3d(1920px, 0, 0);
+	-o-transform: translate3d(1920px, 0, 0);
+	transform: translate3d(1920px, 0, 0);
+}
+.bw section.bespoke-after-2 {
+	-webkit-transform: translate3d(1280px, 0, 0);
+	-moz-transform: translate3d(1280px, 0, 0);
+	-ms-transform: translate3d(1280px, 0, 0);
+	-o-transform: translate3d(1280px, 0, 0);
+	transform: translate3d(1280px, 0, 0);
+	opacity: 0.05;
+}
+.bw section.bespoke-after-1 {
 	-webkit-transform: translate3d(900px, 0, 0);
 	-moz-transform: translate3d(900px, 0, 0);
 	-ms-transform: translate3d(900px, 0, 0);

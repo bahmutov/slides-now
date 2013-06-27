@@ -55,7 +55,8 @@ h3 {
 
 a {
 	text-decoration: none;
-	color: #eee !important;
+	/*color: #eee !important;*/
+	color: #eee;
 }
 
 a:hover {
