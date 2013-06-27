@@ -9,8 +9,6 @@ isSlideStart = (line) ->
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
 
-currentDeck = null
-
 window.mdToPresentation = (md, filename) ->
   if filename
     name = filename
@@ -65,13 +63,12 @@ window.mdToPresentation = (md, filename) ->
   else
     bespoke.plugins.progressBar.removeTimer()
 
-  currentDeck = bespoke.horizontal.from 'article',
+  bespoke.horizontal.from 'article',
     hash: true
     vertical: true
     keyShortcuts: true
     progressBar: true
     # slideCounter: true
-
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
