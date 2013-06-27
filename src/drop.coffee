@@ -5,45 +5,45 @@ drop.directive 'dropzone', ->
   scope: {}
   replace: false
   link: (scope, element, attrs) ->
-      startDrag = (event) ->
-        element.addClass 'dragging'
-        if event.preventDefault
-          event.preventDefault()
-        event.dataTransfer.effectAllowed = 'copy'
-        return false
+    startDrag = (event) ->
+      element.addClass 'dragging'
+      if event.preventDefault
+        event.preventDefault()
+      event.dataTransfer.effectAllowed = 'copy'
+      return false
 
-      stopDrag = (event) ->
-        element.removeClass 'dragging'
-        if event.preventDefault
-          event.preventDefault()
-        return false
+    stopDrag = (event) ->
+      element.removeClass 'dragging'
+      if event.preventDefault
+        event.preventDefault()
+      return false
 
-      # for dragover and dragenter (IE) we stop the browser from handling the
-      # event and specify copy as the allowable effect
-      element.bind 'dragenter', startDrag, false
-      element.bind 'dragover', startDrag, false
-      element.bind 'dragleave', stopDrag, false
+    # for dragover and dragenter (IE) we stop the browser from handling the
+    # event and specify copy as the allowable effect
+    element.bind 'dragenter', startDrag, false
+    element.bind 'dragover', startDrag, false
+    element.bind 'dragleave', stopDrag, false
 
-      # on drop events we stop browser and read the dropped file via the FileReader
-      # the resulting droped file is bound to the image property of the scope of this directive
-      element.bind 'drop', (event) ->
-        stopDrag(event)
-        if event.preventDefault
-          event.preventDefault()
-        file = event.dataTransfer.files[0]
-        isMarkdownFilename = /\.md$/
-        if isMarkdownFilename.test file.name
-          reader = new FileReader()
-          reader.onload = (evt) ->
-            createSlides evt.target.result, file.name
-          reader.readAsText file
-        else
-          console.error 'Only Markdown documents should be droppped'
-        return false
-      , false
+    # on drop events we stop browser and read the dropped file via the FileReader
+    # the resulting droped file is bound to the image property of the scope of this directive
+    element.bind 'drop', (event) ->
+      stopDrag(event)
+      if event.preventDefault
+        event.preventDefault()
+      file = event.dataTransfer.files[0]
+      isMarkdownFilename = /\.md$/
+      if isMarkdownFilename.test file.name
+        reader = new FileReader()
+        reader.onload = (evt) ->
+          createSlides evt.target.result, file.name
+        reader.readAsText file
+      else
+        console.error 'Only Markdown documents should be droppped'
+      return false
+    , false
 
-      createSlides = (md, filename) ->
-        # remove just the drop zone text
-        # element.remove('.markdown-dropzone')
-        $('div.markdown-dropzone').remove()
-        mdToPresentation md, filename
+    createSlides = (md, filename) ->
+      # remove just the drop zone text
+      # element.remove('.markdown-dropzone')
+      $('div.markdown-dropzone').remove()
+      mdToPresentation md, filename

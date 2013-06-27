@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           level: 'ignore'
         }
       },
-      app: ['src/presentation.coffee']
+      app: ['src/*.coffee']
     },
 
     // compile and concat into single file
@@ -109,5 +109,5 @@ module.exports = function(grunt) {
   var plugins = require('matchdep').filter('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['browserify', 'uglify', 'concat:dev', 'replace', 'copy']);
+  grunt.registerTask('default', ['coffeelint', 'browserify', 'uglify', 'concat:dev', 'replace', 'copy']);
 };
