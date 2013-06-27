@@ -11,7 +11,6 @@ findCurrentTheme = ->
 bespoke.plugins.themes = (deck) ->
   document.addEventListener 'keydown', (e) ->
     key = e.which
-    console.log 'key', key
     if key == 84
         themeIndex = findCurrentTheme()
         nextThemeIndex = (themeIndex + 1) % themes.length

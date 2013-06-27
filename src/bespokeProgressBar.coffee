@@ -12,7 +12,7 @@ bespoke.plugins.progressBar = (deck) ->
   numberSlides = deck.slides.length
   p.bar = p
     height: 5
-    color: '#222222'
+    color: '#AAAAAA'
   deck.on 'activate', (e) ->
     if activeDeck == deck && numberSlides
       # console.log 'activate slide', e.index

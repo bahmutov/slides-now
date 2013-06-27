@@ -58,11 +58,14 @@ window.mdToPresentation = (md, filename) ->
       $('article').append '<section>\n' + currentSlide + '\n</section>\n'
 
   # console.log 'converted markdown to\n' + $article.innerHTML
-  if options.timer?
-    # timer duration in minutes, convert to seconds
-    bespoke.plugins.progressBar.timer(options.timer * 60)
-  else
-    bespoke.plugins.progressBar.removeTimer()
+  try
+    if options.timer?
+      # timer duration in minutes, convert to seconds
+      bespoke.plugins.progressBar.timer(options.timer * 60)
+    else
+      bespoke.plugins.progressBar.removeTimer()
+  catch e
+    # do nothing
 
   bespoke.horizontal.from 'article',
     hash: true
