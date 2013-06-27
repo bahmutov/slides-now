@@ -25,8 +25,8 @@ markdown reference syntax. Here are a few available options:
 [slides-now-footer]: "My talk"
 [slides-now-font-family]: "Arial"
 [slides-now-font-size]: "26pt"
-// presentation should last 10 seconds
-[slides-now-timer]: "10"
+// presentation should last 2 minutes
+[slides-now-timer]: "2"
 ```
 
 The options should be at the end of the document.

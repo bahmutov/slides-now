@@ -58,8 +58,8 @@ window.mdToPresentation = (md, filename) ->
 
   # console.log 'converted markdown to\n' + $article.innerHTML
   if options.timer?
-    # console.log 'have options timer', options.timer, 'seconds'
-    bespoke.plugins.progressBar.timer(options.timer)
+    # timer duration in minutes, convert to seconds
+    bespoke.plugins.progressBar.timer(options.timer * 60)
   else
     bespoke.plugins.progressBar.removeTimer()
 
