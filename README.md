@@ -5,6 +5,7 @@ Instant stand alone slide show from a markdown document.
 1. No server necessary
 2. Stylish presentation
 3. Just drag and drop a Markdown document
+4. Switch themes on the fly, click **t**
 
 ## Playback
 
@@ -21,7 +22,7 @@ markdown reference syntax. Here are a few available options:
 
 ```
 [slides-now-theme]: "classic"
-   cube|coverflow|concave|carousel
+   cube|coverflow|concave|carousel|bw
 [slides-now-footer]: "My talk"
 [slides-now-font-family]: "Arial"
 [slides-now-font-size]: "26pt"

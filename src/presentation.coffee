@@ -3,6 +3,7 @@ optionsParser = require './options.coffee'
 require './bespokeCounterPlugin.coffee'
 require './bespokeShortcutPlugin.coffee'
 require './bespokeProgressBar.coffee'
+require './bespokeThemePlugin.coffee'
 
 isSlideStart = (line) ->
   isLevel1Header = /^<h1>/
@@ -68,6 +69,7 @@ window.mdToPresentation = (md, filename) ->
     vertical: true
     keyShortcuts: true
     progressBar: true
+    themes: true
     # slideCounter: true
 
 window.tryItNow = ->

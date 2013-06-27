@@ -18,7 +18,7 @@
 	background: rgb(86, 174, 231);
 }
 .cube a {
-	color: rgb(86, 174, 231);
+	color: #e656ad;
 }
 .cube section.bespoke-before {
 	-webkit-transform: translateX(-332px) rotateY(-70deg) translateX(-652px) rotateY(-110deg) translateX(-530px);
@@ -60,7 +60,7 @@
 	background: rgb(235, 156, 184);
 }
 .concave a {
-	color: rgb(235, 156, 184);
+	color: #6587C5;
 }
 .concave section.bespoke-before {
 	-webkit-transform: translateX(-800px) rotateY(90deg) translateX(-800px);
@@ -102,7 +102,7 @@
 	background: rgb(42, 206, 185);
 }
 .coverflow a {
-	color: rgb(42, 206, 185);
+	color: #ce7560;
 }
 .coverflow section.bespoke-before {
 	-webkit-transform: translateX(-270px) rotateY(45deg) scale(0.6);
@@ -310,7 +310,7 @@
 	background: rgb(131, 199, 69);
 }
 .carousel a {
-	color: rgb(131, 199, 69);
+	color: #205DA1;
 }
 .carousel section.bespoke-before {
 	-webkit-transform: translateX(-980px) rotateY(-72deg) translateX(-1290px);
