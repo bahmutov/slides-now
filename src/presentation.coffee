@@ -60,6 +60,8 @@ window.mdToPresentation = (md, filename) ->
   if options.timer?
     console.log 'have options timer', options.timer, 'seconds'
     bespoke.plugins.progressBar.timer(options.timer)
+  else
+    bespoke.plugins.progressBar.removeTimer()
 
   bespoke.horizontal.from 'article',
     hash: true

@@ -1,20 +1,30 @@
-bar = null
-timerBar = null
+p = window.progressFullWidth
+
+p.bar = null
+p.timerBar = null
 
 bespoke.plugins.progressBar = (deck) ->
-  if bar? then bar.remove()
-  bar = progressFullWidth
+  if p.bar? then p.bar.remove()
+
+  p.bar = p
     height: 5
     color: '#222222'
-  timerBar = null
   deck.on 'activate', (e) ->
     if deck.slides.length
-      progress = (e.index + 1) / deck.slides.length * 100
-      bar.progress progress
+      progress = e.index / (deck.slides.length - 1)* 100
+      if progress < 0 then progress = 0
+      if progress > 100 then progress = 100
+      p.bar.progress progress
+
+bespoke.plugins.progressBar.removeTimer = () ->
+  if p.timerBar? then p.timerBar.remove()
 
 bespoke.plugins.progressBar.timer = (durationSeconds) ->
-  if timerBar? then timerBar.remove()
-  timerBar = progressFullWidth
+  if p.timerBar? then p.timerBar.remove()
+  if !durationSeconds then return
+
+  p.timerBar = p
     height: 5
     color: '#888888'
     timer: durationSeconds
+    bottom: true

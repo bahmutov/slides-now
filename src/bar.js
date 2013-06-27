@@ -23,7 +23,16 @@
         style.width = '0';
         style.height = options.height + 'px';
         style.left = '0';
-        style.bottom = totalHeight() + 'px';
+
+        if (options.bottom) {
+            style.bottom = '0';
+            bars.forEach(function (eachBar) {
+                eachBar.move(options.height);
+            });
+        } else {
+            style.bottom = totalHeight() + 'px';
+        }
+
         style.backgroundColor = options.color;
         element.classList.add('progressFullWidth');
         document.body.appendChild(element);
@@ -44,6 +53,9 @@
                 bars = bars.filter(function (item) {
                     return item !== this;
                 }, this);
+            },
+            move: function (pixels) {
+                this._element.style.bottom = parseInt(this._element.style.bottom, 10) + pixels + 'px';
             },
             timer: function (durationSeconds) {
                 if (durationSeconds < 10) {
