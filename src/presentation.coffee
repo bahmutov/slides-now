@@ -9,6 +9,8 @@ isSlideStart = (line) ->
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
 
+currentDeck = null
+
 window.mdToPresentation = (md, filename) ->
   if filename
     name = filename
@@ -18,6 +20,7 @@ window.mdToPresentation = (md, filename) ->
     $('footer').text name
 
   # allow to restart the presentation
+  $('article.bespoke-parent').unbind();
   $('article').remove()
   $article = $('div#dropzone').append '<article>'
 
@@ -55,20 +58,19 @@ window.mdToPresentation = (md, filename) ->
     if currentSlide
       $('article').append '<section>\n' + currentSlide + '\n</section>\n'
 
-
   # console.log 'converted markdown to\n' + $article.innerHTML
   if options.timer?
-    console.log 'have options timer', options.timer, 'seconds'
+    # console.log 'have options timer', options.timer, 'seconds'
     bespoke.plugins.progressBar.timer(options.timer)
   else
     bespoke.plugins.progressBar.removeTimer()
 
-  bespoke.horizontal.from 'article',
+  currentDeck = bespoke.horizontal.from 'article',
     hash: true
     vertical: true
-    firstLastShortcuts: true
-    # slideCounter: true
+    keyShortcuts: true
     progressBar: true
+    # slideCounter: true
 
 
 window.tryItNow = ->

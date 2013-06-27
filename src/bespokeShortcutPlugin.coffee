@@ -1,5 +1,5 @@
 # allows to control slides using Page Up / Down keys
-bespoke.plugins.firstLastShortcuts = (deck) ->
+bespoke.plugins.keyShortcuts = (deck) ->
   document.addEventListener 'keydown', (e) ->
     key = e.which
     if key == 33 then deck.prev() # page down
