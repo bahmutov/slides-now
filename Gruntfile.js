@@ -60,6 +60,7 @@ module.exports = function(grunt) {
           'components/bespoke-hash/dist/bespoke-hash.min.js',
           'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
+          'components/midway.js',
           'src/bar.js',
           'tmp/app.js'
         ],
@@ -71,6 +72,7 @@ module.exports = function(grunt) {
           'components/bespoke.js/dist/bespoke.min.js',
           'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
+          'components/midway.js',
           'tmp/app.min.js'
         ],
         dest: 'dist/slides-now.min.js'
