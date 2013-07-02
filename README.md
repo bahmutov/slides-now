@@ -32,6 +32,15 @@ markdown reference syntax. Here are a few available options:
 
 The options should be at the end of the document.
 
+## Dev notes
+
+Installation:
+
+    bower install
+    npm install
+
+Open *dist/index.html* in a browser
+
 ## Inspiration
 
 Several open source projects inspired me to create **slides-now**.
