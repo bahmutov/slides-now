@@ -41,6 +41,14 @@ Installation:
 
 Open *dist/index.html* in a browser
 
+## Timer bar
+
+Add a timer bar crawling along the bottom to
+limit the presentation time.
+
+* [slides-now-timer]: "30"
+* pause / resume the timer using **p** key
+
 ## Inspiration
 
 Several open source projects inspired me to create **slides-now**.
