@@ -12,7 +12,7 @@ Instant stand alone slide show from a markdown document.
 * Happens entirely inside the browser, nothing is uploaded to a server
 * Works great as a stand alone page
 * You can use this README.md as example
-* Parsed using [markdown-js](https://github.com/evilstreak/markdown-js)
+* Parsed using [marked](https://github.com/chjj/marked)
 * Slides will be shown using [bespoke.js](https://github.com/markdalgleish/bespoke.js)
 
 ## Slide show UI
