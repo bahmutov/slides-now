@@ -1,4 +1,5 @@
 check = require 'check-types'
+markdown = require('markdown').markdown
 
 parse = (md) ->
   check.verifyString md, 'expected markdown text'

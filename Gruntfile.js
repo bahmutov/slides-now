@@ -43,7 +43,7 @@ module.exports = function(grunt) {
     uglify: {
       components: {
         files: {
-          'components/markdown/lib/markdown.min.js': ['components/markdown/lib/markdown.js'],
+          // 'components/markdown/lib/markdown.min.js': ['components/markdown/lib/markdown.js'],
           'tmp/app.min.js': ['tmp/app.js']
         }
       }
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           'components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
           'components/bespoke-hash/dist/bespoke-hash.min.js',
-          'components/markdown/lib/markdown.min.js',
+          //'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
           'components/progress-bars/bar.js',
           'tmp/app.js'
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         src: [
           'components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
-          'components/markdown/lib/markdown.min.js',
+          // 'components/markdown/lib/markdown.min.js',
           'components/jquery/jquery.min.js',
           'tmp/app.min.js'
         ],
