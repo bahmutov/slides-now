@@ -5,6 +5,8 @@ require './bespokeShortcutPlugin.coffee'
 require './bespokeProgressBar.coffee'
 require './bespokeThemePlugin.coffee'
 
+md2slides = require './md2slides.coffee'
+
 isSlideStart = (line) ->
   isLevel1Header = /^<h1>/
   isLevel2Header = /^<h2>/
@@ -34,10 +36,7 @@ window.mdToPresentation = (md, filename) ->
   md = optionsParser.removeOptionsLines md
   # console.log "removed options lines\n" + md
 
-  mdParts = md.split '\n\r\n\r\n\r'
-  htmlParts = mdParts.map (mdPart) ->
-    trimmed = mdPart.trim()
-    markdown.toHTML trimmed
+  htmlParts = md2slides md
 
   htmlParts.forEach (html) ->
     currentSlide = null

@@ -13,8 +13,12 @@ body {
 	font-size: 26pt;
 }
 
+pre {
+	padding-left: 30pt;
+	padding-bottom: 0.5em;
+}
+
 code {
-	padding: 20pt 10pt;
 	white-space: pre;
 }
 
