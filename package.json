@@ -24,7 +24,6 @@
     "grunt-coffeelint": "0.0.6",
     "matchdep": "~0.1.2",
     "check-types": "~0.6.4",
-    "markdown": "~0.4.0",
     "marked": "~0.2.9"
   },
   "devDependencies": {

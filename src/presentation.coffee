@@ -37,10 +37,6 @@ window.mdToPresentation = (md, filename) ->
   # console.log "removed options lines\n" + md
 
   htmlParts = md2slides md
-  # mdParts = md.split '\n\r\n\r\n\r'
-  # htmlParts = mdParts.map (mdPart) ->
-    # trimmed = mdPart.trim()
-    # markdown.toHTML trimmed
 
   htmlParts.forEach (html) ->
     currentSlide = null
