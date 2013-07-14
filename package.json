@@ -1,6 +1,6 @@
 {
   "name": "slides-now",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Instant stand alone slide show from markdown document",
   "main": "index.js",
   "scripts": {
@@ -21,10 +21,12 @@
     "grunt-browserify": "~1.1.1",
     "coffeeify": "~0.5.1",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-coffeelint": "0.0.6"
+    "grunt-coffeelint": "0.0.6",
+    "matchdep": "~0.1.2",
+    "check-types": "~0.6.4",
+    "marked": "~0.2.9"
   },
   "devDependencies": {
-    "gt": "~0.8.7",
-    "matchdep": "~0.1.2"
+    "gt": "~0.8.7"
   }
 }
