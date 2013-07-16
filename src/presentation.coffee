@@ -38,17 +38,24 @@ window.mdToPresentation = (md, filename) ->
 
   htmlParts = md2slides md
 
+  wrapSection = (text) ->
+    $slide = $('<section>\n' + text + '\n</section>\n')
+    return $slide
+
   $article = $('article')
   addSlide = (text) ->
     if !text? then return
-    if text.length < 100 && !/<img\ /.test(text)
-      $span = $('<span>\n' + text + '\n</span>')
-      $span.addClass('centerHorizontal')
-      $span.addClass('centerVertical')
-      $slide = $('<section>')
-      $slide.append $span
+    if text.length < 100
+      if !/<img\ /.test(text)
+        $span = $('<span>\n' + text + '\n</span>')
+        $span.addClass('centerHorizontal')
+        $span.addClass('centerVertical')
+        $slide = $('<section>')
+        $slide.append $span
+      else
+        $slide = wrapSection text
     else
-      $slide = $('<section>\n' + text + '\n</section>\n')
+      $slide = wrapSection text
     $('article').append $slide
 
   htmlParts.forEach (html) ->

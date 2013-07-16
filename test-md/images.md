@@ -12,4 +12,4 @@ single small image
 
 
 ![300x200](http://dummyimage.com/300x200/000/f0f)
-The caption under the image
+The caption text
