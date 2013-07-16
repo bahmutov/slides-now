@@ -78,7 +78,9 @@ window.mdToPresentation = (md, filename) ->
   catch e
     # do nothing
 
-  recenter()
+  # recenter()
+
+  recenterImages()
 
   bespoke.horizontal.from 'article',
     hash: true

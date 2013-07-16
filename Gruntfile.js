@@ -60,6 +60,7 @@ module.exports = function(grunt) {
           'components/jquery/jquery.min.js',
           'components/progress-bars/bar.js',
           'src/recenter.js',
+          'src/recenterImages.js',
           'tmp/app.js'
         ],
         dest: 'dist/slides-now.js'
@@ -70,6 +71,7 @@ module.exports = function(grunt) {
           'components/bespoke.js/dist/bespoke.min.js',
           'components/jquery/jquery.min.js',
           'src/recenter.js',
+          'src/recenterImages.js',
           'tmp/app.min.js'
         ],
         dest: 'dist/slides-now.min.js'
