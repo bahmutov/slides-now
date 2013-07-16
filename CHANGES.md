@@ -6,3 +6,5 @@ User facing changes
 
 * better markdown parsing using [marked](https://github.com/chjj/marked)
 * all urls from the presentation open in new tab
+* If a slide has less than 150 characters of text, it will be
+automatically centered
