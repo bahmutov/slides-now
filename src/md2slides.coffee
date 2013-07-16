@@ -4,7 +4,7 @@ markdown = require 'marked'
 directLinksToNewTab = (html) ->
   check.verifyString html, 'expected html string'
 
-  html.replace '<a href=', '<a target="_blank" href='
+  html.replace /<a\ href=/g, '<a target="_blank" href='
 
 parse = (md) ->
   check.verifyString md, 'expected markdown text'
