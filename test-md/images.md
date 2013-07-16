@@ -8,3 +8,8 @@ single small image
 
 
 ![600x400](http://dummyimage.com/600x400/000/fff)
+
+
+
+![300x200](http://dummyimage.com/300x200/000/f0f)
+The caption under the image

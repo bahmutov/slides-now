@@ -41,7 +41,7 @@ window.mdToPresentation = (md, filename) ->
   $article = $('article')
   addSlide = (text) ->
     if !text? then return
-    if text.length < 100
+    if text.length < 100 && !/<img\ /.test(text)
       $span = $('<span>\n' + text + '\n</span>')
       $span.addClass('centerHorizontal')
       $span.addClass('centerVertical')
@@ -78,7 +78,7 @@ window.mdToPresentation = (md, filename) ->
   catch e
     # do nothing
 
-  # recenter()
+  recenter()
 
   recenterImages()
 
