@@ -78,7 +78,7 @@ window.mdToPresentation = (md, filename) ->
   catch e
     # do nothing
 
-  # Midway()
+  recenter()
 
   bespoke.horizontal.from 'article',
     hash: true
