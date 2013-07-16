@@ -13,7 +13,9 @@ window.recenter = function (recenterOnResize) {
             'left' : '50%',
             'paddingLeft': '0'
         });
-        $('.centerHorizontal').css('marginLeft', - + $('.centerHorizontal').width() / 2);
+        $('.centerHorizontal').css('marginLeft', function () {
+            return - (+$(this).width()) / 2;
+        });
 
         $('.centerVertical').css({
             'display' : 'inline',
@@ -21,7 +23,9 @@ window.recenter = function (recenterOnResize) {
             'top' : '50%',
             'paddingTop': '0'
         });
-        $('.centerVertical').css('marginTop', - + $('.centerVertical').height() / 2);
+        $('.centerVertical').css('marginTop', function () {
+            return - (+$(this).height()) / 2;
+        });
     }
 
     _center();
