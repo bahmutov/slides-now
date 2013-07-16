@@ -98,6 +98,7 @@ module.exports = function(grunt) {
       main: {
         files: {
           'dist/README.md': 'README.md',
+          'dist/CHANGES.md': 'CHANGES.md',
           'dist/drop.css': 'css/drop.css',
           'dist/style.css': 'css/style.css',
           'dist/themes.css': 'css/themes.css',
