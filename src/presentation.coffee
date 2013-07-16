@@ -38,6 +38,19 @@ window.mdToPresentation = (md, filename) ->
 
   htmlParts = md2slides md
 
+  $article = $('article')
+  addSlide = (text) ->
+    if !text? then return
+    if text.length < 100
+      $span = $('<span>\n' + text + '\n</span>')
+      $span.addClass('centerHorizontal')
+      $span.addClass('centerVertical')
+      $slide = $('<section>')
+      $slide.append $span
+    else
+      $slide = $('<section>\n' + text + '\n</section>\n')
+    $('article').append $slide
+
   htmlParts.forEach (html) ->
     currentSlide = null
 
@@ -45,8 +58,7 @@ window.mdToPresentation = (md, filename) ->
     lines.forEach (line) ->
       if isSlideStart(line)
         if currentSlide
-          # finish current slide
-          $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+          addSlide(currentSlide)
           currentSlide = null
       if currentSlide
         currentSlide += '\n' + line
@@ -54,7 +66,7 @@ window.mdToPresentation = (md, filename) ->
         currentSlide = line
 
     if currentSlide
-      $('article').append '<section>\n' + currentSlide + '\n</section>\n'
+      addSlide(currentSlide)
 
   # console.log 'converted markdown to\n' + $article.innerHTML
   try
@@ -66,6 +78,8 @@ window.mdToPresentation = (md, filename) ->
   catch e
     # do nothing
 
+  recenter()
+
   bespoke.horizontal.from 'article',
     hash: true
     vertical: true
@@ -73,6 +87,7 @@ window.mdToPresentation = (md, filename) ->
     progressBar: true
     themes: true
     # slideCounter: true
+
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
