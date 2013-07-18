@@ -32,5 +32,13 @@ gt.test 'offset with tabs', ->
     gt.array parts
     gt.equal parts.length, 1
     html = parts.toString()
-    # console.log html
-    # console.log 'length', html.length
+
+gt.test 'triple blank windows', ->
+	md = '''line\n\r\n\r\n\rline 2'''
+	slides = parse md
+	gt.equal slides.length, 2, 'two slides'
+
+gt.test 'triple blank unix', ->
+	md = '''line\n\n\nline 2'''
+	slides = parse md
+	gt.equal slides.length, 2, 'two slides'

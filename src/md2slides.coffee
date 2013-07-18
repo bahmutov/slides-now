@@ -9,7 +9,8 @@ directLinksToNewTab = (html) ->
 parse = (md) ->
   check.verifyString md, 'expected markdown text'
 
-  mdParts = md.split '\n\r\n\r\n\r'
+  severalBlankLines = /\n\r\n\r\n\r|\n\n\n/
+  mdParts = md.split severalBlankLines
   htmlParts = mdParts.map (mdPart) ->
     trimmed = mdPart.trim()
     html = markdown trimmed
