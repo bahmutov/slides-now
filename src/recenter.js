@@ -26,6 +26,10 @@ window.recenter = function (recenterOnResize) {
         $('.centerVertical').css('marginTop', function () {
             return - (+$(this).height()) / 2;
         });
+
+        $('.fullHorizontal').css({
+            'width' : '100%'
+        });
     }
 
     _center();

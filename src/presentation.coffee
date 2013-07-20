@@ -47,8 +47,9 @@ window.mdToPresentation = (md, filename) ->
     if !text? then return
     if text.length < 100
       if !/<img\ /.test(text)
-        $span = $('<span>\n' + text + '\n</span>')
-        $span.addClass('centerHorizontal')
+        $span = $('<span class="centered">\n' + text + '\n</span>')
+        # $span.addClass('centerHorizontal')
+        $span.addClass('fullHorizontal')
         $span.addClass('centerVertical')
         $slide = $('<section>')
         $slide.append $span

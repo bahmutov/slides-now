@@ -27,6 +27,10 @@ code {
 	white-space: pre;
 }
 
+span.centered {
+	text-align: center;
+}
+
 p {
 	padding-left: 20pt;
 	padding-bottom: 10pt;
