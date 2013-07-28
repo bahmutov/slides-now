@@ -1,3 +1,33 @@
+presentationElement = $('div#dropzone')
+
+cleanIntroText = ->
+  $('div#MainTitle').remove()
+  $('div.markdown-dropzone').remove()
+
+window.tryItNow = ->
+  md = $('#explanation')[0].innerHTML
+  cleanIntroText()
+  mdToPresentation md, null, presentationElement
+
+$('#tryItNow').on 'click', tryItNow
+
+createSlides = (md, filename) ->
+  cleanIntroText()
+  window.mdToPresentation md, filename, presentationElement
+
+###
+Start presentation if there is url parameter to Markdown
+###
+urlParser = $.url()
+url = urlParser.param('url') || urlParser.param('md')
+if url
+  $.get url, (md) ->
+    cleanIntroText()
+    window.mdToPresentation md, null, presentationElement
+
+###
+Create drop zone using AngularJs
+###
 drop = angular.module 'markdown.drop', []
 
 drop.directive 'dropzone', ->
@@ -42,8 +72,3 @@ drop.directive 'dropzone', ->
       return false
     , false
 
-    createSlides = (md, filename) ->
-      # remove just the drop zone text
-      # element.remove('.markdown-dropzone')
-      $('div.markdown-dropzone').remove()
-      mdToPresentation md, filename

@@ -12,7 +12,10 @@ isSlideStart = (line) ->
   isLevel2Header = /^<h2>/
   return isLevel1Header.test(line) or isLevel2Header.test(line)
 
-window.mdToPresentation = (md, filename) ->
+# Assumes the page has been cleaned from previous markup
+window.mdToPresentation = (md, filename, element) ->
+  if !element? then element = $('div#dropzone')
+
   if filename
     name = filename
     lastSlashAt = filename.lastIndexOf '/'
@@ -23,7 +26,7 @@ window.mdToPresentation = (md, filename) ->
   # allow to restart the presentation
   $('article.bespoke-parent').unbind()
   $('article').remove()
-  $article = $('div#dropzone').append '<article>'
+  $article = element.append '<article>'
 
   # custom UI options from Markdown text
   options = optionsParser.getSlidesNowOptions md
@@ -97,11 +100,3 @@ window.mdToPresentation = (md, filename) ->
     progressBar: true
     themes: true
     # slideCounter: true
-
-
-window.tryItNow = ->
-  md = $('#explanation')[0].innerHTML
-  $('div.markdown-dropzone').remove()
-  mdToPresentation md
-
-$('#tryItNow').on 'click', tryItNow

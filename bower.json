@@ -13,6 +13,7 @@
     "bespoke.js": "~0.2.1",
     "jquery": "~2.0.2",
     "bespoke-hash": "~0.1.1",
-    "progress-bars": "~0.0.3"
+    "progress-bars": "~0.0.3",
+    "purl": "~2.3.1"
   }
 }
