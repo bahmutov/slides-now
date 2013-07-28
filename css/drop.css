@@ -1,3 +1,12 @@
+div#MainTitle {
+	text-align: center;
+	width: 200px;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+	padding-top: 1em;
+}
+
 div.markdown-dropzone, a#tryItNow {
 	font-size: xx-large !important;
 }
