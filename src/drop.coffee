@@ -1,3 +1,14 @@
+cleanIntroText = ->
+  $('div#MainTitle').remove()
+  $('div.markdown-dropzone').remove()
+
+window.tryItNow = ->
+  md = $('#explanation')[0].innerHTML
+  cleanIntroText()
+  mdToPresentation md, null, $('div#dropzone')
+
+$('#tryItNow').on 'click', tryItNow
+
 drop = angular.module 'markdown.drop', []
 
 drop.directive 'dropzone', ->
@@ -43,7 +54,5 @@ drop.directive 'dropzone', ->
     , false
 
     createSlides = (md, filename) ->
-      # remove just the drop zone text
-      # element.remove('.markdown-dropzone')
-      $('div.markdown-dropzone').remove()
-      mdToPresentation md, filename
+      cleanIntroText()
+      mdToPresentation md, filename, $('div#dropzone')
