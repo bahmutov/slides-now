@@ -9,6 +9,10 @@ window.tryItNow = ->
 
 $('#tryItNow').on 'click', tryItNow
 
+createSlides = (md, filename) ->
+  cleanIntroText()
+  window.mdToPresentation md, filename, $('div#dropzone')
+
 drop = angular.module 'markdown.drop', []
 
 drop.directive 'dropzone', ->
@@ -53,6 +57,3 @@ drop.directive 'dropzone', ->
       return false
     , false
 
-    createSlides = (md, filename) ->
-      cleanIntroText()
-      mdToPresentation md, filename, $('div#dropzone')
