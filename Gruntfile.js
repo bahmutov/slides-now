@@ -59,6 +59,7 @@ module.exports = function(grunt) {
           'components/bespoke-hash/dist/bespoke-hash.min.js',
           'components/jquery/jquery.min.js',
           'components/progress-bars/bar.js',
+          'components/purl/purl.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'tmp/app.js'
@@ -70,6 +71,7 @@ module.exports = function(grunt) {
           'components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
           'components/jquery/jquery.min.js',
+          'components/purl/purl.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'tmp/app.min.js'

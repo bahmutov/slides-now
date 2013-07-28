@@ -5,7 +5,9 @@ User facing changes
 ## 0.0.9
 
 * Added page title
-* Larger call to action "Try it Now"
+* Larger call to action **Try it Now**
+* Load external Markdown from url with *url=* parameter
+	* If cross domain allow it
 
 ## 0.0.8
 
