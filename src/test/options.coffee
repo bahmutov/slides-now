@@ -2,6 +2,7 @@ gt.module 'options parser'
 
 parser = require '../options'
 isOption = parser.isSlideOptionLine
+parse = parser.getSlidesNowOptions
 
 gt.test 'basics', ->
     gt.func isOption
@@ -13,6 +14,20 @@ gt.test 'positive options', ->
     gt.ok isOption '[slides-now-font-family]: "Arial"'
     gt.ok isOption '[slides-now-font-family]: "Arial Narrow"'
     gt.ok isOption '[slides-now-font-size]: "26pt"'
+
+gt.test 'footer', ->
+    gt.ok isOption '[slides-now-footer]: "My talk"'
+    gt.ok isOption '[slides-now-footer]: "@bahmutov"'
+    gt.ok isOption '[slides-now-footer]: "presentation by @bahmutov"'
+
+gt.module 'parse footer'
+
+gt.test 'get correct footer', ->
+  opts = parse '[slides-now-footer]: "My talk"'
+  gt.equal opts.footer, 'My talk', 'correct title'
+
+  opts = parse '[slides-now-footer]: "My talk @bahmutov"'
+  gt.equal opts.footer, 'My talk @bahmutov', 'twitter handle'
 
 gt.module 'removing options lines'
 remove = parser.removeOptionsLines
@@ -33,7 +48,6 @@ gt.test 'removing options lines at the end only', ->
     gt.ok !/slides-now-footer/.test(cleaned), 'removed second option'
 
 gt.module 'parsing options'
-parse = parser.getSlidesNowOptions
 
 gt.test 'grab only options at the end', ->
     opts = parse md
