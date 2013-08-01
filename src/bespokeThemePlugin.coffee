@@ -8,11 +8,14 @@ findCurrentTheme = ->
     if $body.hasClass(theme) then currentThemeIndex = index
   return currentThemeIndex
 
+changeTheme = (e) ->
+  key = e.which
+  if key == 84
+    themeIndex = findCurrentTheme()
+    nextThemeIndex = (themeIndex + 1) % themes.length
+    nextTheme = themes[nextThemeIndex]
+    $('body').removeClass().addClass(nextTheme)
+
 bespoke.plugins.themes = (deck) ->
-  document.addEventListener 'keydown', (e) ->
-    key = e.which
-    if key == 84
-      themeIndex = findCurrentTheme()
-      nextThemeIndex = (themeIndex + 1) % themes.length
-      nextTheme = themes[nextThemeIndex]
-      $('body').removeClass().addClass(nextTheme)
+  document.removeEventListener 'keydown', changeTheme
+  document.addEventListener 'keydown', changeTheme
