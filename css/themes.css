@@ -9,6 +9,14 @@
  *
  */
 
+/* 
+	do not show code outside the current slide
+	because it often overflows
+*/
+section.bespoke-inactive code {
+  visibility: hidden;
+}
+
 /* Cube Theme */
 .cube {
 	background: rgba(86, 174, 231, 0.3);
