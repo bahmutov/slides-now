@@ -17,6 +17,10 @@ section.bespoke-inactive code {
   visibility: hidden;
 }
 
+section code {
+	font-size: 20pt;
+}
+
 /* Cube Theme */
 .cube {
 	background: rgba(86, 174, 231, 0.3);
