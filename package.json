@@ -1,6 +1,6 @@
 {
   "name": "slides-now",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Instant stand alone slide show from markdown document",
   "main": "index.js",
   "scripts": {
