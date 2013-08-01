@@ -60,6 +60,7 @@ module.exports = function(grunt) {
           'components/jquery/jquery.min.js',
           'components/progress-bars/bar.js',
           'components/purl/purl.js',
+          'components/alertify/alertify.min.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'tmp/app.js'
@@ -72,6 +73,7 @@ module.exports = function(grunt) {
           'components/bespoke.js/dist/bespoke.min.js',
           'components/jquery/jquery.min.js',
           'components/purl/purl.js',
+          'components/alertify/alertify.min.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'tmp/app.min.js'
@@ -104,6 +106,9 @@ module.exports = function(grunt) {
           'dist/drop.css': 'css/drop.css',
           'dist/style.css': 'css/style.css',
           'dist/themes.css': 'css/themes.css',
+          'dist/alertify.css': 'components/alertify/alertify.css',
+          'dist/alertify.default.css': 'components/alertify/alertify.default.css',
+          'dist/drop.css': 'css/drop.css',
           'dist/favicon.png': 'favicon.png'
         }
       }

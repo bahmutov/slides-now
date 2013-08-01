@@ -11,6 +11,9 @@ style.css
 themes.css
 favicon.png
 
+alertify.css
+alertify.default.css
+
 NETWORK:
 # Always try to fetch analytics links
 # and any other external links
