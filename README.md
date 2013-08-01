@@ -4,7 +4,7 @@ Instant stand alone slide show from a markdown document.
 
 1. No server necessary
 2. Stylish presentation
-3. Just drag and drop a Markdown document
+3. Just drag and drop a [Markdown](http://goo.gl/6yTb) document
 4. Switch themes on the fly, click **t**
 
 ## Playback

@@ -306,6 +306,272 @@ try{Ut=i.href}catch(an){Ut=o.createElement("a"),Ut.href="",Ut=Ut.href}Xt=tn.exec
 
     window.progressFullWidth.version = '0.0.3';
 }(this));;
+/*
+ * Purl (A JavaScript URL parser) v2.3.1
+ * Developed and maintanined by Mark Perkins, mark@allmarkedup.com
+ * Source repository: https://github.com/allmarkedup/jQuery-URL-Parser
+ * Licensed under an MIT-style license. See https://github.com/allmarkedup/jQuery-URL-Parser/blob/master/LICENSE for details.
+ */
+
+;(function(factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else {
+        window.purl = factory();
+    }
+})(function() {
+
+    var tag2attr = {
+            a       : 'href',
+            img     : 'src',
+            form    : 'action',
+            base    : 'href',
+            script  : 'src',
+            iframe  : 'src',
+            link    : 'href'
+        },
+
+        key = ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'fragment'], // keys available to query
+
+        aliases = { 'anchor' : 'fragment' }, // aliases for backwards compatability
+
+        parser = {
+            strict : /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,  //less intuitive, more accurate to the specs
+            loose :  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // more intuitive, fails on relative paths and deviates from specs
+        },
+
+        isint = /^[0-9]+$/;
+
+    function parseUri( url, strictMode ) {
+        var str = decodeURI( url ),
+        res   = parser[ strictMode || false ? 'strict' : 'loose' ].exec( str ),
+        uri = { attr : {}, param : {}, seg : {} },
+        i   = 14;
+
+        while ( i-- ) {
+            uri.attr[ key[i] ] = res[i] || '';
+        }
+
+        // build query and fragment parameters
+        uri.param['query'] = parseString(uri.attr['query']);
+        uri.param['fragment'] = parseString(uri.attr['fragment']);
+
+        // split path and fragement into segments
+        uri.seg['path'] = uri.attr.path.replace(/^\/+|\/+$/g,'').split('/');
+        uri.seg['fragment'] = uri.attr.fragment.replace(/^\/+|\/+$/g,'').split('/');
+
+        // compile a 'base' domain attribute
+        uri.attr['base'] = uri.attr.host ? (uri.attr.protocol ?  uri.attr.protocol+'://'+uri.attr.host : uri.attr.host) + (uri.attr.port ? ':'+uri.attr.port : '') : '';
+
+        return uri;
+    }
+
+    function getAttrName( elm ) {
+        var tn = elm.tagName;
+        if ( typeof tn !== 'undefined' ) return tag2attr[tn.toLowerCase()];
+        return tn;
+    }
+
+    function promote(parent, key) {
+        if (parent[key].length === 0) return parent[key] = {};
+        var t = {};
+        for (var i in parent[key]) t[i] = parent[key][i];
+        parent[key] = t;
+        return t;
+    }
+
+    function parse(parts, parent, key, val) {
+        var part = parts.shift();
+        if (!part) {
+            if (isArray(parent[key])) {
+                parent[key].push(val);
+            } else if ('object' == typeof parent[key]) {
+                parent[key] = val;
+            } else if ('undefined' == typeof parent[key]) {
+                parent[key] = val;
+            } else {
+                parent[key] = [parent[key], val];
+            }
+        } else {
+            var obj = parent[key] = parent[key] || [];
+            if (']' == part) {
+                if (isArray(obj)) {
+                    if ('' !== val) obj.push(val);
+                } else if ('object' == typeof obj) {
+                    obj[keys(obj).length] = val;
+                } else {
+                    obj = parent[key] = [parent[key], val];
+                }
+            } else if (~part.indexOf(']')) {
+                part = part.substr(0, part.length - 1);
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+                // key
+            } else {
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+            }
+        }
+    }
+
+    function merge(parent, key, val) {
+        if (~key.indexOf(']')) {
+            var parts = key.split('[');
+            parse(parts, parent, 'base', val);
+        } else {
+            if (!isint.test(key) && isArray(parent.base)) {
+                var t = {};
+                for (var k in parent.base) t[k] = parent.base[k];
+                parent.base = t;
+            }
+            if (key !== '') {
+                set(parent.base, key, val);
+            }
+        }
+        return parent;
+    }
+
+    function parseString(str) {
+        return reduce(String(str).split(/&|;/), function(ret, pair) {
+            try {
+                pair = decodeURIComponent(pair.replace(/\+/g, ' '));
+            } catch(e) {
+                // ignore
+            }
+            var eql = pair.indexOf('='),
+                brace = lastBraceInKey(pair),
+                key = pair.substr(0, brace || eql),
+                val = pair.substr(brace || eql, pair.length);
+
+            val = val.substr(val.indexOf('=') + 1, val.length);
+
+            if (key === '') {
+                key = pair;
+                val = '';
+            }
+
+            return merge(ret, key, val);
+        }, { base: {} }).base;
+    }
+
+    function set(obj, key, val) {
+        var v = obj[key];
+        if (typeof v === 'undefined') {
+            obj[key] = val;
+        } else if (isArray(v)) {
+            v.push(val);
+        } else {
+            obj[key] = [v, val];
+        }
+    }
+
+    function lastBraceInKey(str) {
+        var len = str.length,
+            brace,
+            c;
+        for (var i = 0; i < len; ++i) {
+            c = str[i];
+            if (']' == c) brace = false;
+            if ('[' == c) brace = true;
+            if ('=' == c && !brace) return i;
+        }
+    }
+
+    function reduce(obj, accumulator){
+        var i = 0,
+            l = obj.length >> 0,
+            curr = arguments[2];
+        while (i < l) {
+            if (i in obj) curr = accumulator.call(undefined, curr, obj[i], i, obj);
+            ++i;
+        }
+        return curr;
+    }
+
+    function isArray(vArg) {
+        return Object.prototype.toString.call(vArg) === "[object Array]";
+    }
+
+    function keys(obj) {
+        var key_array = [];
+        for ( var prop in obj ) {
+            if ( obj.hasOwnProperty(prop) ) key_array.push(prop);
+        }
+        return key_array;
+    }
+
+    function purl( url, strictMode ) {
+        if ( arguments.length === 1 && url === true ) {
+            strictMode = true;
+            url = undefined;
+        }
+        strictMode = strictMode || false;
+        url = url || window.location.toString();
+
+        return {
+
+            data : parseUri(url, strictMode),
+
+            // get various attributes from the URI
+            attr : function( attr ) {
+                attr = aliases[attr] || attr;
+                return typeof attr !== 'undefined' ? this.data.attr[attr] : this.data.attr;
+            },
+
+            // return query string parameters
+            param : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.query[param] : this.data.param.query;
+            },
+
+            // return fragment parameters
+            fparam : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.fragment[param] : this.data.param.fragment;
+            },
+
+            // return path segments
+            segment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.path;
+                } else {
+                    seg = seg < 0 ? this.data.seg.path.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.path[seg];
+                }
+            },
+
+            // return fragment segments
+            fsegment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.fragment;
+                } else {
+                    seg = seg < 0 ? this.data.seg.fragment.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.fragment[seg];
+                }
+            }
+
+        };
+
+    }
+    
+    purl.jQuery = function($){
+        if ($ != null) {
+            $.fn.url = function( strictMode ) {
+                var url = '';
+                if ( this.length ) {
+                    url = $(this).attr( getAttrName(this[0]) ) || '';
+                }
+                return purl( url, strictMode );
+            };
+
+            $.url = purl;
+        }
+    };
+
+    purl.jQuery(window.jQuery);
+
+    return purl;
+
+});
+;
 // Uses CSS to position elements in the center of its parent
 // separately can process .centerHorizontal and .centerVertical
 window.recenter = function (recenterOnResize) {
@@ -378,6 +644,224 @@ window.recenterImages = function (recenterOnResize) {
     }
 };;
 ;(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({1:[function(require,module,exports){
+bespoke.plugins.slideCounter = function(deck) {
+  return deck.on('activate', function(e) {
+    var message;
+    message = (e.index + 1) + ' / ' + deck.slides.length;
+    return $('aside#counter').text(message);
+  });
+};
+
+
+},{}],2:[function(require,module,exports){
+bespoke.plugins.keyShortcuts = function(deck) {
+  return document.addEventListener('keydown', function(e) {
+    var key;
+    key = e.which;
+    if (key === 33) {
+      deck.prev();
+    }
+    if (key === 34) {
+      deck.next();
+    }
+    if (key === 36) {
+      bespoke.slide(0);
+    }
+    if (key === 35) {
+      return bespoke.slide(deck.slides.length - 1);
+    }
+  });
+};
+
+
+},{}],3:[function(require,module,exports){
+var changeTheme, findCurrentTheme, themes;
+
+themes = ['classic', 'cube', 'coverflow', 'bw', 'concave', 'carousel'];
+
+findCurrentTheme = function() {
+  var $body, currentThemeIndex;
+  $body = $('body');
+  currentThemeIndex = -1;
+  themes.forEach(function(theme, index) {
+    if ($body.hasClass(theme)) {
+      return currentThemeIndex = index;
+    }
+  });
+  return currentThemeIndex;
+};
+
+changeTheme = function(e) {
+  var key, nextTheme, nextThemeIndex, themeIndex;
+  key = e.which;
+  if (key === 84) {
+    themeIndex = findCurrentTheme();
+    nextThemeIndex = (themeIndex + 1) % themes.length;
+    nextTheme = themes[nextThemeIndex];
+    return $('body').removeClass().addClass(nextTheme);
+  }
+};
+
+bespoke.plugins.themes = function(deck) {
+  document.removeEventListener('keydown', changeTheme);
+  return document.addEventListener('keydown', changeTheme);
+};
+
+
+},{}],4:[function(require,module,exports){
+var cleanIntroText, createSlides, drop, presentationElement, url, urlParser;
+
+presentationElement = $('div#dropzone');
+
+cleanIntroText = function() {
+  $('div#MainTitle').remove();
+  return $('div.markdown-dropzone').remove();
+};
+
+window.tryItNow = function() {
+  var md;
+  md = $('#explanation')[0].innerHTML;
+  cleanIntroText();
+  return mdToPresentation(md, null, presentationElement);
+};
+
+$('#tryItNow').on('click', tryItNow);
+
+createSlides = function(md, filename) {
+  cleanIntroText();
+  return window.mdToPresentation(md, filename, presentationElement);
+};
+
+/*
+Start presentation if there is url parameter to Markdown
+*/
+
+
+urlParser = $.url();
+
+url = urlParser.param('url') || urlParser.param('md');
+
+if (url) {
+  $.get(url, function(md) {
+    cleanIntroText();
+    return window.mdToPresentation(md, null, presentationElement);
+  });
+}
+
+/*
+Create drop zone using AngularJs
+*/
+
+
+drop = angular.module('markdown.drop', []);
+
+drop.directive('dropzone', function() {
+  return {
+    restrict: 'A',
+    scope: {},
+    replace: false,
+    link: function(scope, element, attrs) {
+      var startDrag, stopDrag;
+      startDrag = function(event) {
+        element.addClass('dragging');
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+        event.dataTransfer.effectAllowed = 'copy';
+        return false;
+      };
+      stopDrag = function(event) {
+        element.removeClass('dragging');
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+        return false;
+      };
+      element.bind('dragenter', startDrag, false);
+      element.bind('dragover', startDrag, false);
+      element.bind('dragleave', stopDrag, false);
+      return element.bind('drop', function(event) {
+        var file, isMarkdownFilename, reader;
+        stopDrag(event);
+        if (event.preventDefault) {
+          event.preventDefault();
+        }
+        file = event.dataTransfer.files[0];
+        isMarkdownFilename = /\.md$/;
+        if (isMarkdownFilename.test(file.name)) {
+          reader = new FileReader();
+          reader.onload = function(evt) {
+            return createSlides(evt.target.result, file.name);
+          };
+          reader.readAsText(file);
+        } else {
+          console.error('Only Markdown documents should be droppped');
+        }
+        return false;
+      }, false);
+    }
+  };
+});
+
+
+},{}],5:[function(require,module,exports){
+var getSlidesNowOptions, isSlideOptionLine, removeOptionsLines, slidesNowOption;
+
+slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W]+)\"$/;
+
+isSlideOptionLine = function(line) {
+  return slidesNowOption.test(line);
+};
+
+getSlidesNowOptions = function(md) {
+  var foundNonOptionLine, lines, options;
+  options = {};
+  foundNonOptionLine = false;
+  lines = md.split('\n').reverse();
+  lines.forEach(function(line) {
+    var matches;
+    line = line.trim();
+    if (line === '') {
+      return;
+    }
+    if (foundNonOptionLine) {
+      return;
+    }
+    if (isSlideOptionLine(line)) {
+      matches = slidesNowOption.exec(line);
+      if (matches.length !== 3) {
+        throw new Error('Could not match line ' + line);
+      }
+      return options[matches[1]] = matches[2];
+    } else {
+      return foundNonOptionLine = true;
+    }
+  });
+  return options;
+};
+
+removeOptionsLines = function(md) {
+  var filtered, foundNonOptionLine, lines;
+  lines = md.split('\n').reverse();
+  foundNonOptionLine = false;
+  filtered = lines.filter(function(line) {
+    line = line.trim();
+    if (foundNonOptionLine || !isSlideOptionLine(line)) {
+      foundNonOptionLine = true;
+      return true;
+    }
+  });
+  return filtered.reverse().join('\n');
+};
+
+module.exports = {
+  getSlidesNowOptions: getSlidesNowOptions,
+  removeOptionsLines: removeOptionsLines,
+  isSlideOptionLine: isSlideOptionLine
+};
+
+
+},{}],6:[function(require,module,exports){
 var activeDeck, isPaused, p;
 
 p = window.progressFullWidth;
@@ -453,183 +937,6 @@ bespoke.plugins.progressBar.timer = function(durationSeconds) {
 };
 
 
-},{}],2:[function(require,module,exports){
-bespoke.plugins.slideCounter = function(deck) {
-  return deck.on('activate', function(e) {
-    var message;
-    message = (e.index + 1) + ' / ' + deck.slides.length;
-    return $('aside#counter').text(message);
-  });
-};
-
-
-},{}],3:[function(require,module,exports){
-var drop;
-
-drop = angular.module('markdown.drop', []);
-
-drop.directive('dropzone', function() {
-  return {
-    restrict: 'A',
-    scope: {},
-    replace: false,
-    link: function(scope, element, attrs) {
-      var createSlides, startDrag, stopDrag;
-      startDrag = function(event) {
-        element.addClass('dragging');
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        event.dataTransfer.effectAllowed = 'copy';
-        return false;
-      };
-      stopDrag = function(event) {
-        element.removeClass('dragging');
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        return false;
-      };
-      element.bind('dragenter', startDrag, false);
-      element.bind('dragover', startDrag, false);
-      element.bind('dragleave', stopDrag, false);
-      element.bind('drop', function(event) {
-        var file, isMarkdownFilename, reader;
-        stopDrag(event);
-        if (event.preventDefault) {
-          event.preventDefault();
-        }
-        file = event.dataTransfer.files[0];
-        isMarkdownFilename = /\.md$/;
-        if (isMarkdownFilename.test(file.name)) {
-          reader = new FileReader();
-          reader.onload = function(evt) {
-            return createSlides(evt.target.result, file.name);
-          };
-          reader.readAsText(file);
-        } else {
-          console.error('Only Markdown documents should be droppped');
-        }
-        return false;
-      }, false);
-      return createSlides = function(md, filename) {
-        $('div.markdown-dropzone').remove();
-        return mdToPresentation(md, filename);
-      };
-    }
-  };
-});
-
-
-},{}],4:[function(require,module,exports){
-bespoke.plugins.keyShortcuts = function(deck) {
-  return document.addEventListener('keydown', function(e) {
-    var key;
-    key = e.which;
-    if (key === 33) {
-      deck.prev();
-    }
-    if (key === 34) {
-      deck.next();
-    }
-    if (key === 36) {
-      bespoke.slide(0);
-    }
-    if (key === 35) {
-      return bespoke.slide(deck.slides.length - 1);
-    }
-  });
-};
-
-
-},{}],5:[function(require,module,exports){
-var findCurrentTheme, themes;
-
-themes = ['classic', 'cube', 'coverflow', 'bw', 'concave', 'carousel'];
-
-findCurrentTheme = function() {
-  var $body, currentThemeIndex;
-  $body = $('body');
-  currentThemeIndex = -1;
-  themes.forEach(function(theme, index) {
-    if ($body.hasClass(theme)) {
-      return currentThemeIndex = index;
-    }
-  });
-  return currentThemeIndex;
-};
-
-bespoke.plugins.themes = function(deck) {
-  return document.addEventListener('keydown', function(e) {
-    var key, nextTheme, nextThemeIndex, themeIndex;
-    key = e.which;
-    if (key === 84) {
-      themeIndex = findCurrentTheme();
-      nextThemeIndex = (themeIndex + 1) % themes.length;
-      nextTheme = themes[nextThemeIndex];
-      return $('body').removeClass().addClass(nextTheme);
-    }
-  });
-};
-
-
-},{}],6:[function(require,module,exports){
-var getSlidesNowOptions, isSlideOptionLine, removeOptionsLines, slidesNowOption;
-
-slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W]+)\"$/;
-
-isSlideOptionLine = function(line) {
-  return slidesNowOption.test(line);
-};
-
-getSlidesNowOptions = function(md) {
-  var foundNonOptionLine, lines, options;
-  options = {};
-  foundNonOptionLine = false;
-  lines = md.split('\n').reverse();
-  lines.forEach(function(line) {
-    var matches;
-    line = line.trim();
-    if (line === '') {
-      return;
-    }
-    if (foundNonOptionLine) {
-      return;
-    }
-    if (isSlideOptionLine(line)) {
-      matches = slidesNowOption.exec(line);
-      if (matches.length !== 3) {
-        throw new Error('Could not match line ' + line);
-      }
-      return options[matches[1]] = matches[2];
-    } else {
-      return foundNonOptionLine = true;
-    }
-  });
-  return options;
-};
-
-removeOptionsLines = function(md) {
-  var filtered, foundNonOptionLine, lines;
-  lines = md.split('\n').reverse();
-  foundNonOptionLine = false;
-  filtered = lines.filter(function(line) {
-    line = line.trim();
-    if (foundNonOptionLine || !isSlideOptionLine(line)) {
-      foundNonOptionLine = true;
-      return true;
-    }
-  });
-  return filtered.reverse().join('\n');
-};
-
-module.exports = {
-  getSlidesNowOptions: getSlidesNowOptions,
-  removeOptionsLines: removeOptionsLines,
-  isSlideOptionLine: isSlideOptionLine
-};
-
-
 },{}],7:[function(require,module,exports){
 var isSlideStart, md2slides, optionsParser;
 
@@ -652,8 +959,11 @@ isSlideStart = function(line) {
   return isLevel1Header.test(line) || isLevel2Header.test(line);
 };
 
-window.mdToPresentation = function(md, filename) {
+window.mdToPresentation = function(md, filename, element) {
   var $article, addSlide, e, htmlParts, lastSlashAt, name, options, wrapSection;
+  if (element == null) {
+    element = $('div#dropzone');
+  }
   if (filename) {
     name = filename;
     lastSlashAt = filename.lastIndexOf('/');
@@ -664,7 +974,7 @@ window.mdToPresentation = function(md, filename) {
   }
   $('article.bespoke-parent').unbind();
   $('article').remove();
-  $article = $('div#dropzone').append('<article>');
+  $article = element.append('<article>');
   options = optionsParser.getSlidesNowOptions(md);
   if (options.theme != null) {
     $('body').removeClass().addClass(options.theme);
@@ -747,17 +1057,8 @@ window.mdToPresentation = function(md, filename) {
   });
 };
 
-window.tryItNow = function() {
-  var md;
-  md = $('#explanation')[0].innerHTML;
-  $('div.markdown-dropzone').remove();
-  return mdToPresentation(md);
-};
 
-$('#tryItNow').on('click', tryItNow);
-
-
-},{"./options.coffee":6,"./bespokeCounterPlugin.coffee":2,"./bespokeShortcutPlugin.coffee":4,"./bespokeProgressBar.coffee":1,"./bespokeThemePlugin.coffee":5,"./md2slides.coffee":8}],8:[function(require,module,exports){
+},{"./options.coffee":5,"./bespokeCounterPlugin.coffee":1,"./bespokeShortcutPlugin.coffee":2,"./bespokeProgressBar.coffee":6,"./bespokeThemePlugin.coffee":3,"./md2slides.coffee":8}],8:[function(require,module,exports){
 var check, directLinksToNewTab, markdown, parse;
 
 check = require('check-types');
@@ -786,7 +1087,496 @@ parse = function(md) {
 module.exports = parse;
 
 
-},{"check-types":9,"marked":10}],10:[function(require,module,exports){
+},{"check-types":9,"marked":10}],9:[function(require,module,exports){
+/**
+ * This module exports functions for checking types
+ * and throwing exceptions.
+ */
+
+/*globals define, module */
+
+(function (globals) {
+    'use strict';
+
+    var functions = {
+        verifyQuack: verifyQuack,
+        quacksLike: quacksLike,
+        verifyInstance: verifyInstance,
+        isInstance: isInstance,
+        verifyEmptyObject: verifyEmptyObject,
+        isEmptyObject: isEmptyObject,
+        verifyObject: verifyObject,
+        isObject: isObject,
+        verifyLength: verifyLength,
+        isLength: isLength,
+        verifyArray: verifyArray,
+        isArray: isArray,
+        verifyFunction: verifyFunction,
+        isFunction: isFunction,
+        verifyUnemptyString: verifyUnemptyString,
+        isUnemptyString:isUnemptyString,
+        verifyString: verifyString,
+        isString: isString,
+        verifyEvenNumber: verifyEvenNumber,
+        isEvenNumber: isEvenNumber,
+        verifyOddNumber: verifyOddNumber,
+        isOddNumber: isOddNumber,
+        verifyPositiveNumber: verifyPositiveNumber,
+        isPositiveNumber: isPositiveNumber,
+        verifyNegativeNumber: verifyNegativeNumber,
+        isNegativeNumber: isNegativeNumber,
+        verifyNumber: verifyNumber,
+        isNumber: isNumber
+    };
+
+    exportFunctions();
+
+    /**
+     * Public function `verifyQuack`.
+     *
+     * Throws an exception if an object does not share
+     * the properties of a second, archetypal object
+     * (i.e. doesn't 'quack like a duck').
+     *
+     * @param thing {object}     The object to test.
+     * @param duck {object}      The archetypal object,
+     *                           or 'duck', that the test
+     *                           is against.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyQuack (thing, duck, message) {
+        if (quacksLike(thing, duck) === false) {
+            throw new Error(message || 'Invalid type');
+        }
+    }
+
+    /**
+     * Public function `quacksLike`.
+     *
+     * Tests whether an object 'quacks like a duck'.
+     * Returns `true` if the first argument has all of
+     * the properties of the second, archetypal argument
+     * (the 'duck'). Returns `false` otherwise. If either
+     * argument is not an object, an exception is thrown.
+     *
+     * @param thing {object} The object to test.
+     * @param duck {object}  The archetypal object, or
+     *                       'duck', that the test is
+     *                       against.
+     */
+    function quacksLike (thing, duck) {
+        var property;
+
+        verifyObject(thing);
+        verifyObject(duck);
+
+        for (property in duck) {
+            if (duck.hasOwnProperty(property)) {
+                if (thing.hasOwnProperty(property) === false) {
+                    return false;
+                }
+
+                if (typeof thing[property] !== typeof duck[property]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Public function `verifyInstance`.
+     *
+     * Throws an exception if an object is not an instance
+     * of a prototype.
+     *
+     * @param thing {object}       The object to test.
+     * @param prototype {function} The prototype that the
+     *                             test is against.
+     * @param [message] {string}   An optional error message
+     *                             to set on the thrown Error.
+     */
+    function verifyInstance (thing, prototype, message) {
+        if (isInstance(thing, prototype) === false) {
+            throw new Error(message || 'Invalid type');
+        }
+    }
+
+    /**
+     * Public function `isInstance`.
+     *
+     * Returns `true` if an object is an instance of a prototype,
+     * `false` otherwise.
+     *
+     * @param thing {object}       The object to test.
+     * @param prototype {function} The prototype that the
+     *                             test is against.
+     */
+    function isInstance (thing, prototype) {
+        if (typeof thing === 'undefined' || thing === null) {
+            return false;
+        }
+
+        if (isFunction(prototype) && thing instanceof prototype) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Public function `verifyEmptyObject`.
+     *
+     * Throws an exception unless something is an empty, non-null,
+     * non-array object.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyEmptyObject (thing, message) {
+        if (isEmptyObject(thing) === false) {
+            throw new Error(message || 'Invalid empty object');
+        }
+    }
+
+    /**
+     * Public function `isEmptyObject`.
+     *
+     * Returns `true` if something is an empty, non-null, non-array object, `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isEmptyObject (thing) {
+        var property;
+
+        if (isObject(thing)) {
+            for (property in thing) {
+                if (thing.hasOwnProperty(property)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Public function `verifyObject`.
+     *
+     * Throws an exception unless something is a non-null,
+     * non-array object.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyObject (thing, message) {
+        if (isObject(thing) === false) {
+            throw new Error(message || 'Invalid object');
+        }
+    }
+
+    /**
+     * Public function `isObject`.
+     *
+     * Returns `true` if something is a non-null, non-array
+     * object, `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isObject (thing) {
+        return typeof thing === 'object' && thing !== null && isArray(thing) === false;
+    }
+
+    /**
+     * Public function `verifyLength`.
+     *
+     * Throws an exception unless something is a non-null,
+     * non-array object.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyLength (thing, length, message) {
+        if (isLength(thing, length) === false) {
+            throw new Error(message || 'Invalid length');
+        }
+    }
+
+    /**
+     * Public function `isLength`.
+     *
+     * Returns `true` if something is has a length property
+     * matching the specified value, `false` otherwise.
+     *
+     * @param thing  The thing to test.
+     * @param length The required length to test against.
+     */
+    function isLength (thing, length) {
+        return thing && thing.length === length;
+    }
+
+    /**
+     * Public function `verifyArray`.
+     *
+     * Throws an exception unless something is an array.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyArray (thing, message) {
+        if (isArray(thing) === false) {
+            throw new Error(message || 'Invalid array');
+        }
+    }
+
+    /**
+     * Public function `isArray`.
+     *
+     * Returns `true` something is an array, `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isArray (thing) {
+        return Object.prototype.toString.call(thing) === '[object Array]';
+    }
+
+    /**
+     * Public function `verifyFunction`.
+     *
+     * Throws an exception unless something is function.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyFunction (thing, message) {
+        if (isFunction(thing) === false) {
+            throw new Error(message || 'Invalid function');
+        }
+    }
+
+    /**
+     * Public function `isFunction`.
+     *
+     * Returns `true` if something is function, `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isFunction (thing) {
+        return typeof thing === 'function';
+    }
+
+    /**
+     * Public function `verifyUnemptyString`.
+     *
+     * Throws an exception unless something is a non-empty string.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyUnemptyString (thing, message) {
+        if (isUnemptyString(thing) === false) {
+            throw new Error(message || 'Invalid string');
+        }
+    }
+
+    /**
+     * Public function `isUnemptyString`.
+     *
+     * Returns `true` if something is a non-empty string, `false`
+     * otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isUnemptyString (thing) {
+        return isString(thing) && thing !== '';
+    }
+
+    /**
+     * Public function `verifyString`.
+     *
+     * Throws an exception unless something is a string.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyString (thing, message) {
+        if (isString(thing) === false) {
+            throw new Error(message || 'Invalid string');
+        }
+    }
+
+    /**
+     * Public function `isString`.
+     *
+     * Returns `true` if something is a string, `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isString (thing) {
+        return typeof thing === 'string';
+    }
+
+    /**
+     * Public function `verifyOddNumber`.
+     *
+     * Throws an exception unless something is an odd number.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyOddNumber (thing, message) {
+        if (isOddNumber(thing) === false) {
+            throw new Error(message || 'Invalid number');
+        }
+    }
+
+    /**
+     * Public function `isOddNumber`.
+     *
+     * Returns `true` if something is an odd number,
+     * `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isOddNumber (thing) {
+        return isNumber(thing) && (thing % 2 === 1 || thing % 2 === -1);
+    }
+
+    /**
+     * Public function `verifyEvenNumber`.
+     *
+     * Throws an exception unless something is an even number.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyEvenNumber (thing, message) {
+        if (isEvenNumber(thing) === false) {
+            throw new Error(message || 'Invalid number');
+        }
+    }
+
+    /**
+     * Public function `isEvenNumber`.
+     *
+     * Returns `true` if something is an even number,
+     * `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isEvenNumber (thing) {
+        return isNumber(thing) && thing % 2 === 0;
+    }
+
+    /**
+     * Public function `verifyPositiveNumber`.
+     *
+     * Throws an exception unless something is a positive number.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyPositiveNumber (thing, message) {
+        if (isPositiveNumber(thing) === false) {
+            throw new Error(message || 'Invalid number');
+        }
+    }
+
+    /**
+     * Public function `isPositiveNumber`.
+     *
+     * Returns `true` if something is a positive number,
+     * `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isPositiveNumber (thing) {
+        return isNumber(thing) && thing > 0;
+    }
+
+    /**
+     * Public function `verifyNegativeNumber`.
+     *
+     * Throws an exception unless something is a positive number.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyNegativeNumber (thing, message) {
+        if (isNegativeNumber(thing) === false) {
+            throw new Error(message || 'Invalid number');
+        }
+    }
+
+    /**
+     * Public function `isNegativeNumber`.
+     *
+     * Returns `true` if something is a positive number,
+     * `false` otherwise.
+     *
+     * @param thing          The thing to test.
+     */
+    function isNegativeNumber (thing) {
+        return isNumber(thing) && thing < 0;
+    }
+
+    /**
+     * Public function `verifyNumber`.
+     *
+     * Throws an exception unless something is a number, excluding NaN.
+     *
+     * @param thing              The thing to test.
+     * @param [message] {string} An optional error message
+     *                           to set on the thrown Error.
+     */
+    function verifyNumber (thing, message) {
+        if (isNumber(thing) === false) {
+            throw new Error(message || 'Invalid number');
+        }
+    }
+
+    /**
+     * Public function `isNumber`.
+     *
+     * Returns `true` if something is a number other than NaN,
+     * `false` otherwise.
+     *
+     * @param thing The thing to test.
+     */
+    function isNumber (thing) {
+        return typeof thing === 'number' && isNaN(thing) === false;
+    }
+
+    function exportFunctions () {
+        if (typeof define === 'function' && define.amd) {
+            define(function () {
+                return functions;
+            });
+        } else if (typeof module !== 'undefined' && module !== null) {
+            module.exports = functions;
+        } else {
+            globals.check = functions;
+        }
+    }
+}(this));
+
+
+},{}],10:[function(require,module,exports){
 (function(global){/**
  * marked - a markdown parser
  * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
@@ -1940,494 +2730,5 @@ if (typeof exports === 'object') {
 }());
 
 })(window)
-},{}],9:[function(require,module,exports){
-/**
- * This module exports functions for checking types
- * and throwing exceptions.
- */
-
-/*globals define, module */
-
-(function (globals) {
-    'use strict';
-
-    var functions = {
-        verifyQuack: verifyQuack,
-        quacksLike: quacksLike,
-        verifyInstance: verifyInstance,
-        isInstance: isInstance,
-        verifyEmptyObject: verifyEmptyObject,
-        isEmptyObject: isEmptyObject,
-        verifyObject: verifyObject,
-        isObject: isObject,
-        verifyLength: verifyLength,
-        isLength: isLength,
-        verifyArray: verifyArray,
-        isArray: isArray,
-        verifyFunction: verifyFunction,
-        isFunction: isFunction,
-        verifyUnemptyString: verifyUnemptyString,
-        isUnemptyString:isUnemptyString,
-        verifyString: verifyString,
-        isString: isString,
-        verifyEvenNumber: verifyEvenNumber,
-        isEvenNumber: isEvenNumber,
-        verifyOddNumber: verifyOddNumber,
-        isOddNumber: isOddNumber,
-        verifyPositiveNumber: verifyPositiveNumber,
-        isPositiveNumber: isPositiveNumber,
-        verifyNegativeNumber: verifyNegativeNumber,
-        isNegativeNumber: isNegativeNumber,
-        verifyNumber: verifyNumber,
-        isNumber: isNumber
-    };
-
-    exportFunctions();
-
-    /**
-     * Public function `verifyQuack`.
-     *
-     * Throws an exception if an object does not share
-     * the properties of a second, archetypal object
-     * (i.e. doesn't 'quack like a duck').
-     *
-     * @param thing {object}     The object to test.
-     * @param duck {object}      The archetypal object,
-     *                           or 'duck', that the test
-     *                           is against.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyQuack (thing, duck, message) {
-        if (quacksLike(thing, duck) === false) {
-            throw new Error(message || 'Invalid type');
-        }
-    }
-
-    /**
-     * Public function `quacksLike`.
-     *
-     * Tests whether an object 'quacks like a duck'.
-     * Returns `true` if the first argument has all of
-     * the properties of the second, archetypal argument
-     * (the 'duck'). Returns `false` otherwise. If either
-     * argument is not an object, an exception is thrown.
-     *
-     * @param thing {object} The object to test.
-     * @param duck {object}  The archetypal object, or
-     *                       'duck', that the test is
-     *                       against.
-     */
-    function quacksLike (thing, duck) {
-        var property;
-
-        verifyObject(thing);
-        verifyObject(duck);
-
-        for (property in duck) {
-            if (duck.hasOwnProperty(property)) {
-                if (thing.hasOwnProperty(property) === false) {
-                    return false;
-                }
-
-                if (typeof thing[property] !== typeof duck[property]) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Public function `verifyInstance`.
-     *
-     * Throws an exception if an object is not an instance
-     * of a prototype.
-     *
-     * @param thing {object}       The object to test.
-     * @param prototype {function} The prototype that the
-     *                             test is against.
-     * @param [message] {string}   An optional error message
-     *                             to set on the thrown Error.
-     */
-    function verifyInstance (thing, prototype, message) {
-        if (isInstance(thing, prototype) === false) {
-            throw new Error(message || 'Invalid type');
-        }
-    }
-
-    /**
-     * Public function `isInstance`.
-     *
-     * Returns `true` if an object is an instance of a prototype,
-     * `false` otherwise.
-     *
-     * @param thing {object}       The object to test.
-     * @param prototype {function} The prototype that the
-     *                             test is against.
-     */
-    function isInstance (thing, prototype) {
-        if (typeof thing === 'undefined' || thing === null) {
-            return false;
-        }
-
-        if (isFunction(prototype) && thing instanceof prototype) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Public function `verifyEmptyObject`.
-     *
-     * Throws an exception unless something is an empty, non-null,
-     * non-array object.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyEmptyObject (thing, message) {
-        if (isEmptyObject(thing) === false) {
-            throw new Error(message || 'Invalid empty object');
-        }
-    }
-
-    /**
-     * Public function `isEmptyObject`.
-     *
-     * Returns `true` if something is an empty, non-null, non-array object, `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isEmptyObject (thing) {
-        var property;
-
-        if (isObject(thing)) {
-            for (property in thing) {
-                if (thing.hasOwnProperty(property)) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Public function `verifyObject`.
-     *
-     * Throws an exception unless something is a non-null,
-     * non-array object.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyObject (thing, message) {
-        if (isObject(thing) === false) {
-            throw new Error(message || 'Invalid object');
-        }
-    }
-
-    /**
-     * Public function `isObject`.
-     *
-     * Returns `true` if something is a non-null, non-array
-     * object, `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isObject (thing) {
-        return typeof thing === 'object' && thing !== null && isArray(thing) === false;
-    }
-
-    /**
-     * Public function `verifyLength`.
-     *
-     * Throws an exception unless something is a non-null,
-     * non-array object.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyLength (thing, length, message) {
-        if (isLength(thing, length) === false) {
-            throw new Error(message || 'Invalid length');
-        }
-    }
-
-    /**
-     * Public function `isLength`.
-     *
-     * Returns `true` if something is has a length property
-     * matching the specified value, `false` otherwise.
-     *
-     * @param thing  The thing to test.
-     * @param length The required length to test against.
-     */
-    function isLength (thing, length) {
-        return thing && thing.length === length;
-    }
-
-    /**
-     * Public function `verifyArray`.
-     *
-     * Throws an exception unless something is an array.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyArray (thing, message) {
-        if (isArray(thing) === false) {
-            throw new Error(message || 'Invalid array');
-        }
-    }
-
-    /**
-     * Public function `isArray`.
-     *
-     * Returns `true` something is an array, `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isArray (thing) {
-        return Object.prototype.toString.call(thing) === '[object Array]';
-    }
-
-    /**
-     * Public function `verifyFunction`.
-     *
-     * Throws an exception unless something is function.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyFunction (thing, message) {
-        if (isFunction(thing) === false) {
-            throw new Error(message || 'Invalid function');
-        }
-    }
-
-    /**
-     * Public function `isFunction`.
-     *
-     * Returns `true` if something is function, `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isFunction (thing) {
-        return typeof thing === 'function';
-    }
-
-    /**
-     * Public function `verifyUnemptyString`.
-     *
-     * Throws an exception unless something is a non-empty string.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyUnemptyString (thing, message) {
-        if (isUnemptyString(thing) === false) {
-            throw new Error(message || 'Invalid string');
-        }
-    }
-
-    /**
-     * Public function `isUnemptyString`.
-     *
-     * Returns `true` if something is a non-empty string, `false`
-     * otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isUnemptyString (thing) {
-        return isString(thing) && thing !== '';
-    }
-
-    /**
-     * Public function `verifyString`.
-     *
-     * Throws an exception unless something is a string.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyString (thing, message) {
-        if (isString(thing) === false) {
-            throw new Error(message || 'Invalid string');
-        }
-    }
-
-    /**
-     * Public function `isString`.
-     *
-     * Returns `true` if something is a string, `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isString (thing) {
-        return typeof thing === 'string';
-    }
-
-    /**
-     * Public function `verifyOddNumber`.
-     *
-     * Throws an exception unless something is an odd number.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyOddNumber (thing, message) {
-        if (isOddNumber(thing) === false) {
-            throw new Error(message || 'Invalid number');
-        }
-    }
-
-    /**
-     * Public function `isOddNumber`.
-     *
-     * Returns `true` if something is an odd number,
-     * `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isOddNumber (thing) {
-        return isNumber(thing) && (thing % 2 === 1 || thing % 2 === -1);
-    }
-
-    /**
-     * Public function `verifyEvenNumber`.
-     *
-     * Throws an exception unless something is an even number.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyEvenNumber (thing, message) {
-        if (isEvenNumber(thing) === false) {
-            throw new Error(message || 'Invalid number');
-        }
-    }
-
-    /**
-     * Public function `isEvenNumber`.
-     *
-     * Returns `true` if something is an even number,
-     * `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isEvenNumber (thing) {
-        return isNumber(thing) && thing % 2 === 0;
-    }
-
-    /**
-     * Public function `verifyPositiveNumber`.
-     *
-     * Throws an exception unless something is a positive number.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyPositiveNumber (thing, message) {
-        if (isPositiveNumber(thing) === false) {
-            throw new Error(message || 'Invalid number');
-        }
-    }
-
-    /**
-     * Public function `isPositiveNumber`.
-     *
-     * Returns `true` if something is a positive number,
-     * `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isPositiveNumber (thing) {
-        return isNumber(thing) && thing > 0;
-    }
-
-    /**
-     * Public function `verifyNegativeNumber`.
-     *
-     * Throws an exception unless something is a positive number.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyNegativeNumber (thing, message) {
-        if (isNegativeNumber(thing) === false) {
-            throw new Error(message || 'Invalid number');
-        }
-    }
-
-    /**
-     * Public function `isNegativeNumber`.
-     *
-     * Returns `true` if something is a positive number,
-     * `false` otherwise.
-     *
-     * @param thing          The thing to test.
-     */
-    function isNegativeNumber (thing) {
-        return isNumber(thing) && thing < 0;
-    }
-
-    /**
-     * Public function `verifyNumber`.
-     *
-     * Throws an exception unless something is a number, excluding NaN.
-     *
-     * @param thing              The thing to test.
-     * @param [message] {string} An optional error message
-     *                           to set on the thrown Error.
-     */
-    function verifyNumber (thing, message) {
-        if (isNumber(thing) === false) {
-            throw new Error(message || 'Invalid number');
-        }
-    }
-
-    /**
-     * Public function `isNumber`.
-     *
-     * Returns `true` if something is a number other than NaN,
-     * `false` otherwise.
-     *
-     * @param thing The thing to test.
-     */
-    function isNumber (thing) {
-        return typeof thing === 'number' && isNaN(thing) === false;
-    }
-
-    function exportFunctions () {
-        if (typeof define === 'function' && define.amd) {
-            define(function () {
-                return functions;
-            });
-        } else if (typeof module !== 'undefined' && module !== null) {
-            module.exports = functions;
-        } else {
-            globals.check = functions;
-        }
-    }
-}(this));
-
-
-},{}]},{},[2,1,4,5,3,8,6,7])
+},{}]},{},[1,2,3,4,8,5,7,6])
 ;
