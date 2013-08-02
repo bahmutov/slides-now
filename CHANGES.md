@@ -5,6 +5,7 @@ User facing changes
 ## 0.0.10
 
 * Error popup if dropping file with extension other than .md or .txt
+* Available as a [stand alone tool](http://npmjs.org/slides-now-node)
 
 ## 0.0.9
 
