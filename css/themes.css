@@ -17,7 +17,7 @@ section.bespoke-inactive code {
   visibility: hidden;
 }
 
-section code {
+section.bespoke-active code {
 	font-size: 20pt;
 }
 
@@ -25,7 +25,7 @@ section code {
 .cube {
 	background: rgba(86, 174, 231, 0.3);
 }
-.cube section,
+.cube section.bespoke-slide,
 .cube .arrow:hover {
 	background: rgb(86, 174, 231);
 }
@@ -67,7 +67,7 @@ section code {
 .concave {
 	background: rgba(235, 156, 184, 0.3);
 }
-.concave section,
+.concave section.bespoke-slide,
 .concave .arrow:hover {
 	background: rgb(235, 156, 184);
 }
@@ -109,7 +109,7 @@ section code {
 .coverflow {
 	background: rgba(42, 206, 185, 0.2);
 }
-.coverflow section,
+.coverflow section.bespoke-slide,
 .coverflow .arrow:hover {
 	background: rgb(42, 206, 185);
 }
@@ -194,7 +194,7 @@ section code {
 .classic {
 	background: rgba(243, 111, 86, 0.2);
 }
-.classic section,
+.classic section.bespoke-slide,
 .classic .arrow:hover {
 	background: rgb(243, 111, 86);
 }
@@ -252,7 +252,7 @@ section code {
 .bw {
 	background: rgba(255, 255, 255, 0.2);
 }
-.bw section {
+.bw section.bespoke-slide {
 	background: rgb(245, 245, 245);
 	border: solid 1px black;
 }
@@ -317,7 +317,7 @@ section code {
 .carousel {
 	background: rgba(121, 255, 0, 0.2);
 }
-.carousel section,
+.carousel section.bespoke-slide,
 .carousel .arrow:hover {
 	background: rgb(131, 199, 69);
 }

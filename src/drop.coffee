@@ -1,3 +1,5 @@
+if !Alertify? then throw new Error('Missing alertify library')
+
 presentationElement = $('div#dropzone')
 
 cleanIntroText = ->
@@ -14,6 +16,14 @@ $('#tryItNow').on 'click', tryItNow
 createSlides = (md, filename) ->
   cleanIntroText()
   window.mdToPresentation md, filename, presentationElement
+
+checkFilename = (filename) ->
+  isMarkdownFilename = /\.md|\.md\.txt|\.txt$/i
+  if !isMarkdownFilename.test filename
+    Alertify.log.error('Cannot drop ' + filename + ', only Markdown documents (.md) can be droppped', 10000)
+    false
+  else
+    true
 
 ###
 Start presentation if there is url parameter to Markdown
@@ -61,14 +71,15 @@ drop.directive 'dropzone', ->
       if event.preventDefault
         event.preventDefault()
       file = event.dataTransfer.files[0]
-      isMarkdownFilename = /\.md$/
-      if isMarkdownFilename.test file.name
+      # isMarkdownFilename = /\.md$/
+      if checkFilename(file.name)
+      #if isMarkdownFilename.test file.name
         reader = new FileReader()
         reader.onload = (evt) ->
           createSlides evt.target.result, file.name
         reader.readAsText file
-      else
-        console.error 'Only Markdown documents should be droppped'
+      #else
+      #  console.error 'Only Markdown documents should be droppped'
       return false
     , false
 
