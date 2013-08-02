@@ -4,15 +4,10 @@ CACHE MANIFEST
 
 CACHE:
 index.html
-drop.css
 README.md
+slides-now.css
 slides-now.js
-style.css
-themes.css
 favicon.png
-
-alertify.css
-alertify.default.css
 
 NETWORK:
 # Always try to fetch analytics links

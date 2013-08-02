@@ -49,10 +49,24 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      options: {
-        separator: ';\n'
+      css: {
+        options: {
+          separator: '\n'
+        },
+        src: [
+          'css/drop.css',
+          'css/style.css',
+          'css/themes.css',
+          'components/alertify/alertify.css',
+          'components/alertify/alertify.default.css',
+          'css/drop.css',
+        ],
+        dest: 'dist/slides-now.css'
       },
       dev: {
+      	options: {
+        	separator: ';\n'
+      	},
         src: [
           'components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
@@ -68,6 +82,9 @@ module.exports = function(grunt) {
         dest: 'dist/slides-now.js'
       },
       min: {
+        options: {
+          separator: ';\n'
+        },
         src: [
           'components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
@@ -103,12 +120,6 @@ module.exports = function(grunt) {
         files: {
           'dist/README.md': 'README.md',
           'dist/CHANGES.md': 'CHANGES.md',
-          'dist/drop.css': 'css/drop.css',
-          'dist/style.css': 'css/style.css',
-          'dist/themes.css': 'css/themes.css',
-          'dist/alertify.css': 'components/alertify/alertify.css',
-          'dist/alertify.default.css': 'components/alertify/alertify.default.css',
-          'dist/drop.css': 'css/drop.css',
           'dist/favicon.png': 'favicon.png'
         }
       }
@@ -118,5 +129,6 @@ module.exports = function(grunt) {
   var plugins = require('matchdep').filter('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('default', ['coffeelint', 'browserify', 'uglify', 'concat:dev', 'replace', 'copy']);
+  grunt.registerTask('check', ['coffeelint']);
+  grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat:css', 'concat:dev', 'replace', 'copy']);
 };
