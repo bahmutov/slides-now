@@ -122,6 +122,11 @@ module.exports = function(grunt) {
           'dist/CHANGES.md': 'CHANGES.md',
           'dist/favicon.png': 'favicon.png'
         }
+      },
+      sample: {
+        files: {
+          'dist/sample.html': 'sample.html'
+        }
       }
     }
   });
