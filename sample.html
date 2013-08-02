@@ -39,15 +39,17 @@ Instant presentation from a [markdown](http://goo.gl/6yTb) document.
 
 ### Gleb Bahmutov [@bahmutov](https://twitter.com/bahmutov)
 
-[slides-now-theme]: "classic"
-[slides-now-footer]: "Slides-Now"
+[slides-now-theme]: "bw"
+[slides-now-timer]: "1"
 
 </div>
+
+<footer></footer>
 <script src="slides-now.js"></script>
 <script>
 $(function () {
 	var md = $('div#md')[0].innerHTML;
-	$('body').children().remove();
+	$('div').remove();
 	mdToPresentation(md, document.title, $('body'));
 });
 </script>
