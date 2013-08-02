@@ -130,5 +130,6 @@ module.exports = function(grunt) {
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('check', ['coffeelint']);
-  grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat:css', 'concat:dev', 'replace', 'copy']);
+  grunt.registerTask('concat-all', ['concat:css', 'concat:dev']);
+  grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy']);
 };
