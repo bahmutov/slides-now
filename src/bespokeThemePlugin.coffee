@@ -1,4 +1,5 @@
 # allows to cycle through themes using key presses
+# todo: namespace the theme names internally
 themes = ['classic', 'cube', 'coverflow', 'bw', 'concave', 'carousel']
 
 findCurrentTheme = ->
