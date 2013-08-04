@@ -10,14 +10,9 @@
     <meta name="keywords" content="presentation, slideshow, online, slides, now" />
     <link rel="icon" href="favicon.png" type="image/png">
 
-    <link rel="stylesheet" href="drop.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="themes.css" />
+    <link rel="stylesheet" href="slides-now.css" />
 </head>
-<!--
-<body class="coverflow">
--->
-<body class="classic" ng-app="markdown.drop">
+<body class="slides-now-drop classic" ng-app="markdown.drop">
 
     <div id="dropzone" dropzone>
     	<div id="MainTitle">Slides Now!</div>
@@ -38,10 +33,10 @@ Instant presentation from a [markdown](http://goo.gl/6yTb) document.
 ## Slide syntax
 
 * Start new slide using #, ## or triple blank line
-* Use standard [Markdown](http://goo.gl/6yTb) syntax
-* Try this text as example
 * Parsed using [marked](http://goo.gl/jrMV8)
 * Slides will be shown using [bespoke.js](http://goo.gl/IpgNE)
+* Available as a [Chrome extension](http://goo.gl/sMeaZR)
+and [node module](http://npmjs.org/slides-now-node)
 
 ### Gleb Bahmutov [@bahmutov](https://twitter.com/bahmutov)
 
@@ -58,7 +53,7 @@ Instant presentation from a [markdown](http://goo.gl/6yTb) document.
             </footer>
         </div>
 
-        <footer>version: 0.0.9</footer>
+        <footer>version: 0.0.10</footer>
         <aside id="counter"><aside>
     </div>
     <script src="slides-now.js"></script>
