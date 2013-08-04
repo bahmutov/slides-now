@@ -67,7 +67,11 @@ module.exports = function(grunt) {
       },
       dev: {
       	options: {
-        	separator: ';\n'
+        	separator: ';\n',
+          stripBanners: false,
+          banner: '/*! <%= pkg.name %> - <%= pkg.version %> ' +
+          'built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+          'author: <%= pkg.author %>, support: @bahmutov */\n\n'
       	},
         src: [
           'components/angular/angular.min.js',
