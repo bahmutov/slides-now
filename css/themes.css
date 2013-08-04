@@ -263,7 +263,9 @@ section.bespoke-active code {
 	color: rgba(30, 30, 30, 1);
 	text-decoration: underline;
 }
-.bw h1,h2,h3 {
+.bw h1,
+.bw h2,
+.bw h3 {
 	color: rgb(10, 10, 10);
 }
 .bw section.bespoke-before {
