@@ -6,6 +6,7 @@ User facing changes
 
 * Error popup if dropping file with extension other than .md or .txt
 * Available as a [stand alone tool](http://npmjs.org/slides-now-node)
+* Available as a [Chrome extension](https://chrome.google.com/webstore/detail/slides-now/hcohekeghgkdeimnjfmpdlgccfamggac)
 
 ## 0.0.9
 
