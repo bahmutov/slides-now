@@ -51,7 +51,9 @@ module.exports = function(grunt) {
     concat: {
       css: {
         options: {
-          separator: '\n'
+          separator: '\n',
+          stripBanners: true,
+          banner: '/*! <%= pkg.name %> - <%= pkg.version %> */\n\n'
         },
         src: [
           'css/drop.css',
