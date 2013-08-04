@@ -12,9 +12,13 @@ changeTheme = (e) ->
   key = e.which
   if key == 84
     themeIndex = findCurrentTheme()
+    # todo check if index is valid
+    themeClass = themes[themeIndex]
+    
     nextThemeIndex = (themeIndex + 1) % themes.length
     nextTheme = themes[nextThemeIndex]
-    $('body').removeClass().addClass(nextTheme)
+
+    $('body').removeClass(themeClass).addClass(nextTheme)
 
 bespoke.plugins.themes = (deck) ->
   document.removeEventListener 'keydown', changeTheme
