@@ -1,4 +1,5 @@
-* {
+/* slides used during the actual slide presentation */
+.slides-now * {
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
@@ -6,51 +7,52 @@
 	padding: 0;
 }
 
-body {
+body.slides-now {
 	overflow-x: hidden;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	color: #000000;
 	font-size: 26pt;
 }
 
-img {
+.slides-now img {
 	max-width: 700px;
 	max-height: 500px;
 }
 
-pre {
+.slides-now pre {
 	padding-left: 30pt;
 	padding-bottom: 0.5em;
 }
 
-code {
+.slides-now code {
 	white-space: pre;
 }
 
-span.centered {
+.slides-now span.centered {
 	text-align: center;
 }
 
-p {
+.slides-now p {
 	padding-left: 20pt;
 	padding-bottom: 10pt;
 }
 
-ol, ul {
+.slides-now ol, 
+.slides-now ul {
 	padding: 20pt 65pt;
 }
 
-li {
+.slides-now li {
 	line-height: 1.5em;
 }
 
-h1 {
+.slides-now h1 {
 	color: white;
 	font-size: 50pt;
 	padding: 10pt 20pt;
 }
 
-h2 {
+.slides-now h2 {
 	color: white;
 	-webkit-transition: opacity 2s ease;
 	-moz-transition: opacity 2s ease;
@@ -62,21 +64,21 @@ h2 {
 	padding: 10pt 20pt;
 }
 
-h3 {
+.slides-now h3 {
 	padding: 20pt 20pt;
 }
 
-a {
+.slides-now a {
 	text-decoration: none;
 	/*color: #eee !important;*/
 	color: #eee;
 }
 
-a:hover {
+.slides-now a:hover {
 	text-decoration: underline;
 }
 
-article.bespoke-parent {
+.slides-now article.bespoke-parent {
 	-webkit-perspective: 600px;
 	-moz-perspective: 600px;
 	-ms-perspective: 600px;
@@ -89,7 +91,7 @@ article.bespoke-parent {
 	bottom: 0;
 }
 
-section.bespoke-slide {
+.slides-now section.bespoke-slide {
 	-webkit-transform: none;
 	-moz-transform: none;
 	-ms-transform: none;
@@ -110,15 +112,23 @@ section.bespoke-slide {
 	vertical-align: middle;
 }
 
-body,
-section.bespoke-slide {
+.slides-now body, 
+.slides-now section.bespoke-slide {
 	-webkit-transition: -webkit-transform .7s ease, opacity .7s ease, background-color .7s ease;
 	-moz-transition: -moz-transform .7s ease, opacity .7s ease, background-color .7s ease;
 	-ms-transition: -ms-transform .7s ease, opacity .7s ease, background-color .7s ease;
 	-o-transition: -o-transform .7s ease, opacity .7s ease, background-color .7s ease;
 	transition: transform .7s ease, opacity .7s ease, background-color .7s ease;
 }
-section.bespoke-active {
+
+.slides-now section.bespoke-active {
 	opacity: 1;
 	z-index: 10;
+}
+
+.slides-now footer {
+  color: #666;
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
 }

@@ -1,4 +1,13 @@
+body.slides-now-drop * {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
 .slides-now-drop div#MainTitle {
+  font-size: xx-large;
 	text-align: center;
 	width: 200px;
 	position: absolute;

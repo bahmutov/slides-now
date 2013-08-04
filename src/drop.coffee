@@ -5,6 +5,7 @@ presentationElement = $('div#dropzone')
 cleanIntroText = ->
   $('div#MainTitle').remove()
   $('div.markdown-dropzone').remove()
+  $('body').removeClass('slides-now-drop')
 
 window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
