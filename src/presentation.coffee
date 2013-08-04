@@ -31,7 +31,7 @@ window.mdToPresentation = (md, filename, element) ->
   # custom UI options from Markdown text
   options = optionsParser.getSlidesNowOptions md
   # console.log 'got options', options
-  if options.theme? then $('body').removeClass().addClass(options.theme)
+  if options.theme? then $('body').removeClass('classic').addClass(options.theme)
   if options.footer? then $('footer').text options.footer
   if options['font-family']? then $('body').css('font-family', options['font-family'])
   if options['font-size']? then $('body').css('font-size', options['font-size'])

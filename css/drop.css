@@ -1,4 +1,4 @@
-div#MainTitle {
+.slides-now-drop div#MainTitle {
 	text-align: center;
 	width: 200px;
 	position: absolute;
@@ -7,11 +7,11 @@ div#MainTitle {
 	padding-top: 1em;
 }
 
-div.markdown-dropzone, a#tryItNow {
+.slides-now-drop div.markdown-dropzone, a#tryItNow {
 	font-size: xx-large !important;
 }
 
-div#dropzone {
+.slides-now-drop div#dropzone {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -22,7 +22,7 @@ div#dropzone {
   border-radius: 5px;
 }
 
-div.markdown-dropzone {
+.slides-now-drop div.markdown-dropzone {
   border-radius: 30px;
   width: 812px;
   height: 580px;
@@ -42,40 +42,40 @@ div.markdown-dropzone {
   font-size: 14pt !important;
 }
 
-div.markdown-dropzone > h3 {
+.slides-now-drop div.markdown-dropzone > h3 {
   color: #000 !important;
 }
 
-div.markdown-dropzone a {
+.slides-now-drop div.markdown-dropzone a {
   color: #333 !important;
   font-weight: bolder;
   padding-right: 10px;
 }
 
-div.markdown-dropzone aside {
+.slides-now-drop div.markdown-dropzone aside {
   position: absolute;
   right: 20pt;
   bottom: 10pt;
 }
 
-div.markdown-dropzone footer {
+.slides-now-drop div.markdown-dropzone footer {
   color: #666;
   position: absolute;
   left: 20px;
   bottom: 5px;
 }
 
-div.markdown-dropzone > pre {
+.slides-now-drop div.markdown-dropzone > pre {
   text-align: left;
   padding: 10pt 20pt;
 }
 
-.dragging {
+.slides-now-drop .dragging {
   border: 2px solid !important;
   padding: 15pt 25pt;
 }
 
-footer {
+.slides-now-drop footer {
   font-size: 0.75em;
   color: #555;
   text-align: center;
@@ -86,7 +86,7 @@ footer {
   z-index: 10;
 }
 
-aside#counter {
+.slides-now-drop aside#counter {
   position: absolute;
   right: 5px;
   bottom: 5px;
