@@ -34,8 +34,9 @@ window.mdToPresentation = (md, filename, element) ->
   if options.theme?
     $('body').removeClass('classic')
       .addClass(options.theme)
-      .addClass('slides-now')
   
+  $('body').addClass('slides-now')
+
   if options.footer? then $('footer').text options.footer
   if options['font-family']? then $('body').css('font-family', options['font-family'])
   if options['font-size']? then $('body').css('font-size', options['font-size'])
