@@ -127,7 +127,8 @@ module.exports = function(grunt) {
         files: {
           'dist/README.md': 'README.md',
           'dist/CHANGES.md': 'CHANGES.md',
-          'dist/favicon.png': 'favicon.png'
+          'dist/favicon.png': 'favicon.png',
+          'dist/jquery-2.0.2.min.map': 'components/jquery-2.0.2.min.map'
         }
       },
       sample: {
