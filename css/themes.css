@@ -9,7 +9,7 @@
  *
  */
 
-/* 
+/*
 	do not show code outside the current slide
 	because it often overflows
 */
@@ -18,7 +18,7 @@ section.bespoke-inactive code {
 }
 
 section.bespoke-active code {
-	font-size: 20pt;
+	/*font-size: 1em;*/
 }
 
 /* Cube Theme */

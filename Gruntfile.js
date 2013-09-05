@@ -81,6 +81,7 @@ module.exports = function(grunt) {
           'components/progress-bars/bar.js',
           'components/purl/purl.js',
           'components/alertify/alertify.js',
+          'components/flowType/flowtype.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'tmp/app.js'

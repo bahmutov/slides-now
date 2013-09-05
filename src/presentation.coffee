@@ -34,7 +34,7 @@ window.mdToPresentation = (md, filename, element) ->
   if options.theme?
     $('body').removeClass('classic')
       .addClass(options.theme)
-  
+
   $('body').addClass('slides-now')
 
   if options.footer? then $('footer').text options.footer
@@ -95,7 +95,6 @@ window.mdToPresentation = (md, filename, element) ->
     # do nothing
 
   recenter()
-
   recenterImages()
 
   bespoke.horizontal.from 'article',
@@ -105,3 +104,8 @@ window.mdToPresentation = (md, filename, element) ->
     progressBar: true
     themes: true
     # slideCounter: true
+
+  # resize code samples intelligently
+  $('pre').flowtype
+    minFont: 12
+    maxFont: 30
