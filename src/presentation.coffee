@@ -107,5 +107,5 @@ window.mdToPresentation = (md, filename, element) ->
 
   # resize code samples intelligently
   $('pre').flowtype
-    minFont: 12
+    minFont: 8
     maxFont: 30

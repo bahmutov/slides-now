@@ -22,6 +22,10 @@ body.slides-now {
 .slides-now pre {
 	padding-left: 30pt;
 	padding-bottom: 0.5em;
+	max-height: 580px;
+	max-width: 800px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .slides-now code {
@@ -37,7 +41,7 @@ body.slides-now {
 	padding-bottom: 10pt;
 }
 
-.slides-now ol, 
+.slides-now ol,
 .slides-now ul {
 	padding: 20pt 65pt;
 }
@@ -112,7 +116,7 @@ body.slides-now {
 	vertical-align: middle;
 }
 
-.slides-now body, 
+.slides-now body,
 .slides-now section.bespoke-slide {
 	-webkit-transition: -webkit-transform .7s ease, opacity .7s ease, background-color .7s ease;
 	-moz-transition: -moz-transform .7s ease, opacity .7s ease, background-color .7s ease;
