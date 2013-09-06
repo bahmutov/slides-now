@@ -58,4 +58,45 @@ window.mdToPresentation = (md, filename, element) ->
   htmlParts = md2slides md
 ```
 
+
+
+```cpp
+#include "highgui.h"
+
+int main( int argc, char** argv ) {
+  IplImage* img = cvLoadImage( argv[ 1] );
+  cvNamedWindow( "Example1", CV_WINDOW_AUTOSIZE );
+  cvShowImage( "Example1", img );
+  cvWaitKey( 0);
+  cvReleaseImage( &img );
+  cvDestroyWindow( "Example1" );
+  return 0;
+}
+```
+
+## OpenCV example
+
+```cpp
+#include "highgui.h"
+
+int main( int argc, char** argv ) {
+  cvNamedWindow( "Example2", CV_WINDOW_AUTOSIZE );
+  CvCapture* capture = cvCreateFileCapture( argv[ 1] ); // load image by filename
+  IplImage* frame;
+  while( 1) {
+    frame = cvQueryFrame( capture );
+    if( !frame ) break;
+    cvShowImage( "Example2", frame );
+    char c = cvWaitKey( 33);
+    if( c = = 27 ) break;
+  }
+  cvReleaseCapture( &capture );
+  cvDestroyWindow( "Example2" );
+}
+```
+
+
+
+
+
 [slides-now-theme]: "coverflow"

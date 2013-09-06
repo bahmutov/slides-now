@@ -23,9 +23,9 @@ body.slides-now {
 	padding-left: 30pt;
 	padding-bottom: 0.5em;
 	max-height: 580px;
-	max-width: 800px;
+	width: 800px;
 	overflow-y: auto;
-	overflow-x: hidden;
+	overflow-x: auto;
 }
 
 .slides-now code {
