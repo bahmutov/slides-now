@@ -84,6 +84,7 @@ module.exports = function(grunt) {
           'components/flowType/flowtype.js',
           'src/recenter.js',
           'src/recenterImages.js',
+          'src/recenterCodeBlocks.js',
           'tmp/app.js'
         ],
         dest: 'dist/slides-now.js'
@@ -100,6 +101,7 @@ module.exports = function(grunt) {
           'components/alertify/alertify.min.js',
           'src/recenter.js',
           'src/recenterImages.js',
+          'src/recenterCodeBlocks.js',
           'tmp/app.min.js'
         ],
         dest: 'dist/slides-now.min.js'

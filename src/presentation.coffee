@@ -105,6 +105,8 @@ window.mdToPresentation = (md, filename, element) ->
     themes: true
     # slideCounter: true
 
+  recenterCodeBlocks()
+
   # resize code samples intelligently
   $('pre').flowtype
     minFont: 6
