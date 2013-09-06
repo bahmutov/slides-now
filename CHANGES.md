@@ -12,6 +12,8 @@ if (code block is too wide) {
     // uses flowType.js
 }
 ```
+* Previous versions hosted under *slides-now/number*
+
 
 ## 0.0.10
 
