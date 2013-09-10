@@ -8,7 +8,7 @@ normal text
 long code, but not too many lines
 
 ```
-very long code line with lots of characters here
+// very long code line with lots of characters here
 
 function init(opts) {
   opts = opts || {};
@@ -23,7 +23,7 @@ module.exports = init;
 
 ## 3rd slide
 
-```
+```coffeescript
 window.mdToPresentation = (md, filename, element) ->
   if !element? then element = $('div#dropzone')
 
@@ -99,4 +99,4 @@ int main( int argc, char** argv ) {
 
 
 
-[slides-now-theme]: "coverflow"
+[slides-now-theme]: "bw"

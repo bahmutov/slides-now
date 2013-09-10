@@ -1,3 +1,9 @@
+/* code lightbox font should be smaller */
+.code-box-lightbox-code pre {
+  font-size: 20pt;
+  padding: 10px 20px;
+}
+
 /* slides used during the actual slide presentation */
 .slides-now * {
 	box-sizing: border-box;
@@ -19,7 +25,7 @@ body.slides-now {
 	max-height: 500px;
 }
 
-.slides-now pre {
+.slides-now .bespoke-slide > pre {
 	padding-left: 30pt;
 	padding-bottom: 0.5em;
 	max-height: 580px;
