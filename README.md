@@ -58,6 +58,7 @@ Check them out!
 * [bespoke.js](https://github.com/markdalgleish/bespoke.js)
 * [remark](https://github.com/gnab/remark)
 * [reveal.js](http://lab.hakim.se/reveal-js/)
+* [code-box](https://github.com/bahmutov/code-box)
 
 ### Gleb Bahmutov [@bahmutov](https://twitter.com/bahmutov)
 
