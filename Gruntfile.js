@@ -59,6 +59,7 @@ module.exports = function(grunt) {
           'css/themes.css',
           'components/alertify/alertify.css',
           'components/alertify/alertify.default.css',
+          'bower_components/code-box/code-box.css',
           'css/drop.css',
         ],
         dest: 'dist/slides-now.css'
@@ -80,6 +81,7 @@ module.exports = function(grunt) {
           'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
           'components/flowType/flowtype.js',
+          'bower_components/code-box/code-box.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'src/recenterCodeBlocks.js',
@@ -97,6 +99,7 @@ module.exports = function(grunt) {
           'bower_components/jquery/jquery.min.js',
           'bower_components/purl/purl.js',
           'components/alertify/alertify.min.js',
+          'bower_components/code-box/code-box.js',
           'src/recenter.js',
           'src/recenterImages.js',
           'src/recenterCodeBlocks.js',

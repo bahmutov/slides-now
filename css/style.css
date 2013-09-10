@@ -26,6 +26,7 @@ body.slides-now {
 	width: 800px;
 	overflow-y: auto;
 	overflow-x: auto;
+  position: relative;
 }
 
 .slides-now code {

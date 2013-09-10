@@ -116,3 +116,4 @@ window.mdToPresentation = (md, filename, element) ->
     # lineRatio: 1.45
 
   recenterCodeBlocks()
+  CodeBox 'pre'

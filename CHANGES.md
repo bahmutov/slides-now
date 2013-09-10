@@ -12,6 +12,7 @@ if (code block is too wide) {
     // uses flowType.js
 }
 ```
+* Source code lightbox using [code-box](https://github.com/bahmutov/code-box)
 * Previous versions hosted under *slides-now/number*
 
 
