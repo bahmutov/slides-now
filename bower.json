@@ -2,10 +2,12 @@
   "name": "slides-now",
   "version": "0.0.0",
   "main": "index.html",
+  "directory": "components",
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
+    "components",
+    "bower_components"
   ],
   "dependencies": {
     "angular": "~1.0.7",
@@ -14,6 +16,7 @@
     "jquery": "~2.0.2",
     "bespoke-hash": "~0.1.1",
     "progress-bars": "~0.0.3",
-    "purl": "~2.3.1"
+    "purl": "~2.3.1",
+    "code-box": "~0.0.0"
   }
 }

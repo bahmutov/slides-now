@@ -1,9 +1,7 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-  // Project configuration.
   grunt.initConfig({
-    // Metadata.
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
@@ -74,12 +72,12 @@ module.exports = function(grunt) {
           'author: <%= pkg.author %>, support: @bahmutov */\n\n'
       	},
         src: [
-          'components/angular/angular.min.js',
+          'bower_components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
           'components/bespoke-hash/dist/bespoke-hash.min.js',
           'components/jquery/jquery.min.js',
-          'components/progress-bars/bar.js',
-          'components/purl/purl.js',
+          'bower_components/progress-bars/bar.js',
+          'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
           'components/flowType/flowtype.js',
           'src/recenter.js',
@@ -94,10 +92,10 @@ module.exports = function(grunt) {
           separator: ';\n'
         },
         src: [
-          'components/angular/angular.min.js',
+          'bower_components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
-          'components/jquery/jquery.min.js',
-          'components/purl/purl.js',
+          'bower_components/jquery/jquery.min.js',
+          'bower_components/purl/purl.js',
           'components/alertify/alertify.min.js',
           'src/recenter.js',
           'src/recenterImages.js',
