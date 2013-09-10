@@ -105,7 +105,6 @@ window.mdToPresentation = (md, filename, element) ->
     themes: true
     # slideCounter: true
 
-  recenterCodeBlocks()
 
   # resize code samples intelligently
   $('pre').flowtype
@@ -115,3 +114,5 @@ window.mdToPresentation = (md, filename, element) ->
     maximum: 1200
     # fontRatio: 55
     # lineRatio: 1.45
+
+  recenterCodeBlocks()
