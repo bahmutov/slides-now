@@ -39,7 +39,8 @@ Installation:
     bower install
     npm install
 
-Open *dist/index.html* in a browser
+Open *dist/index.html* in a browser, use local file, not http server due
+to caching (or use new port every time).
 
 ## Timer bar
 
