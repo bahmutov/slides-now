@@ -39,8 +39,7 @@ Installation:
     bower install
     npm install
 
-Open *dist/index.html* in a browser, use local file, not http server due
-to caching (or use new port every time).
+Open *dist/index.html* in a browser
 
 ## Timer bar
 
@@ -58,7 +57,6 @@ Check them out!
 * [bespoke.js](https://github.com/markdalgleish/bespoke.js)
 * [remark](https://github.com/gnab/remark)
 * [reveal.js](http://lab.hakim.se/reveal-js/)
-* [code-box](https://github.com/bahmutov/code-box)
 
 ### Gleb Bahmutov [@bahmutov](https://twitter.com/bahmutov)
 

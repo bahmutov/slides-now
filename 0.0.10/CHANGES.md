@@ -2,20 +2,6 @@
 
 User facing changes
 
-## 0.0.11
-
-* Intelligent code block resizing
-
-```
-if (code block is too wide) {
-    update fonts and line heights to fit
-    // uses flowType.js
-}
-```
-* Source code lightbox using [code-box](https://github.com/bahmutov/code-box)
-* Previous versions hosted under *slides-now/number*
-
-
 ## 0.0.10
 
 * Error popup if dropping file with extension other than .md or .txt
