@@ -1,5 +1,7 @@
 # Slides Now!
 
+[![endorse](https://api.coderwall.com/bahmutov/endorsecount.png)](https://coderwall.com/bahmutov)
+
 Instant stand alone slide show from a markdown document.
 
 1. No server necessary
