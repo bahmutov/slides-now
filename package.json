@@ -13,20 +13,20 @@
   "dependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-bump": "0.0.2",
+    "grunt-bump": "0.0.11",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-uglify": "~0.2.5",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-replace": "~0.4.4",
-    "grunt-browserify": "~1.1.1",
-    "coffeeify": "~0.5.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-coffeelint": "0.0.6",
-    "matchdep": "~0.1.2",
+    "grunt-replace": "~0.5.1",
+    "grunt-browserify": "~1.2.11",
+    "coffeeify": "~0.5.2",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-coffeelint": "0.0.7",
+    "matchdep": "~0.3.0",
     "check-types": "~0.6.4",
-    "marked": "~0.2.9"
+    "marked": "~0.2.10"
   },
   "devDependencies": {
-    "gt": "~0.8.7"
+    "gt": "~0.8.16"
   }
 }
