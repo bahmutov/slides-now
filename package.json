@@ -24,7 +24,8 @@
     "grunt-coffeelint": "0.0.7",
     "matchdep": "~0.3.0",
     "check-types": "~0.6.4",
-    "marked": "~0.2.10"
+    "marked": "~0.2.10",
+    "grunt-clean-console": "0.0.1"
   },
   "devDependencies": {
     "gt": "~0.8.16"

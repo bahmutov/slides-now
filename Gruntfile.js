@@ -139,6 +139,14 @@ module.exports = function(grunt) {
           'dist/sample.html': 'sample.html'
         }
       }
+    },
+
+    'clean-console': {
+      all: {
+        options: {
+          url: 'dist/index.html'
+        }
+      }
     }
   });
 
@@ -147,5 +155,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('check', ['coffeelint']);
   grunt.registerTask('concat-all', ['concat:css', 'concat:dev']);
-  grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy']);
+  grunt.registerTask('test', ['clean-console']);
+  grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
 };
