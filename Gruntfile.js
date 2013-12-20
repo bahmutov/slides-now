@@ -74,9 +74,9 @@ module.exports = function(grunt) {
       	},
         src: [
           'bower_components/angular/angular.min.js',
-          'components/bespoke.js/dist/bespoke.min.js',
-          'components/bespoke-hash/dist/bespoke-hash.min.js',
-          'components/jquery/jquery.min.js',
+          'bower_components/bespoke.js/dist/bespoke.min.js',
+          'bower_components/bespoke-hash/dist/bespoke-hash.min.js',
+          'bower_components/jquery/jquery.min.js',
           'bower_components/progress-bars/bar.js',
           'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
