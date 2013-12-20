@@ -22,7 +22,7 @@ Instant stand alone slide show from a markdown document.
 You can specify custom *slides-now* options using
 markdown reference syntax. Here are a few available options:
 
-```
+```md
 [slides-now-theme]: "classic"
    cube|coverflow|concave|carousel|bw
 [slides-now-footer]: "My talk"
