@@ -1,6 +1,7 @@
-# Slides-now changes
+## 0.0.12
 
-User facing changes
+* Refactoring, moving to Github
+* separate slides using ---, fixes #113
 
 ## 0.0.11
 
