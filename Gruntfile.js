@@ -169,7 +169,7 @@ module.exports = function(grunt) {
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('check', ['nice-package', 'coffeelint', 'sync']);
+  grunt.registerTask('check', ['deps-ok', 'nice-package', 'coffeelint', 'sync']);
   grunt.registerTask('concat-all', ['concat:css', 'concat:dev']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
