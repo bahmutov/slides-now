@@ -12,6 +12,7 @@ window.tryItNow = ->
   md = $('#explanation')[0].innerHTML
   cleanIntroText()
   mdToPresentation md, null, presentationElement
+  false
 
 $('#tryItNow').on 'click', tryItNow
 
@@ -40,7 +41,7 @@ if url
 ###
 Create drop zone using AngularJs
 ###
-drop = angular.module 'markdown.drop', []
+drop = angular.module 'markdown-drop', []
 
 drop.directive 'dropzone', ->
   restrict: 'A'
@@ -51,7 +52,7 @@ drop.directive 'dropzone', ->
       element.addClass 'dragging'
       if event.preventDefault
         event.preventDefault()
-      event.dataTransfer.effectAllowed = 'copy'
+      event.originalEvent.dataTransfer.effectAllowed = 'copy'
       return false
 
     stopDrag = (event) ->
@@ -64,7 +65,7 @@ drop.directive 'dropzone', ->
       stopDrag(event)
       if event.preventDefault
         event.preventDefault()
-      file = event.dataTransfer.files[0]
+      file = event.originalEvent.dataTransfer.files[0]
       if checkFilename(file.name)
         reader = new FileReader()
         reader.onload = (evt) ->
@@ -76,11 +77,11 @@ drop.directive 'dropzone', ->
 
     # for dragover and dragenter (IE) we stop the browser from handling the
     # event and specify copy as the allowable effect
-    element.bind 'dragenter', startDrag, false
-    element.bind 'dragover', startDrag, false
-    element.bind 'dragleave', stopDrag, false
+    element.on 'dragenter', startDrag
+    element.on 'dragover', startDrag
+    element.on 'dragleave', stopDrag
 
     # on drop events we stop browser and read the dropped file via the FileReader
     # the resulting droped file is bound to the image property of the scope of this directive
-    element.bind 'drop', onDrop, false
+    element.on 'drop', onDrop
 

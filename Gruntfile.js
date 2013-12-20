@@ -46,14 +46,6 @@ module.exports = function(grunt) {
       }
     },
 
-    coffee: {
-      compile: {
-        files: {
-          'tmp/app.js': ['src/presentation.coffee', 'src/drop.coffee']
-        }
-      }
-    },
-
     uglify: {
       components: {
         files: {
@@ -202,7 +194,6 @@ module.exports = function(grunt) {
         'CHANGED.md', 'README.md',
         'cache.manifest', 'favicon.png',
         'index.html',
-        'jquery.min.map', 'jquery.min.js',
         'sample.html',
         'slides-now.css', 'slides-now.js'
       ]
