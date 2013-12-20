@@ -1,3 +1,4 @@
+if !angular? then throw new Error('Missing AngularJs')
 if !Alertify? then throw new Error('Missing alertify library')
 
 presentationElement = $('div#dropzone')
@@ -59,6 +60,20 @@ drop.directive 'dropzone', ->
         event.preventDefault()
       return false
 
+    onDrop = (event) ->
+      stopDrag(event)
+      if event.preventDefault
+        event.preventDefault()
+      file = event.dataTransfer.files[0]
+      if checkFilename(file.name)
+        reader = new FileReader()
+        reader.onload = (evt) ->
+          createSlides evt.target.result, file.name
+        reader.readAsText file
+      #else
+      #  console.error 'Only Markdown documents should be droppped'
+      false
+
     # for dragover and dragenter (IE) we stop the browser from handling the
     # event and specify copy as the allowable effect
     element.bind 'dragenter', startDrag, false
@@ -67,20 +82,5 @@ drop.directive 'dropzone', ->
 
     # on drop events we stop browser and read the dropped file via the FileReader
     # the resulting droped file is bound to the image property of the scope of this directive
-    element.bind 'drop', (event) ->
-      stopDrag(event)
-      if event.preventDefault
-        event.preventDefault()
-      file = event.dataTransfer.files[0]
-      # isMarkdownFilename = /\.md$/
-      if checkFilename(file.name)
-      #if isMarkdownFilename.test file.name
-        reader = new FileReader()
-        reader.onload = (evt) ->
-          createSlides evt.target.result, file.name
-        reader.readAsText file
-      #else
-      #  console.error 'Only Markdown documents should be droppped'
-      return false
-    , false
+    element.bind 'drop', onDrop, false
 

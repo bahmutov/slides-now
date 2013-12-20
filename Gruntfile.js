@@ -89,10 +89,11 @@ module.exports = function(grunt) {
           'author: <%= pkg.author %>, support: @bahmutov */\n\n'
       	},
         src: [
+          'bower_components/es5-shim/es5-shim.min.js',
+          'bower_components/jquery/jquery.min.js',
           'bower_components/angular/angular.min.js',
           'bower_components/bespoke.js/dist/bespoke.min.js',
           'bower_components/bespoke-hash/dist/bespoke-hash.min.js',
-          'bower_components/jquery/jquery.min.js',
           'bower_components/progress-bars/bar.js',
           'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
@@ -110,9 +111,10 @@ module.exports = function(grunt) {
           separator: ';\n'
         },
         src: [
+          'bower_components/es5-shim/es5-shim.min.js',
+          'bower_components/jquery/jquery.min.js',
           'bower_components/angular/angular.min.js',
           'components/bespoke.js/dist/bespoke.min.js',
-          'bower_components/jquery/jquery.min.js',
           'bower_components/purl/purl.js',
           'components/alertify/alertify.min.js',
           'bower_components/code-box/code-box.js',
@@ -138,6 +140,34 @@ module.exports = function(grunt) {
           'dist/index.html': 'index.html',
           'dist/cache.manifest': 'cache.manifest'
         }
+      },
+      jquery: {
+        options: {
+          patterns: [
+            {
+              match: '//@ sourceMappingURL=es5-shim.map',
+              replacement: '',
+              expression: false,
+              force: true
+            },
+            {
+              match: '//@ sourceMappingURL=jquery-2.0.2.min.map',
+              replacement: '',
+              expression: false,
+              force: true
+            },
+            {
+              match: '//# sourceMappingURL=angular.min.js.map',
+              replacement: '',
+              expression: false,
+              force: true
+            }
+          ],
+          prefix: ''
+        },
+        files: {
+          'dist/slides-now.js': 'dist/slides-now.js'
+        }
       }
     },
 
@@ -146,8 +176,7 @@ module.exports = function(grunt) {
         files: {
           'dist/README.md': 'README.md',
           'dist/CHANGES.md': 'CHANGES.md',
-          'dist/favicon.png': 'favicon.png',
-          'dist/jquery.min.map': 'bower_components/jquery/jquery.min.map'
+          'dist/favicon.png': 'favicon.png'
         }
       },
       sample: {

@@ -10,14 +10,15 @@
     "bower_components"
   ],
   "dependencies": {
-    "angular": "~1.0.7",
+    "angular": "1.2.4",
     "reveal.js": "~2.4.0",
     "bespoke.js": "~0.2.1",
-    "jquery": "~2.0.2",
+    "jquery": "2.0.2",
     "bespoke-hash": "~0.1.1",
     "progress-bars": "~0.0.3",
     "purl": "~2.3.1",
-    "code-box": "~0.0.2"
+    "code-box": "~0.0.2",
+    "es5-shim": "~2.1.0"
   },
   "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "license": "MIT",
