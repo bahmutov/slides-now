@@ -9,7 +9,7 @@ directLinksToNewTab = (html) ->
 md2html = (md) ->
   verify.string md, 'expected markdown text'
 
-  severalBlankLines = /\n\r\n\r\n\r|\n\n\n|---/
+  severalBlankLines = /\n\r\n\r\n\r|\n\n\n|\n---/
   mdParts = md.split severalBlankLines
   htmlParts = mdParts.map (mdPart) ->
     trimmed = mdPart.trim()
@@ -36,6 +36,7 @@ md2slides = (md) ->
         if currentSlide
           slides.push currentSlide
           currentSlide = null
+
       if currentSlide
         currentSlide += '\n' + line
       else
