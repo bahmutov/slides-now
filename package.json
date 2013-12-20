@@ -6,7 +6,7 @@
   "scripts": {
     "test": "gt --output src/test/*.coffee"
   },
-  "pre-push": "npm test",
+  "pre-commit": "npm test",
   "author": "Gleb Bahmutov",
   "license": "MIT",
   "contributors": [],
