@@ -44,6 +44,7 @@
     "grunt-npm2bower-sync": "~0.3.0",
     "grunt-nice-package": "~0.1.5",
     "time-grunt": "~0.2.5",
-    "grunt-deps-ok": "~0.1.7"
+    "grunt-deps-ok": "~0.1.7",
+    "grunt-gh-pages": "~0.9.0"
   }
 }

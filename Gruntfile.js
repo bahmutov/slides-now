@@ -163,6 +163,20 @@ module.exports = function(grunt) {
           url: 'dist/index.html'
         }
       }
+    },
+
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: [
+        'CHANGED.md', 'README.md',
+        'cache.manifest', 'favicon.png',
+        'index.html',
+        'jquery.min.map', 'jquery.min.js',
+        'sample.html',
+        'slides-now.css', 'slides-now.js'
+      ]
     }
   });
 
