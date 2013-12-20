@@ -18,6 +18,12 @@ first slide
 ## second slide
 '''
 
+tripleDash = '''
+first slide
+---
+second slide
+'''
+
 gt.test 'offset', ->
     parts = parse withCode
     gt.array parts
@@ -51,6 +57,12 @@ gt.test 'triple blank unix', ->
 
 gt.test 'separate by ##', ->
     slides = parse twoSlides
+    gt.equal slides.length, 2, 'two slides'
+    gt.ok /first slide/.test(slides[0]), 'first slide content', slides[0]
+    gt.ok /second slide/.test(slides[1]), 'second slide content', slides[1]
+
+gt.test 'separate by ---', ->
+    slides = parse tripleDash
     console.log slides
     gt.equal slides.length, 2, 'two slides'
     gt.ok /first slide/.test(slides[0]), 'first slide content', slides[0]
