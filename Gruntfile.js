@@ -1,8 +1,16 @@
 /*global module:false*/
 module.exports = function(grunt) {
+  require('time-grunt')(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    'nice-package': {
+      all: {
+        options: {
+        }
+      }
+    },
 
     jshint: {
       options: {
@@ -150,10 +158,10 @@ module.exports = function(grunt) {
     }
   });
 
-  var plugins = require('matchdep').filter('grunt-*');
+  var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('check', ['coffeelint']);
+  grunt.registerTask('check', ['nice-package', 'coffeelint']);
   grunt.registerTask('concat-all', ['concat:css', 'concat:dev']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
