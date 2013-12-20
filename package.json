@@ -6,10 +6,17 @@
   "scripts": {
     "test": "gt --output src/test/*.coffee"
   },
-  "repository": "",
+  "pre-push": "npm test",
   "author": "Gleb Bahmutov",
-  "license": "private",
-  "gitHead": "9079ee97a70cc81aba6f62f359daba5284e2bb48",
+  "license": "MIT",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bahmutov/slides-now.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bahmutov/slides-now/issues"
+  },
   "dependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-coffee": "~0.7.0",
@@ -28,6 +35,7 @@
     "grunt-clean-console": "0.0.1"
   },
   "devDependencies": {
-    "gt": "~0.8.16"
+    "gt": "~0.8.16",
+    "pre-git": "0.0.14"
   }
 }
