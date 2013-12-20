@@ -6,12 +6,15 @@ require './bespokeProgressBar.coffee'
 require './bespokeThemePlugin.coffee'
 
 md2slides = require './md2slides.coffee'
+{verify} = require 'check-types'
 
 # Assumes the page has been cleaned from previous markup
 window.mdToPresentation = (md, filename, element) ->
+  verify.unemptyString md, 'expected markdown string'
   if !element? then element = $('div#dropzone')
 
   if filename
+    verify.unemptyString filename, 'expected filename, got ' + filename
     name = filename
     lastSlashAt = filename.lastIndexOf '/'
     if lastSlashAt != -1
@@ -27,6 +30,7 @@ window.mdToPresentation = (md, filename, element) ->
   options = optionsParser.getSlidesNowOptions md
   # console.log 'got options', options
   if options.theme?
+    verify.unemptyString options.theme, 'expected string theme name ' + options.theme
     $('body').removeClass('classic')
       .addClass(options.theme)
 

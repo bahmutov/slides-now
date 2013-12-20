@@ -1,13 +1,13 @@
-check = require 'check-types'
+{verify} = require 'check-types'
 markdown = require 'marked'
 
 directLinksToNewTab = (html) ->
-  check.verifyString html, 'expected html string'
+  verify.string html, 'expected html string'
 
   html.replace /<a\ href=/g, '<a target="_blank" href='
 
 md2html = (md) ->
-  check.verifyString md, 'expected markdown text'
+  verify.string md, 'expected markdown text'
 
   severalBlankLines = /\n\r\n\r\n\r|\n\n\n|---/
   mdParts = md.split severalBlankLines
@@ -24,6 +24,7 @@ isSlideStart = (line) ->
 
 md2slides = (md) ->
   htmlParts = md2html md
+  verify.array htmlParts, 'expected parts from ' + md
 
   slides = []
   htmlParts.forEach (html) ->

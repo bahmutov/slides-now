@@ -36,7 +36,7 @@
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-coffeelint": "0.0.8",
     "matchdep": "~0.3.0",
-    "check-types": "~0.6.4",
+    "check-types": "~1.1.1",
     "marked": "~0.2.10",
     "grunt-clean-console": "0.0.1",
     "gt": "~0.8.21",
