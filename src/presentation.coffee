@@ -7,11 +7,6 @@ require './bespokeThemePlugin.coffee'
 
 md2slides = require './md2slides.coffee'
 
-isSlideStart = (line) ->
-  isLevel1Header = /^<h1>/
-  isLevel2Header = /^<h2>/
-  return isLevel1Header.test(line) or isLevel2Header.test(line)
-
 # Assumes the page has been cleaned from previous markup
 window.mdToPresentation = (md, filename, element) ->
   if !element? then element = $('div#dropzone')
@@ -44,8 +39,6 @@ window.mdToPresentation = (md, filename, element) ->
   md = optionsParser.removeOptionsLines md
   # console.log "removed options lines\n" + md
 
-  htmlParts = md2slides md
-
   wrapSection = (text) ->
     $slide = $('<section>\n' + text + '\n</section>\n')
     return $slide
@@ -67,22 +60,8 @@ window.mdToPresentation = (md, filename, element) ->
       $slide = wrapSection text
     $('article').append $slide
 
-  htmlParts.forEach (html) ->
-    currentSlide = null
-
-    lines = html.split '\n'
-    lines.forEach (line) ->
-      if isSlideStart(line)
-        if currentSlide
-          addSlide(currentSlide)
-          currentSlide = null
-      if currentSlide
-        currentSlide += '\n' + line
-      else
-        currentSlide = line
-
-    if currentSlide
-      addSlide(currentSlide)
+  htmlParts = md2slides md
+  htmlParts.forEach addSlide
 
   # console.log 'converted markdown to\n' + $article.innerHTML
   try

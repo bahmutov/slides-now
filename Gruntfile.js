@@ -131,7 +131,7 @@ module.exports = function(grunt) {
           'dist/README.md': 'README.md',
           'dist/CHANGES.md': 'CHANGES.md',
           'dist/favicon.png': 'favicon.png',
-          'dist/jquery-2.0.2.min.map': 'components/jquery-2.0.2.min.map'
+          'dist/jquery.min.map': 'bower_components/jquery/jquery.min.map'
         }
       },
       sample: {

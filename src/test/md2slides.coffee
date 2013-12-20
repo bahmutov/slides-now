@@ -12,6 +12,12 @@ normal text
     code2
 '''
 
+twoSlides = '''
+first slide
+
+## second slide
+'''
+
 gt.test 'offset', ->
     parts = parse withCode
     gt.array parts
@@ -42,3 +48,10 @@ gt.test 'triple blank unix', ->
 	md = '''line\n\n\nline 2'''
 	slides = parse md
 	gt.equal slides.length, 2, 'two slides'
+
+gt.test 'separate by ##', ->
+    slides = parse twoSlides
+    console.log slides
+    gt.equal slides.length, 2, 'two slides'
+    gt.ok /first slide/.test(slides[0]), 'first slide content', slides[0]
+    gt.ok /second slide/.test(slides[1]), 'second slide content', slides[1]

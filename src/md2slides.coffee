@@ -6,10 +6,10 @@ directLinksToNewTab = (html) ->
 
   html.replace /<a\ href=/g, '<a target="_blank" href='
 
-parse = (md) ->
+md2html = (md) ->
   check.verifyString md, 'expected markdown text'
 
-  severalBlankLines = /\n\r\n\r\n\r|\n\n\n/
+  severalBlankLines = /\n\r\n\r\n\r|\n\n\n|---/
   mdParts = md.split severalBlankLines
   htmlParts = mdParts.map (mdPart) ->
     trimmed = mdPart.trim()
@@ -17,4 +17,32 @@ parse = (md) ->
     html = directLinksToNewTab html
     html.trim()
 
-module.exports = parse
+isSlideStart = (line) ->
+  isLevel1Header = /^<h1[\ |>]/
+  isLevel2Header = /^<h2[\ |>]/
+  isLevel1Header.test(line) or isLevel2Header.test(line)
+
+md2slides = (md) ->
+  htmlParts = md2html md
+
+  slides = []
+  htmlParts.forEach (html) ->
+    currentSlide = null
+
+    lines = html.split '\n'
+    lines.forEach (line) ->
+      if isSlideStart(line)
+        if currentSlide
+          slides.push currentSlide
+          currentSlide = null
+      if currentSlide
+        currentSlide += '\n' + line
+      else
+        currentSlide = line
+
+    if currentSlide
+      slides.push currentSlide
+
+  slides
+
+module.exports = md2slides
