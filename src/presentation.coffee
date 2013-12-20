@@ -12,6 +12,7 @@ md2slides = require './md2slides.coffee'
 window.mdToPresentation = (md, filename, element) ->
   verify.unemptyString md, 'expected markdown string'
   if !element? then element = $('div#dropzone')
+  verify.positiveNumber element.length, 'invalid element to append to ' + element.selector
 
   if filename
     verify.unemptyString filename, 'expected filename, got ' + filename

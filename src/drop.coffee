@@ -1,23 +1,14 @@
 if !angular? then throw new Error('Missing AngularJs')
 if !Alertify? then throw new Error('Missing alertify library')
 
-presentationElement = $('div#dropzone')
-
 cleanIntroText = ->
   $('div#MainTitle').remove()
   $('div.markdown-dropzone').remove()
   $('body').removeClass('slides-now-drop')
 
-window.tryItNow = ->
-  md = $('#explanation')[0].innerHTML
-  cleanIntroText()
-  mdToPresentation md, null, presentationElement
-  false
-
-$('#tryItNow').on 'click', tryItNow
-
 createSlides = (md, filename) ->
   cleanIntroText()
+  presentationElement = $('#dropzone')
   window.mdToPresentation md, filename, presentationElement
 
 checkFilename = (filename) ->
@@ -34,9 +25,7 @@ Start presentation if there is url parameter to Markdown
 urlParser = $.url()
 url = urlParser.param('url') || urlParser.param('md')
 if url
-  $.get url, (md) ->
-    cleanIntroText()
-    window.mdToPresentation md, null, presentationElement
+  $.get url, createSlides
 
 ###
 Create drop zone using AngularJs
@@ -45,8 +34,12 @@ drop = angular.module 'markdown-drop', []
 
 drop.directive 'dropzone', ->
   restrict: 'A'
-  scope: {}
   replace: false
+  controller: ($scope) ->
+    $scope.tryItNow = ->
+      md = $('#explanation')[0].innerHTML
+      createSlides md
+
   link: (scope, element, attrs) ->
     startDrag = (event) ->
       element.addClass 'dragging'
