@@ -18,5 +18,13 @@
     "progress-bars": "~0.0.3",
     "purl": "~2.3.1",
     "code-box": "~0.0.2"
-  }
+  },
+  "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
+  "license": "MIT",
+  "keywords": [
+    "markdown",
+    "presentation",
+    "slides",
+    "browser"
+  ]
 }

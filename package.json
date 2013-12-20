@@ -8,7 +8,7 @@
     "test": "gt --output src/test/*.coffee"
   },
   "pre-commit": "npm test",
-  "author": "Gleb Bahmutov",
+  "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "license": "MIT",
   "contributors": [],
   "repository": {
