@@ -2,7 +2,12 @@
   "name": "slides-now",
   "version": "0.0.12",
   "description": "Instant stand alone slide show from markdown document",
-  "keywords": ["markdown", "presentation", "slides", "browser"],
+  "keywords": [
+    "markdown",
+    "presentation",
+    "slides",
+    "browser"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "gt --output src/test/*.coffee"
@@ -19,22 +24,22 @@
     "url": "https://github.com/bahmutov/slides-now/issues"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~0.4.2",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-bump": "0.0.11",
+    "grunt-bump": "0.0.13",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-replace": "~0.5.1",
-    "grunt-browserify": "~1.2.11",
+    "grunt-browserify": "~1.3.0",
     "coffeeify": "~0.5.2",
-    "grunt-contrib-jshint": "~0.7.1",
-    "grunt-coffeelint": "0.0.7",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-coffeelint": "0.0.8",
     "matchdep": "~0.3.0",
     "check-types": "~0.6.4",
     "marked": "~0.2.10",
     "grunt-clean-console": "0.0.1",
-    "gt": "~0.8.16",
+    "gt": "~0.8.21",
     "pre-git": "0.0.14",
     "grunt-npm2bower-sync": "~0.3.0",
     "grunt-nice-package": "~0.1.5",
