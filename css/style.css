@@ -25,7 +25,7 @@ body.slides-now {
 	max-height: 500px;
 }
 
-.slides-now .bespoke-slide > pre {
+.slides-now .bespoke-slide > .top-right-wrapper {
 	padding-left: 30pt;
 	padding-bottom: 0.5em;
 	max-height: 580px;
