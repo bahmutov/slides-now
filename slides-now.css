@@ -1,4 +1,4 @@
-/*! slides-now - 0.0.12 */
+/*! slides-now - 0.0.13 */
 
 body.slides-now-drop * {
   box-sizing: border-box;
@@ -133,7 +133,7 @@ body.slides-now {
 	max-height: 500px;
 }
 
-.slides-now .bespoke-slide > pre {
+.slides-now .bespoke-slide > .top-right-wrapper {
 	padding-left: 30pt;
 	padding-bottom: 0.5em;
 	max-height: 580px;
@@ -251,6 +251,7 @@ body.slides-now {
   left: 20px;
   bottom: 5px;
 }
+
 /*!
  * Bespoke.js Demo Themes
  *
