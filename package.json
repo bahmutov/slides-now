@@ -46,6 +46,7 @@
     "time-grunt": "~0.2.5",
     "grunt-deps-ok": "~0.1.7",
     "grunt-gh-pages": "~0.9.0",
-    "jshint-stylish": "~0.1.5"
+    "jshint-stylish": "~0.1.5",
+    "grunt-bower-task": "~0.3.4"
   }
 }

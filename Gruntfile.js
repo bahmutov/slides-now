@@ -20,6 +20,19 @@ module.exports = function(grunt) {
       }
     },
 
+    bower: {
+      install: {
+        options: {
+          targetDir: 'bower_components',
+          copy: false,
+          verbose: true,
+          bowerOptions: {
+            forceLatest: true
+          }
+        }
+      }
+    },
+
     jshint: {
       options: {
         jshintrc: '.jshintrc',
@@ -204,7 +217,7 @@ module.exports = function(grunt) {
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('check', ['deps-ok', 'nice-package', 'coffeelint', 'sync']);
+  grunt.registerTask('check', ['deps-ok', 'nice-package', 'coffeelint', 'sync', 'bower']);
   grunt.registerTask('concat-all', ['concat:css', 'concat:dev']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
