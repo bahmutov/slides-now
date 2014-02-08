@@ -1,4 +1,4 @@
-/*global module:false*/
+/*global module, require*/
 module.exports = function(grunt) {
   require('time-grunt')(grunt);
 
@@ -23,9 +23,10 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
+        reporter: require('jshint-stylish')
       },
       'default': {
-        src: ['src/*.js']
+        src: ['Gruntfile.js', 'src/*.js']
       }
     },
 
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
     browserify: {
       'tmp/app.js': ['src/*.coffee'],
       options: {
-         transform: ['coffeeify']
+        transform: ['coffeeify']
       }
     },
 
@@ -73,13 +74,13 @@ module.exports = function(grunt) {
         dest: 'dist/slides-now.css'
       },
       dev: {
-      	options: {
-        	separator: ';\n',
+        options: {
+          separator: ';\n',
           stripBanners: false,
           banner: '/*! <%= pkg.name %> - <%= pkg.version %> ' +
           'built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
           'author: <%= pkg.author %>, support: @bahmutov */\n\n'
-      	},
+        },
         src: [
           'bower_components/es5-shim/es5-shim.min.js',
           'bower_components/jquery/jquery.min.js',
