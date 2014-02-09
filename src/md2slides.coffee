@@ -1,5 +1,6 @@
 {verify} = require 'check-types'
 markdown = require 'marked'
+removeSpeakerNotes = require './remove-speaker-notes.coffee'
 
 directLinksToNewTab = (html) ->
   verify.string html, 'expected html string'
@@ -23,6 +24,7 @@ isSlideStart = (line) ->
   isLevel1Header.test(line) or isLevel2Header.test(line)
 
 md2slides = (md) ->
+  md = removeSpeakerNotes md
   htmlParts = md2html md
   verify.array htmlParts, 'expected parts from ' + md
 
