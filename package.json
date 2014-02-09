@@ -1,7 +1,7 @@
 {
   "name": "slides-now",
   "description": "Instant stand alone slide show from markdown document",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "bugs": {
     "url": "https://github.com/bahmutov/slides-now/issues"
@@ -34,6 +34,7 @@
     "string": "~1.8.0",
     "time-grunt": "~0.2.9"
   },
+  "homepage": "http://glebbahmutov.com/slides-now/",
   "keywords": [
     "markdown",
     "presentation",

@@ -1,6 +1,6 @@
 {
   "name": "slides-now",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "index.html",
   "directory": "components",
   "ignore": [

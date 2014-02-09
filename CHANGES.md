@@ -1,5 +1,7 @@
-## 0.0.12
 
+## 0.0.14 / 2014-02-09
+
+* added speaker notest, use *```notes* blocks
 * Refactoring, moving to Github
 * separate slides using ---, fixes #113
 
