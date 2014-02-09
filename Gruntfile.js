@@ -205,7 +205,7 @@ module.exports = function(grunt) {
         base: 'dist'
       },
       src: [
-        'CHANGED.md', 'README.md',
+        'CHANGES.md', 'README.md',
         'cache.manifest', 'favicon.png',
         'index.html',
         'sample.html',
