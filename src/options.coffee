@@ -1,4 +1,4 @@
-slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W]+)\"$/
+slidesNowOption = /^\[slides-now-([\w-]+)\]\:\s*\"([\w\W\ ]+)\"$/
 
 isSlideOptionLine = (line) -> slidesNowOption.test(line)
 
@@ -26,7 +26,11 @@ removeOptionsLines = (md) ->
   foundNonOptionLine = false
   filtered = lines.filter (line) ->
     line = line.trim()
-    if foundNonOptionLine || !isSlideOptionLine(line)
+    if foundNonOptionLine then return true
+
+    # do not keep empty lines at the end of the file
+    if !line then return false
+    if !isSlideOptionLine(line)
       foundNonOptionLine = true
       true
 

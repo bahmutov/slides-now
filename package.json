@@ -23,6 +23,7 @@
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-deps-ok": "~0.1.7",
     "grunt-gh-pages": "~0.9.0",
+    "grunt-jshint-solid": "0.0.1",
     "grunt-nice-package": "~0.2.1",
     "grunt-npm2bower-sync": "~0.3.0",
     "grunt-replace": "~0.6.2",
@@ -32,8 +33,7 @@
     "matchdep": "~0.3.0",
     "pre-git": "0.0.15",
     "string": "~1.8.0",
-    "time-grunt": "~0.2.9",
-    "grunt-jshint-solid": "0.0.1"
+    "time-grunt": "~0.2.9"
   },
   "homepage": "http://glebbahmutov.com/slides-now/",
   "keywords": [

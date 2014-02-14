@@ -15,10 +15,11 @@ gt.test 'positive options', ->
     gt.ok isOption '[slides-now-font-family]: "Arial Narrow"'
     gt.ok isOption '[slides-now-font-size]: "26pt"'
 
-gt.test 'footer', ->
+gt.test 'footer or title', ->
     gt.ok isOption '[slides-now-footer]: "My talk"'
     gt.ok isOption '[slides-now-footer]: "@bahmutov"'
     gt.ok isOption '[slides-now-footer]: "presentation by @bahmutov"'
+    gt.ok isOption '[slides-now-title]: "presentation by @bahmutov"'
 
 gt.module 'parse footer'
 
@@ -35,9 +36,11 @@ remove = parser.removeOptionsLines
 md = """
 first
 [slides-now-theme]: "classic"
+[slides-now-footer]: "fake title"
 second
 
-[slides-now-footer]: "My talk"
+[slides-now-title]: "My-talk by @bahmutov"
+
 """
 
 gt.test 'removing options lines at the end only', ->
@@ -45,12 +48,12 @@ gt.test 'removing options lines at the end only', ->
     cleaned = remove md
     console.log cleaned
     gt.ok /\[slides-now-theme\]:\ \"classic\"/.test cleaned, 'kept first option'
-    gt.ok !/slides-now-footer/.test(cleaned), 'removed second option'
+    gt.ok !/slides-now-title/.test(cleaned), 'removed second option'
 
 gt.module 'parsing options'
 
 gt.test 'grab only options at the end', ->
     opts = parse md
     gt.object opts, 'got an options object'
-    gt.equal opts.footer, 'My talk', 'correct footer'
+    gt.equal opts.title, 'My-talk by @bahmutov', 'correct footer'
     gt.undefined opts.theme, 'theme should not be parsed, not at the end'
