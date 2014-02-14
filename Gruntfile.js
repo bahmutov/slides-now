@@ -95,11 +95,27 @@ module.exports = function(grunt) {
         ],
         dest: 'dist/slides-now-vendor.css'
       },
-      dev: {
+      js_app: {
         options: {
           separator: ';\n',
           stripBanners: false,
           banner: '/*! <%= pkg.name %> - <%= pkg.version %> ' +
+          'built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+          'author: <%= pkg.author %>, support: @bahmutov */\n\n'
+        },
+        src: [
+          'src/recenter.js',
+          'src/recenterImages.js',
+          'src/recenterCodeBlocks.js',
+          'tmp/app.js'
+        ],
+        dest: 'dist/slides-now.js'
+      },
+      js_vendor: {
+        options: {
+          separator: ';\n',
+          stripBanners: false,
+          banner: '/*! <%= pkg.name %> - <%= pkg.version %> vendor js\n' +
           'built on <%= grunt.template.today("yyyy-mm-dd") %>\n' +
           'author: <%= pkg.author %>, support: @bahmutov */\n\n'
         },
@@ -113,14 +129,10 @@ module.exports = function(grunt) {
           'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
           'components/flowType/flowtype.js',
-          'bower_components/code-box/code-box.js',
-          'src/recenter.js',
-          'src/recenterImages.js',
-          'src/recenterCodeBlocks.js',
-          'tmp/app.js'
+          'bower_components/code-box/code-box.js'
         ],
-        dest: 'dist/slides-now.js'
-      },
+        dest: 'dist/slides-now-vendor.js'
+      }/*,
       min: {
         options: {
           separator: ';\n'
@@ -139,7 +151,7 @@ module.exports = function(grunt) {
           'tmp/app.min.js'
         ],
         dest: 'dist/slides-now.min.js'
-      }
+      }*/
     },
 
     replace: {
@@ -218,7 +230,7 @@ module.exports = function(grunt) {
         'cache.manifest', 'favicon.png',
         'index.html',
         'sample.html',
-        '*.css', 'slides-now.js'
+        '*.css', '*.js'
       ]
     }
   });
@@ -227,7 +239,7 @@ module.exports = function(grunt) {
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('check', ['deps-ok', 'nice-package', 'coffeelint', 'sync', 'bower']);
-  grunt.registerTask('concat-all', ['concat:css_app', 'concat:css_vendor', 'concat:dev']);
+  grunt.registerTask('concat-all', ['concat:css_app', 'concat:css_vendor', 'concat:js_app', 'concat:js_vendor']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
 };
