@@ -37,7 +37,8 @@ window.mdToPresentation = (md, filename, element) ->
 
   $('body').addClass('slides-now')
 
-  if options.footer? then $('footer').text options.footer
+  footerText = options.footer || options.title
+  if footerText? then $('footer').text footerText
   if options['font-family']? then $('body').css('font-family', options['font-family'])
   if options['font-size']? then $('body').css('font-size', options['font-size'])
 
