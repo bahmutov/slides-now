@@ -43,6 +43,12 @@ module.exports = function(grunt) {
       }
     },
 
+    'jshint-solid': {
+      all: {
+        options: {}
+      }
+    },
+
     coffeelint: {
       options: {
         max_line_length: {
@@ -238,7 +244,7 @@ module.exports = function(grunt) {
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('check', ['deps-ok', 'nice-package', 'coffeelint', 'sync', 'bower']);
+  grunt.registerTask('check', ['deps-ok', 'nice-package', 'jshint-solid', 'coffeelint', 'sync', 'bower']);
   grunt.registerTask('concat-all', ['concat:css_app', 'concat:css_vendor', 'concat:js_app', 'concat:js_vendor']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
