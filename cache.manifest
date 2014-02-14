@@ -5,6 +5,7 @@ CACHE MANIFEST
 CACHE:
 index.html
 README.md
+slides-now-vendor.css
 slides-now.css
 slides-now.js
 favicon.png

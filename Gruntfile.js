@@ -69,7 +69,7 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      css: {
+      css_app: {
         options: {
           separator: '\n',
           stripBanners: true,
@@ -78,13 +78,22 @@ module.exports = function(grunt) {
         src: [
           'css/drop.css',
           'css/style.css',
-          'css/themes.css',
-          'components/alertify/alertify.css',
-          'components/alertify/alertify.default.css',
-          'bower_components/code-box/code-box.css',
-          'css/drop.css',
+          'css/themes.css'
         ],
         dest: 'dist/slides-now.css'
+      },
+      css_vendor: {
+        options: {
+          separator: '\n',
+          stripBanners: true,
+          banner: '/*! <%= pkg.name %> - <%= pkg.version %> vendor css */\n\n'
+        },
+        src: [
+          'components/alertify/alertify.css',
+          'components/alertify/alertify.default.css',
+          'bower_components/code-box/code-box.css'
+        ],
+        dest: 'dist/slides-now-vendor.css'
       },
       dev: {
         options: {
@@ -209,7 +218,7 @@ module.exports = function(grunt) {
         'cache.manifest', 'favicon.png',
         'index.html',
         'sample.html',
-        'slides-now.css', 'slides-now.js'
+        '*.css', 'slides-now.js'
       ]
     }
   });
@@ -218,7 +227,7 @@ module.exports = function(grunt) {
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('check', ['deps-ok', 'nice-package', 'coffeelint', 'sync', 'bower']);
-  grunt.registerTask('concat-all', ['concat:css', 'concat:dev']);
+  grunt.registerTask('concat-all', ['concat:css_app', 'concat:css_vendor', 'concat:dev']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
 };
