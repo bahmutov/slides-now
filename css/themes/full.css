@@ -35,3 +35,10 @@
 .full section.bespoke-inactive code {
   visibility: visible;
 }
+/* other UI elements */
+.full .code-box-expand-icon {
+  opacity: 0.2 !important;
+}
+.full .code-box-expand-icon:hover {
+  opacity: 0.5 !important;
+}

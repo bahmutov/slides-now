@@ -143,3 +143,11 @@ body.slides-now {
   left: 20px;
   bottom: 5px;
 }
+
+/*
+	do not show code outside the current slide
+	because it often overflows
+*/
+section.bespoke-inactive code {
+  visibility: hidden;
+}
