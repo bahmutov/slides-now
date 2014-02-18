@@ -32,4 +32,6 @@
   -o-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
-
+.full section.bespoke-inactive code {
+  visibility: visible;
+}
