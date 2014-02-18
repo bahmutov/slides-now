@@ -1,3 +1,8 @@
+## 0.0.15 / 2014-02-17
+
+* added *full* theme for borderless slides
+* better fullscreen style
+* better small screen style
 
 ## 0.0.14 / 2014-02-09
 

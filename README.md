@@ -63,7 +63,7 @@ Check them out!
 
 Feel free to contact me if there are any issues.
 
-[slides-now-theme]: "bw"
+[slides-now-theme]: "full"
 [slides-now-footer]: "Slides now README.md"
 [slides-now-font-family]: "Arial"
 [slides-now-font-size]: "22pt"

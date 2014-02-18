@@ -1,11 +1,13 @@
 CACHE MANIFEST
-# version: 0.0.14
-# timestamp: Sun Feb 09 2014 17:47:04
+# version: 0.0.15
+# timestamp: Mon Feb 17 2014 23:26:46
 
 CACHE:
 index.html
 README.md
+slides-now-vendor.css
 slides-now.css
+slides-now-vendor.js
 slides-now.js
 favicon.png
 
