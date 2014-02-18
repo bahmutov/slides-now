@@ -237,6 +237,13 @@ module.exports = function(grunt) {
         'sample.html',
         '*.css', '*.js'
       ]
+    },
+
+    watch: {
+      all: {
+        files: ['src/**/*.js', 'src/**/*.css'],
+        tasks: ['build']
+      }
     }
   });
 
@@ -246,5 +253,6 @@ module.exports = function(grunt) {
   grunt.registerTask('check', ['deps-ok', 'nice-package', 'jshint-solid', 'coffeelint', 'sync', 'bower']);
   grunt.registerTask('concat-all', ['concat:css_app', 'concat:css_vendor', 'concat:js_app', 'concat:js_vendor']);
   grunt.registerTask('test', ['clean-console']);
-  grunt.registerTask('default', ['check', 'browserify', 'uglify', 'concat-all', 'replace', 'copy', 'test']);
+  grunt.registerTask('build', ['browserify', 'uglify', 'concat-all', 'replace', 'copy']);
+  grunt.registerTask('default', ['check', 'build', 'test']);
 };
