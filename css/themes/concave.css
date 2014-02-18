@@ -1,0 +1,41 @@
+/* Concave Theme */
+.concave {
+  background: rgba(235, 156, 184, 0.3);
+}
+.concave section.bespoke-slide,
+.concave .arrow:hover {
+  background: rgb(235, 156, 184);
+}
+.concave a {
+  color: #1150C4;
+}
+.concave section.bespoke-before {
+  -webkit-transform: translateX(-800px) rotateY(90deg) translateX(-800px);
+  -moz-transform: translateX(-800px) rotateY(90deg) translateX(-800px);
+  -ms-transform: translateX(-800px) rotateY(90deg) translateX(-800px);
+  -o-transform: translateX(-800px) rotateY(90deg) translateX(-800px);
+  transform: translateX(-800px) rotateY(90deg) translateX(-800px);
+}
+.concave section.bespoke-before-1 {
+  -webkit-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+  -moz-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+  -ms-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+  -o-transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+  transform: translateX(-470px) rotateY(58deg) translateX(-470px);
+  opacity: 0.2
+}
+.concave section.bespoke-after {
+  -webkit-transform: translateX(800px) rotateY(-90deg) translateX(800px);
+  -moz-transform: translateX(800px) rotateY(-90deg) translateX(800px);
+  -ms-transform: translateX(800px) rotateY(-90deg) translateX(800px);
+  -o-transform: translateX(800px) rotateY(-90deg) translateX(800px);
+  transform: translateX(800px) rotateY(-90deg) translateX(800px);
+}
+.concave section.bespoke-after-1 {
+  -webkit-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+  -moz-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+  -ms-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+  -o-transform: translateX(490px) rotateY(-58deg) translateX(460px);
+  transform: translateX(490px) rotateY(-58deg) translateX(460px);
+  opacity: 0.2
+}

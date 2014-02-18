@@ -82,9 +82,8 @@ module.exports = function(grunt) {
           banner: '/*! <%= pkg.name %> - <%= pkg.version %> */\n\n'
         },
         src: [
-          'css/drop.css',
-          'css/style.css',
-          'css/themes.css'
+          'css/*.css',
+          'css/themes/*.css'
         ],
         dest: 'dist/slides-now.css'
       },

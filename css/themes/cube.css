@@ -1,0 +1,41 @@
+/* Cube Theme */
+.cube {
+  background: rgba(86, 174, 231, 0.3);
+}
+.cube section.bespoke-slide,
+.cube .arrow:hover {
+  background: rgb(86, 174, 231);
+}
+.cube a {
+  color: #e8fa19;
+}
+.cube section.bespoke-before {
+  -webkit-transform: translateX(-332px) rotateY(-70deg) translateX(-652px) rotateY(-110deg) translateX(-530px);
+  -moz-transform: translateX(-332px) rotateY(-70deg) translateX(-652px) rotateY(-110deg) translateX(-530px);
+  -ms-transform: translateX(-332px) rotateY(-70deg) translateX(-652px) rotateY(-110deg) translateX(-530px);
+  -o-transform: translateX(-332px) rotateY(-70deg) translateX(-652px) rotateY(-110deg) translateX(-530px);
+  transform: translateX(-332px) rotateY(-70deg) translateX(-652px) rotateY(-110deg) translateX(-530px);
+}
+.cube section.bespoke-before-1 {
+  -webkit-transform: translateX(-332px) rotateY(-70deg) translateX(-512px);
+  -moz-transform: translateX(-332px) rotateY(-70deg) translateX(-512px);
+  -ms-transform: translateX(-332px) rotateY(-70deg) translateX(-512px);
+  -o-transform: translateX(-332px) rotateY(-70deg) translateX(-512px);
+  transform: translateX(-332px) rotateY(-70deg) translateX(-512px);
+  opacity: 0.5;
+}
+.cube section.bespoke-after {
+  -webkit-transform: translateX(332px) rotateY(70deg) translateX(652px) rotateY(110deg) translateX(530px);
+  -moz-transform: translateX(332px) rotateY(70deg) translateX(652px) rotateY(110deg) translateX(530px);
+  -ms-transform: translateX(332px) rotateY(70deg) translateX(652px) rotateY(110deg) translateX(530px);
+  -o-transform: translateX(332px) rotateY(70deg) translateX(652px) rotateY(110deg) translateX(530px);
+  transform: translateX(332px) rotateY(70deg) translateX(652px) rotateY(110deg) translateX(530px);
+}
+.cube section.bespoke-after-1 {
+  -webkit-transform: translateX(332px) rotateY(70deg) translateX(512px);
+  -moz-transform: translateX(332px) rotateY(70deg) translateX(512px);
+  -ms-transform: translateX(332px) rotateY(70deg) translateX(512px);
+  -o-transform: translateX(332px) rotateY(70deg) translateX(512px);
+  transform: translateX(332px) rotateY(70deg) translateX(512px);
+  opacity: 0.5;
+}
