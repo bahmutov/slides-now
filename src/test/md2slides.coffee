@@ -61,9 +61,11 @@ gt.test 'separate by ##', ->
     gt.ok /first slide/.test(slides[0]), 'first slide content', slides[0]
     gt.ok /second slide/.test(slides[1]), 'second slide content', slides[1]
 
-gt.test 'separate by ---', ->
+gt.test 'separate by --- dashes', ->
     slides = parse tripleDash
     console.log slides
     gt.equal slides.length, 2, 'two slides'
     gt.ok /first slide/.test(slides[0]), 'first slide content', slides[0]
     gt.ok /second slide/.test(slides[1]), 'second slide content', slides[1]
+    gt.ok !/\-/g.test(slides[0]), 'first slide does not have dashes'
+    gt.ok !/\-/g.test(slides[1]), 'second slide does not have dashes'
