@@ -17,7 +17,7 @@ body.slides-now {
 	overflow-x: hidden;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	color: #000000;
-	font-size: 26pt;
+	font-size: 26pt !important;
 }
 
 .slides-now img {
@@ -141,7 +141,7 @@ body.slides-now {
   color: #666;
   position: absolute;
   left: 20px;
-  bottom: 5px;
+  bottom: 10px;
 }
 
 /*
@@ -150,4 +150,17 @@ body.slides-now {
 */
 section.bespoke-inactive code {
   visibility: hidden;
+}
+
+@media all and (min-width: 1100px) {
+	body.slides-now {
+		font-size: 28pt !important;
+	}
+
+	.slides-now section.bespoke-slide {
+		width: 912px;
+		height: 680px;
+		margin-left: -456px;
+		margin-top: -340px;
+	}
 }
