@@ -1,0 +1,35 @@
+/* Full slide theme without a border */
+.full {
+  background: rgba(255, 255, 255, 0.2);
+}
+.full section.bespoke-slide {
+  background: rgb(255, 255, 255);
+  border: none;
+}
+.full a:hover {
+  background: rgb(225, 225, 225);
+}
+.full a {
+  color: rgba(30, 30, 30, 1);
+  text-decoration: underline;
+}
+.full h1,
+.full h2,
+.full h3 {
+  color: rgb(250, 10, 10);
+}
+.full section.bespoke-before {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -moz-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -o-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.full section.bespoke-after {
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -o-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+

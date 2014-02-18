@@ -1,6 +1,6 @@
 # allows to cycle through themes using key presses
 # todo: namespace the theme names internally
-themes = ['classic', 'cube', 'coverflow', 'bw', 'concave', 'carousel']
+themes = ['full', 'classic', 'cube', 'coverflow', 'bw', 'concave', 'carousel']
 
 findCurrentTheme = ->
   $body = $('body')
@@ -15,7 +15,7 @@ changeTheme = (e) ->
     themeIndex = findCurrentTheme()
     # todo check if index is valid
     themeClass = themes[themeIndex]
-    
+
     nextThemeIndex = (themeIndex + 1) % themes.length
     nextTheme = themes[nextThemeIndex]
 
