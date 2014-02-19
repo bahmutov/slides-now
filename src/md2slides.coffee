@@ -14,6 +14,8 @@ md2html = (md) ->
   mdParts = md.split severalBlankLines
   htmlParts = mdParts.map (mdPart) ->
     trimmed = mdPart.trim()
+    # remove --- used to separate slides
+    trimmed = trimmed.replace /^---/, ''
     html = markdown trimmed
     html = directLinksToNewTab html
     html.trim()

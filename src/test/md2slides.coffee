@@ -24,6 +24,14 @@ first slide
 second slide
 '''
 
+tripleDash2 = '''
+## Themes
+
+
+---
+    /* Full slide theme without a border */
+'''
+
 gt.test 'offset', ->
     parts = parse withCode
     gt.array parts
@@ -63,9 +71,18 @@ gt.test 'separate by ##', ->
 
 gt.test 'separate by --- dashes', ->
     slides = parse tripleDash
-    console.log slides
     gt.equal slides.length, 2, 'two slides'
     gt.ok /first slide/.test(slides[0]), 'first slide content', slides[0]
     gt.ok /second slide/.test(slides[1]), 'second slide content', slides[1]
     gt.ok !/\-/g.test(slides[0]), 'first slide does not have dashes'
     gt.ok !/\-/g.test(slides[1]), 'second slide does not have dashes'
+
+gt.test 'triple dash 2', ->
+    slides = parse tripleDash2
+    gt.equal slides.length, 2, 'two slides'
+    gt.ok /Themes/.test(slides[0]), 'first slide content', slides[0]
+    gt.ok /border/.test(slides[1]), 'second slide content', slides[1]
+    gt.ok !/\-/g.test(slides[0]), 'first slide does not have dashes'
+    gt.ok !/\-/g.test(slides[1]), 'second slide does not have dashes'
+    gt.ok !/hr/g.test(slides[0]), 'first slide does not have hr element'
+    gt.ok !/hr/g.test(slides[1]), 'second slide does not have hr element'
