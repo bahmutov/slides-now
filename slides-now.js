@@ -1,4 +1,4 @@
-/*! slides-now - 0.0.15 built on 2014-02-17
+/*! slides-now - 0.0.15 built on 2014-02-18
 author: Gleb Bahmutov gleb.bahmutov@gmail.com, support: @bahmutov */
 
 // Uses CSS to position elements in the center of its parent
@@ -2986,6 +2986,7 @@ md2html = function(md) {
   return htmlParts = mdParts.map(function(mdPart) {
     var html, trimmed;
     trimmed = mdPart.trim();
+    trimmed = trimmed.replace(/^---/, '');
     html = markdown(trimmed);
     html = directLinksToNewTab(html);
     return html.trim();
@@ -3113,13 +3114,16 @@ md2slides = require('./md2slides.coffee');
 verify = require('check-types').verify;
 
 window.mdToPresentation = function(md, filename, element) {
-  var $article, addSlide, e, footerText, htmlParts, lastSlashAt, name, options, wrapSection;
+  var $article, addSlide, e, footerText, htmlParts, lastSlashAt, name, options, readable, wrapSection;
   verify.unemptyString(md, 'expected markdown string');
   if (element == null) {
     element = $('div#dropzone');
   }
   verify.positiveNumber(element.length, 'invalid element to append to ' + element.selector);
-  if (filename) {
+  readable = window.innerWidth < 400;
+  if (readable) {
+    $('footer').text('');
+  } else if (filename) {
     verify.unemptyString(filename, 'expected filename, got ' + filename);
     name = filename;
     lastSlashAt = filename.lastIndexOf('/');
@@ -3132,13 +3136,16 @@ window.mdToPresentation = function(md, filename, element) {
   $('article').remove();
   $article = element.append('<article>');
   options = optionsParser.getSlidesNowOptions(md);
-  if (options.theme != null) {
+  if (readable) {
+    $('body').removeClass('classic').addClass('full');
+  } else if (options.theme != null) {
     verify.unemptyString(options.theme, 'expected string theme name ' + options.theme);
     $('body').removeClass('classic').addClass(options.theme);
   }
   $('body').addClass('slides-now');
   footerText = options.footer || options.title;
-  if (footerText != null) {
+  if ((footerText != null) && !readable) {
+    console.log('setting footer');
     $('footer').text(footerText);
   }
   if (options['font-family'] != null) {
@@ -3176,32 +3183,34 @@ window.mdToPresentation = function(md, filename, element) {
   };
   htmlParts = md2slides(md);
   htmlParts.forEach(addSlide);
-  try {
-    if (options.timer != null) {
-      bespoke.plugins.progressBar.timer(options.timer * 60);
-    } else {
-      bespoke.plugins.progressBar.removeTimer();
+  if (!readable) {
+    try {
+      if (options.timer != null) {
+        bespoke.plugins.progressBar.timer(options.timer * 60);
+      } else {
+        bespoke.plugins.progressBar.removeTimer();
+      }
+    } catch (_error) {
+      e = _error;
     }
-  } catch (_error) {
-    e = _error;
+    recenter();
+    recenterImages();
+    bespoke.horizontal.from('article', {
+      hash: true,
+      vertical: true,
+      keyShortcuts: true,
+      progressBar: true,
+      themes: true
+    });
+    $('pre').flowtype({
+      minFont: 6,
+      maxFont: 40,
+      minimum: 250,
+      maximum: 1200
+    });
+    recenterCodeBlocks();
+    return CodeBox('pre');
   }
-  recenter();
-  recenterImages();
-  bespoke.horizontal.from('article', {
-    hash: true,
-    vertical: true,
-    keyShortcuts: true,
-    progressBar: true,
-    themes: true
-  });
-  $('pre').flowtype({
-    minFont: 6,
-    maxFont: 40,
-    minimum: 250,
-    maximum: 1200
-  });
-  recenterCodeBlocks();
-  return CodeBox('pre');
 };
 
 
