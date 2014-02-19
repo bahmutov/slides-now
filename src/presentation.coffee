@@ -14,7 +14,11 @@ window.mdToPresentation = (md, filename, element) ->
   if !element? then element = $('div#dropzone')
   verify.positiveNumber element.length, 'invalid element to append to ' + element.selector
 
-  if filename
+  readable = window.innerWidth < 400
+
+  if readable
+    $('footer').text ''
+  else if filename
     verify.unemptyString filename, 'expected filename, got ' + filename
     name = filename
     lastSlashAt = filename.lastIndexOf '/'
@@ -29,8 +33,11 @@ window.mdToPresentation = (md, filename, element) ->
 
   # custom UI options from Markdown text
   options = optionsParser.getSlidesNowOptions md
-  # console.log 'got options', options
-  if options.theme?
+
+  if readable
+    $('body').removeClass('classic')
+      .addClass('full')
+  else if options.theme?
     verify.unemptyString options.theme, 'expected string theme name ' + options.theme
     $('body').removeClass('classic')
       .addClass(options.theme)
@@ -38,7 +45,9 @@ window.mdToPresentation = (md, filename, element) ->
   $('body').addClass('slides-now')
 
   footerText = options.footer || options.title
-  if footerText? then $('footer').text footerText
+  if footerText? and !readable
+    console.log 'setting footer'
+    $('footer').text footerText
   if options['font-family']? then $('body').css('font-family', options['font-family'])
   if options['font-size']? then $('body').css('font-size', options['font-size'])
 
@@ -70,35 +79,36 @@ window.mdToPresentation = (md, filename, element) ->
   htmlParts.forEach addSlide
 
   # console.log 'converted markdown to\n' + $article.innerHTML
-  try
-    if options.timer?
-      # timer duration in minutes, convert to seconds
-      bespoke.plugins.progressBar.timer(options.timer * 60)
-    else
-      bespoke.plugins.progressBar.removeTimer()
-  catch e
-    # do nothing
+  if !readable
+    try
+      if options.timer?
+        # timer duration in minutes, convert to seconds
+        bespoke.plugins.progressBar.timer(options.timer * 60)
+      else
+        bespoke.plugins.progressBar.removeTimer()
+    catch e
+      # do nothing
 
-  recenter()
-  recenterImages()
+    recenter()
+    recenterImages()
 
-  bespoke.horizontal.from 'article',
-    hash: true
-    vertical: true
-    keyShortcuts: true
-    progressBar: true
-    themes: true
-    # slideCounter: true
+    bespoke.horizontal.from 'article',
+      hash: true
+      vertical: true
+      keyShortcuts: true
+      progressBar: true
+      themes: true
+      # slideCounter: true
 
 
-  # resize code samples intelligently
-  $('pre').flowtype
-    minFont: 6
-    maxFont: 40
-    minimum: 250
-    maximum: 1200
-    # fontRatio: 55
-    # lineRatio: 1.45
+    # resize code samples intelligently
+    $('pre').flowtype
+      minFont: 6
+      maxFont: 40
+      minimum: 250
+      maximum: 1200
+      # fontRatio: 55
+      # lineRatio: 1.45
 
-  recenterCodeBlocks()
-  CodeBox 'pre'
+    recenterCodeBlocks()
+    CodeBox 'pre'
