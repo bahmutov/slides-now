@@ -1,4 +1,4 @@
-/*! slides-now - 0.0.15 built on 2014-02-18
+/*! slides-now - 0.0.16 built on 2014-02-20
 author: Gleb Bahmutov gleb.bahmutov@gmail.com, support: @bahmutov */
 
 // Uses CSS to position elements in the center of its parent
