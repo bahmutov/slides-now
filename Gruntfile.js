@@ -74,6 +74,17 @@ module.exports = function(grunt) {
       }
     },
 
+    stylus: {
+      compile: {
+        options: {
+          compress: false
+        },
+        files: {
+          'tmp/drop.css': 'styles/drop.styl'
+        }
+      }
+    },
+
     concat: {
       css_app: {
         options: {
@@ -82,6 +93,7 @@ module.exports = function(grunt) {
           banner: '/*! <%= pkg.name %> - <%= pkg.version %> */\n\n'
         },
         src: [
+          'tmp/*.css',
           'css/*.css',
           'css/themes/*.css'
         ],
@@ -251,7 +263,8 @@ module.exports = function(grunt) {
   plugins.forEach(grunt.loadNpmTasks);
 
   grunt.registerTask('check', ['deps-ok', 'nice-package', 'jshint-solid', 'coffeelint', 'sync', 'bower']);
-  grunt.registerTask('concat-all', ['concat:css_app', 'concat:css_vendor', 'concat:js_app', 'concat:js_vendor']);
+  grunt.registerTask('concat-all',
+    ['stylus', 'concat:css_app', 'concat:css_vendor', 'concat:js_app', 'concat:js_vendor']);
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('build', ['browserify', 'uglify', 'concat-all', 'replace', 'copy']);
   grunt.registerTask('default', ['check', 'build', 'test']);
