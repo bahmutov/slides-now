@@ -1,3 +1,11 @@
+
+## 0.0.17 / 2014-02-22
+
+ * main page is generated using jade, fixes #23
+ * using stylus instead of CSS
+ * good style for narrow screens, fixes #21
+ * fixed triple dashes
+
 ## 0.0.15 / 2014-02-17
 
 * added *full* theme for borderless slides
