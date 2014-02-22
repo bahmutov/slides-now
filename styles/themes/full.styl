@@ -1,0 +1,45 @@
+translate-slide(x)
+  -webkit-transform: translate3d(x, 0, 0)
+  -moz-transform: translate3d(x, 0, 0)
+  -ms-transform: translate3d(x, 0, 0)
+  -o-transform: translate3d(x, 0, 0)
+  transform: translate3d(x, 0, 0)
+
+/* Full slide theme without a border */
+.full {
+  background: rgba(255, 255, 255, 0.2);
+
+  section.bespoke-slide {
+    background: rgb(255, 255, 255);
+    border: none;
+  }
+
+  a {
+    color: rgba(30, 30, 30, 1);
+    text-decoration: underline;
+    &:hover {
+      background: rgb(225, 225, 225);
+    }
+  }
+  h1
+  h2
+  h3 {
+    color: rgb(250, 10, 10);
+  }
+  section.bespoke-before {
+    translate-slide(-100%)
+  }
+  section.bespoke-after {
+    translate-slide(100%)
+  }
+  section.bespoke-inactive code {
+    visibility: visible;
+  }
+  /* other UI elements */
+  .code-box-expand-icon {
+    opacity: 0.2 !important;
+    &:hover {
+      opacity: 0.5 !important;
+    }
+  }
+}

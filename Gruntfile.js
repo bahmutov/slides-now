@@ -85,7 +85,8 @@ module.exports = function(grunt) {
             'styles/slides.styl',
             'styles/slides-fullscreen.styl',
             'styles/slides-desktop.styl',
-            'styles/slides-mobile.styl'
+            'styles/slides-mobile.styl',
+            'styles/themes/*.styl'
           ]
         }
       }
@@ -100,7 +101,6 @@ module.exports = function(grunt) {
         },
         src: [
           'tmp/*.css',
-          'css/*.css',
           'css/themes/*.css'
         ],
         dest: 'dist/slides-now.css'
