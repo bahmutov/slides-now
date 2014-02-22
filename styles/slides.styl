@@ -1,0 +1,156 @@
+/* code lightbox font should be smaller */
+.code-box-lightbox-code pre {
+  font-size: 20pt;
+  padding: 10px 20px;
+}
+
+/* slides used during the actual slide presentation */
+.slides-now * {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+}
+
+body.slides-now {
+	overflow-x: hidden;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #000000;
+	font-size: 26pt !important;
+}
+
+.slides-now {
+	img {
+		max-width: 700px;
+		max-height: 500px;
+	}
+
+	.bespoke-slide > .top-right-wrapper {
+		padding-left: 30pt;
+		padding-bottom: 0.5em;
+		max-height: 580px;
+		width: 800px;
+		overflow-y: auto;
+		overflow-x: auto;
+	  position: relative;
+	}
+
+	code {
+		white-space: pre;
+	}
+
+	span.centered {
+		text-align: center;
+	}
+
+	p {
+		padding-left: 20pt;
+		padding-bottom: 10pt;
+	}
+
+	ol,
+	ul {
+		padding: 20pt 65pt;
+	}
+
+	li {
+		line-height: 1.5em;
+	}
+
+	h1 {
+		color: white;
+		font-size: 50pt;
+		padding: 10pt 20pt;
+	}
+
+	h2 {
+		color: white;
+		-webkit-transition: opacity 2s ease;
+		-moz-transition: opacity 2s ease;
+		-ms-transition: opacity 2s ease;
+		-o-transition: opacity 2s ease;
+		transition: opacity 2s ease;
+
+		font-size: 32pt;
+		padding: 10pt 20pt;
+	}
+
+	h3 {
+		padding: 20pt 20pt;
+	}
+
+	a {
+		text-decoration: none;
+		color: #eee;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	article.bespoke-parent {
+		-webkit-perspective: 600px;
+		-moz-perspective: 600px;
+		-ms-perspective: 600px;
+		-o-perspective: 600px;
+		perspective: 600px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		height: 100%;
+		overflow-y: hidden;
+	}
+
+	section.bespoke-slide {
+		-webkit-transform: none;
+		-moz-transform: none;
+		-ms-transform: none;
+		-o-transform: none;
+		transform: none;
+		background: #c0c0c0;
+		border-radius: 30px;
+		width: 812px;
+		height: 580px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -406px;
+		margin-top: -290px;
+		opacity: 0;
+
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	body,
+	section.bespoke-slide {
+		-webkit-transition: -webkit-transform .7s ease, opacity .7s ease, background-color .7s ease;
+		-moz-transition: -moz-transform .7s ease, opacity .7s ease, background-color .7s ease;
+		-ms-transition: -ms-transform .7s ease, opacity .7s ease, background-color .7s ease;
+		-o-transition: -o-transform .7s ease, opacity .7s ease, background-color .7s ease;
+		transition: transform .7s ease, opacity .7s ease, background-color .7s ease;
+	}
+
+	section.bespoke-active {
+		opacity: 1;
+		z-index: 10;
+	}
+
+	footer {
+	  color: #666;
+	  position: absolute;
+	  left: 20px;
+	  bottom: 10px;
+	}
+}
+
+/*
+	do not show code outside the current slide
+	because it often overflows
+*/
+section.bespoke-inactive code {
+  visibility: hidden;
+}

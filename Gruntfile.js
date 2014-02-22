@@ -80,7 +80,13 @@ module.exports = function(grunt) {
           compress: false
         },
         files: {
-          'tmp/drop.css': 'styles/drop.styl'
+          'tmp/drop.css': [
+            'styles/drop.styl',
+            'styles/slides.styl',
+            'styles/slides-fullscreen.styl',
+            'styles/slides-desktop.styl',
+            'styles/slides-mobile.styl'
+          ]
         }
       }
     },
