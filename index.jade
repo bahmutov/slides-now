@@ -1,0 +1,22 @@
+doctype html
+html(manifest="cache.manifest")
+  head
+    meta(charset="utf-8")
+    title Slides now!
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    meta(name="application-name" content="slides-now")
+    meta(name="description" content="Stand alone markdown based slideshow")
+    meta(name="author" content="Gleb Bahmutov")
+    meta(name="keywords" content="presentation, slideshow, online, slides, now")
+    link(rel="icon" href="favicon.png" type="image/png")
+    link(rel="stylesheet" href="slides-now-vendor.css")
+    link(rel="stylesheet" href="slides-now.css")
+    script(src="slides-now-vendor.js")
+    script(src="slides-now.js")
+  body(class="slides-now-drop classic" ng-app="markdown-drop")
+    div#dropzone(dropzone)
+      div#MainTitle Slides Now!
+
+      footer #{version}
+      aside#counter
+    include google-analytics.jade

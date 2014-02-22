@@ -35,7 +35,8 @@
     "matchdep": "~0.3.0",
     "pre-git": "0.0.15",
     "string": "~1.8.0",
-    "time-grunt": "~0.2.9"
+    "time-grunt": "~0.2.9",
+    "grunt-contrib-jade": "~0.10.0"
   },
   "homepage": "http://glebbahmutov.com/slides-now/",
   "keywords": [

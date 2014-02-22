@@ -177,6 +177,21 @@ module.exports = function(grunt) {
       }*/
     },
 
+    jade: {
+      index: {
+        options: {
+          pretty: true,
+          data: {
+            version: 'version: <%= pkg.version %>',
+            timestamp: 'timestamp: <%= grunt.template.today() %>'
+          }
+        },
+        files: {
+          'dist/index.html': 'index.jade'
+        }
+      }
+    },
+
     replace: {
       dist: {
         options: {
