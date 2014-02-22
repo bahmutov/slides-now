@@ -253,7 +253,7 @@ module.exports = function(grunt) {
 
     watch: {
       all: {
-        files: ['Gruntfile.js', 'src/**/*.js', 'src/**/*.coffee', 'css/**/*.css'],
+        files: ['Gruntfile.js', 'src/**/*.js', 'src/**/*.coffee', 'css/**/*.css', 'styles/**/*'],
         tasks: ['build']
       }
     }
