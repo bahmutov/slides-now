@@ -202,7 +202,6 @@ module.exports = function(grunt) {
           prefix: '@@'
         },
         files: {
-          'dist/index.html': 'index.html',
           'dist/cache.manifest': 'cache.manifest'
         }
       },
@@ -274,7 +273,9 @@ module.exports = function(grunt) {
 
     watch: {
       all: {
-        files: ['Gruntfile.js', 'src/**/*.js', 'src/**/*.coffee', 'css/**/*.css', 'styles/**/*'],
+        files: ['Gruntfile.js', 'index.jade',
+          'partials/*',
+          'src/**/*.js', 'src/**/*.coffee', 'css/**/*.css', 'styles/**/*'],
         tasks: ['build']
       }
     }
@@ -287,6 +288,6 @@ module.exports = function(grunt) {
   grunt.registerTask('concat-all',
     ['stylus', 'concat:css_app', 'concat:css_vendor', 'concat:js_app', 'concat:js_vendor']);
   grunt.registerTask('test', ['clean-console']);
-  grunt.registerTask('build', ['browserify', 'uglify', 'concat-all', 'replace', 'copy']);
+  grunt.registerTask('build', ['browserify', 'uglify', 'concat-all', 'jade', 'replace', 'copy']);
   grunt.registerTask('default', ['check', 'build', 'test']);
 };

@@ -17,6 +17,20 @@ html(manifest="cache.manifest")
     div#dropzone(dropzone)
       div#MainTitle Slides Now!
 
+      div.markdown-dropzone
+        h3 Drop a Markdown File Here
+        pre#explanation
+          include partials/welcome.md
+
+        aside
+          a#tryItNow(href="javascript:void(0)"
+            ng-click="tryItNow()"
+            title="See the text above as a slide show") Try it now!
+          a(href="?url=README.md" title="See Readme.md file") README.md
+          a(href="?url=CHANGES.md" title="See Changes.md file") CHANGES.md
+        footer Copyright &copy; 2014 Gleb Bahmutov
+
       footer #{version}
       aside#counter
-    include google-analytics.jade
+    script
+      include partials/google-analytics.js
