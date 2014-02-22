@@ -7,3 +7,4 @@
 /src/test/cover
 /cover
 .grunt/
+.DS_Store
