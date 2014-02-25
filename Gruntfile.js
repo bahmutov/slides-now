@@ -127,9 +127,6 @@ module.exports = function(grunt) {
           'author: <%= pkg.author %>, support: @bahmutov */\n\n'
         },
         src: [
-          'src/recenter.js',
-          'src/recenterImages.js',
-          'src/recenterCodeBlocks.js',
           'tmp/app.js'
         ],
         dest: 'dist/slides-now.js'
@@ -152,7 +149,8 @@ module.exports = function(grunt) {
           'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
           'components/flowType/flowtype.js',
-          'bower_components/code-box/code-box.js'
+          'bower_components/code-box/code-box.js',
+          'bower_components/slides-now-core/dist/slides-now-core.js'
         ],
         dest: 'dist/slides-now-vendor.js'
       }/*,

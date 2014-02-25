@@ -1,5 +1,6 @@
 if !angular? then throw new Error('Missing AngularJs')
 if !Alertify? then throw new Error('Missing alertify library')
+if !window.mdToPresentation? then throw new Error('Missing mdToPresentation function!')
 
 cleanIntroText = ->
   $('div#MainTitle').remove()
