@@ -149,8 +149,7 @@ module.exports = function(grunt) {
           'bower_components/purl/purl.js',
           'components/alertify/alertify.js',
           'components/flowType/flowtype.js',
-          'bower_components/code-box/code-box.js',
-          'bower_components/slides-now-core/dist/slides-now-core.js'
+          'bower_components/code-box/code-box.js'
         ],
         dest: 'dist/slides-now-vendor.js'
       }/*,
@@ -244,6 +243,11 @@ module.exports = function(grunt) {
       sample: {
         files: {
           'dist/sample.html': 'sample.html'
+        }
+      },
+      slides_now_core: {
+        files: {
+          'dist/slides-now-core.js': 'bower_components/slides-now-core/dist/slides-now-core.js'
         }
       }
     },
