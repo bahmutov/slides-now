@@ -1,6 +1,6 @@
 {
   "name": "slides-now",
-  "version": "0.0.18",
+  "version": "0.1.0",
   "main": "index.html",
   "directory": "components",
   "ignore": [
@@ -13,11 +13,9 @@
     "angular": "1.2.4",
     "reveal.js": "~2.4.0",
     "jquery": "2.0.2",
-    "progress-bars": "~0.0.3",
     "purl": "~2.3.1",
-    "code-box": "~0.0.2",
     "es5-shim": "~2.1.0",
-    "slides-now-core": "~0.0.0"
+    "slides-now-core": "0.0.3"
   },
   "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "license": "MIT",

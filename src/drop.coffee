@@ -10,7 +10,11 @@ cleanIntroText = ->
 createSlides = (md, filename) ->
   cleanIntroText()
   presentationElement = $('#dropzone')
-  window.mdToPresentation md, filename, presentationElement
+  window.mdToPresentation
+    md: md
+    filename: filename
+    element: presentationElement
+    center: false
 
 checkFilename = (filename) ->
   isMarkdownFilename = /\.md|\.md\.txt|\.txt$/i

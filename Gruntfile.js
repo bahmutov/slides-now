@@ -292,4 +292,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['clean-console']);
   grunt.registerTask('build', ['browserify', 'uglify', 'concat-all', 'jade', 'replace', 'copy']);
   grunt.registerTask('default', ['check', 'build', 'test']);
+  grunt.registerTask('run', ['check', 'build', 'watch']);
 };
