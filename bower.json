@@ -1,6 +1,6 @@
 {
   "name": "slides-now",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.html",
   "directory": "components",
   "ignore": [
@@ -15,7 +15,7 @@
     "jquery": "2.0.2",
     "purl": "~2.3.1",
     "es5-shim": "~2.1.0",
-    "slides-now-core": "0.0.3"
+    "slides-now-core": "0.0.5"
   },
   "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "license": "MIT",
