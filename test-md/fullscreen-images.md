@@ -11,4 +11,7 @@ fullscreen images follow
 ---
 ![fullscreen](https://raw.github.com/bahmutov/talks/master/images/status-combined.jpg)
 
+---
+![normal image](https://raw.github.com/bahmutov/talks/master/images/border.jpg)
+
 [slides-now-theme]: "full"
