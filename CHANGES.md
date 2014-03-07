@@ -1,3 +1,9 @@
+
+## 0.1.0 / 2014-03-06
+
+ * added full slide background images
+ * using separate slides-now-core.js
+
 ## 0.0.18 / 2014-02-24
 
  * using slides-now-core
