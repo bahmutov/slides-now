@@ -1,4 +1,4 @@
-/*! slides-now - 0.1.0 */
+/*! slides-now - 0.1.1 */
 
 body.slides-now-drop * {
   box-sizing: border-box;
@@ -120,6 +120,11 @@ body.slides-now {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.slides-now .bespoke-slide blockquote {
+  padding-left: 1em;
+  font-weight: lighter;
+  white-space: pre;
 }
 .slides-now .bespoke-slide .fullscreen-caption {
   position: absolute;

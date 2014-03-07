@@ -1,4 +1,4 @@
-/*! slides-now-core - 0.0.3 built on 2014-03-06
+/*! slides-now-core - 0.0.5 built on 2014-03-06
 author: Gleb Bahmutov <gleb.bahmutov@gmail.com>, support: @bahmutov */
 
 // Uses CSS to position elements in the center of its parent
@@ -3122,14 +3122,19 @@ if (typeof $ === "undefined" || $ === null) {
 }
 
 window.postProcessSlide = function($slide) {
-  var $img, caption;
+  var $img, caption, fullscreen, isFullscreen;
   $img = $('p > img', $slide);
-  if ($img.length === 1) {
+  if ($img.length === 1 && $slide.children().length === 1) {
     $slide.empty().append($img);
     caption = $img.attr('alt');
-    caption = caption.replace(/\ ?fullscreen$/, '');
-    if (caption) {
-      $slide.append('<p class="fullscreen-caption">' + caption + '</p>');
+    fullscreen = /\ ?fullscreen$/;
+    isFullscreen = fullscreen.test(caption);
+    if (isFullscreen) {
+      $img.addClass('fullscreen-image');
+      caption = caption.replace(fullscreen, '');
+      if (caption) {
+        $slide.append('<p class="fullscreen-caption">' + caption + '</p>');
+      }
     }
   }
   return $slide;
@@ -3146,6 +3151,9 @@ window.mdToPresentation = function(opts) {
   }
   verify.positiveNumber(opts.element.length, 'invalid element to append to ' + opts.element.selector);
   readable = window.innerWidth < 400;
+  if (opts.mobile != null) {
+    readable = opts.mobile;
+  }
   if (readable) {
     $('footer').text('');
   } else if (opts.filename) {
