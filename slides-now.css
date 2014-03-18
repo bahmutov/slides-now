@@ -1,4 +1,4 @@
-/*! slides-now - 0.1.1 */
+/*! slides-now - 0.1.2 */
 
 body.slides-now-drop * {
   box-sizing: border-box;
@@ -314,6 +314,11 @@ section.bespoke-inactive code {
 .full section.bespoke-slide {
   background: #fff;
   border: none;
+  width: 1024px;
+  margin-left: -512px;
+}
+.full section.bespoke-slide code {
+  background: #f5f5f5;
 }
 .full a {
   color: #1e1e1e;
